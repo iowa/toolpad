@@ -28,7 +28,7 @@ import { NextAppProvider } from '@iowas/toolpad/nextjs';
 
 ```bash
 pnpm install
-pnpm build
+pnpm run build
 ```
 
 Build output is generated in `dist/`.
@@ -38,7 +38,7 @@ Build output is generated in `dist/`.
 From this repository:
 
 ```bash
-pnpm build
+pnpm run build
 pnpm pack
 ```
 
@@ -55,3 +55,10 @@ pnpm add /absolute/path/to/@iowas%2ftoolpad-1.0.0.tgz
 - `@iowas/toolpad/utils`
 - `@iowas/toolpad/nextjs`
 
+```bash
+npm login
+```
+
+```bash
+pnpm publish
+```
