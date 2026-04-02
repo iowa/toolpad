@@ -8,4 +8,3 @@ export * from './toolpad-core/useActivePage';
 export * from './toolpad-core/useDialogs';
 export * from './toolpad-core/useLocalStorageState';
 export * from './toolpad-core/useNotifications';
-
