@@ -6,6 +6,38 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "dependencies": {
+    "@emotion/cache": "^11.14.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^7.3.9",
+    "@mui/material": "^7.3.9",
+    "@mui/material-nextjs": "^7.3.9",
+    "@mui/utils": "^7.3.9",
+    "@types/react-is": "^19.2.0",
+    "invariant": "2.2.4",
+    "next": "^16.2.2",
+    "path-to-regexp": "8.4.1",
+    "pretty-quick": "^4.2.2",
+    "prop-types": "15.8.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-is": "^19.2.4"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@types/invariant": "^2.2.37",
+    "@types/node": "^25.5.0",
+    "@types/prop-types": "^15.7.15",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "eslint": " ^9.39.4",
+    "eslint-config-next": "^16.2.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "3.8.1",
+    "typescript": "^6.0.2"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
