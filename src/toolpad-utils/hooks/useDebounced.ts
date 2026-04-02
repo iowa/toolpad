@@ -9,7 +9,7 @@ import * as React from 'react';
  */
 export default function useDebounced<T>(value: T, delay: number): T {
   const [debouncedValue, setDebouncedValue] = React.useState(() => value);
-  const timeoutIdRef = React.useRef<NodeJS.Timeout | null>(null);
+  const timeoutIdRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
 
   React.useEffect(
     () => () => {

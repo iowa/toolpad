@@ -6,7 +6,7 @@ interface Handler<P extends unknown[]> {
 
 interface DelayedInvocation<P extends unknown[]> {
   startTime: number;
-  timeout: NodeJS.Timeout;
+  timeout: ReturnType<typeof setTimeout>;
   params: P;
 }
 
