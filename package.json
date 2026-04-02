@@ -1,6 +1,6 @@
 {
   "name": "@iowas/toolpad",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "MIT",
   "repository": "https://github.com/iowa/toolpad",
   "description": "Custom mui-toolpad",
@@ -40,7 +40,8 @@
     "format": "pretty-quick",
     "format:check": "prettier --check src",
     "format:fix": "prettier --check --write src",
-    "prepare": "husky"
+    "prepare": "husky",
+    "dev": "next dev"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,md}": "pnpm run format"
