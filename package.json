@@ -1,5 +1,5 @@
 {
-  "name": "toolpad",
+  "name": "@iowas/toolpad",
   "version": "1.0.0",
   "description": "Custom mui-toolpad",
   "main": "./dist/index.js",
@@ -79,6 +79,9 @@
     "pretty-quick": "^4.2.2",
     "tsup": "^8.5.0",
     "typescript": "^6.0.2"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [],
   "author": "Peter Kudela",

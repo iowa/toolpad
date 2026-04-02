@@ -5,7 +5,7 @@ Reusable React components and hooks extracted from this repository.
 ## Install
 
 ```bash
-pnpm add toolpad
+pnpm add @iowas/toolpad
 ```
 
 Peer dependencies are required in the consuming app (`react`, `react-dom`, MUI, emotion, and optionally `next` for `toolpad/nextjs`).
@@ -13,15 +13,15 @@ Peer dependencies are required in the consuming app (`react`, `react-dom`, MUI, 
 ## Usage
 
 ```tsx
-import { AppProvider, DashboardLayout } from 'toolpad';
+import { AppProvider, DashboardLayout } from '@iowas/toolpad';
 ```
 
 Use subpath exports when you only need a subset:
 
 ```tsx
-import { AppProvider } from 'toolpad/core';
-import { useBoolean } from 'toolpad/utils';
-import { NextAppProvider } from 'toolpad/nextjs';
+import { AppProvider } from '@iowas/toolpad/core';
+import { useBoolean } from '@iowas/toolpad/utils';
+import { NextAppProvider } from '@iowas/toolpad/nextjs';
 ```
 
 ## Build
@@ -45,13 +45,13 @@ pnpm pack
 Then in another project:
 
 ```bash
-pnpm add /absolute/path/to/toolpad-1.0.0.tgz
+pnpm add /absolute/path/to/@iowas%2ftoolpad-1.0.0.tgz
 ```
 
 ## Published Exports
 
-- `toolpad`
-- `toolpad/core`
-- `toolpad/utils`
-- `toolpad/nextjs`
+- `@iowas/toolpad`
+- `@iowas/toolpad/core`
+- `@iowas/toolpad/utils`
+- `@iowas/toolpad/nextjs`
 
