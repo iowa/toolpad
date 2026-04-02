@@ -1,7 +1,7 @@
 {
   "name": "toolpad",
   "version": "1.0.0",
-  "description": "",
+  "description": "Custom mui-toolpad",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -39,7 +39,6 @@
     "typescript": "^6.0.2"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Peter Kudela",
   "packageManager": "pnpm@10.33.0"
 }
