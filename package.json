@@ -2,6 +2,7 @@
   "name": "@iowas/toolpad",
   "version": "1.0.1",
   "license": "MIT",
+  "repository": "https://github.com/iowa/toolpad",
   "description": "Custom mui-toolpad",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
