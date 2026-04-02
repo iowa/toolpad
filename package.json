@@ -35,7 +35,7 @@
     }
   },
   "scripts": {
-    "build": "tsup src/index.ts src/core.ts src/utils.ts src/nextjs.ts --format esm,cjs --dts --clean --out-dir dist --tsconfig tsconfig.build.json",
+    "build": "tsup --config tsup.config.ts",
     "prepack": "pnpm build",
     "format": "pretty-quick",
     "format:check": "prettier --check src",
