@@ -12,7 +12,7 @@ import useEventCallback from '@mui/utils/useEventCallback';
 import { DialogsContext } from './DialogsContext';
 import { WindowContext } from '../shared/context';
 import { useLocaleText, type LocaleText } from '../AppProvider/LocalizationProvider';
-import { useNonNullableContext } from '@/ui/core/toolpad-utils/react';
+import { useNonNullableContext } from '../../toolpad-utils/react';
 
 interface DialogsProviderLocaleText {
   alert: string;

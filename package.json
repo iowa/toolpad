@@ -2,11 +2,48 @@
   "name": "toolpad",
   "version": "1.0.0",
   "description": "Custom mui-toolpad",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./core": {
+      "types": "./dist/core.d.ts",
+      "import": "./dist/core.mjs",
+      "require": "./dist/core.js"
+    },
+    "./utils": {
+      "types": "./dist/utils.d.ts",
+      "import": "./dist/utils.mjs",
+      "require": "./dist/utils.js"
+    },
+    "./nextjs": {
+      "types": "./dist/nextjs.d.ts",
+      "import": "./dist/nextjs.mjs",
+      "require": "./dist/nextjs.js"
+    }
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsup src/index.ts src/core.ts src/utils.ts src/nextjs.ts --format esm,cjs --dts --clean --out-dir dist --tsconfig tsconfig.build.json",
+    "prepack": "pnpm build",
+    "test": "echo \"No tests configured\""
   },
   "dependencies": {
+    "invariant": "2.2.4",
+    "path-to-regexp": "8.4.1",
+    "prop-types": "15.8.1",
+    "react-is": "^19.2.4"
+  },
+  "peerDependencies": {
     "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
@@ -14,15 +51,17 @@
     "@mui/material": "^7.3.9",
     "@mui/material-nextjs": "^7.3.9",
     "@mui/utils": "^7.3.9",
-    "@types/react-is": "^19.2.0",
-    "invariant": "2.2.4",
     "next": "^16.2.2",
-    "path-to-regexp": "8.4.1",
-    "pretty-quick": "^4.2.2",
-    "prop-types": "15.8.1",
     "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "react-is": "^19.2.4"
+    "react-dom": "^19.2.4"
+  },
+  "peerDependenciesMeta": {
+    "next": {
+      "optional": true
+    },
+    "@mui/material-nextjs": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
@@ -30,12 +69,15 @@
     "@types/node": "^25.5.0",
     "@types/prop-types": "^15.7.15",
     "@types/react": "^19.2.14",
+    "@types/react-is": "^19.2.0",
     "@types/react-dom": "^19.2.3",
-    "eslint": " ^9.39.4",
+    "eslint": "^9.39.4",
     "eslint-config-next": "^16.2.2",
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
     "prettier": "3.8.1",
+    "pretty-quick": "^4.2.2",
+    "tsup": "^8.5.0",
     "typescript": "^6.0.2"
   },
   "keywords": [],

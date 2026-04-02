@@ -4,7 +4,7 @@ import { useRouter } from 'next/router.js';
 import { LinkProps } from '../shared/Link';
 import { AppProvider } from '../AppProvider';
 import type { AppProviderProps, Navigate, Router } from '../AppProvider';
-import { asArray } from '@/ui/core/toolpad-utils/collections';
+import { asArray } from '../../toolpad-utils/collections';
 
 const Link = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
   const { href, history, ...rest } = props;

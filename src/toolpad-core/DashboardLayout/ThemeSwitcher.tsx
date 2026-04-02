@@ -6,7 +6,7 @@ import Tooltip from '@mui/material/Tooltip';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import { PaletteModeContext } from '../shared/context';
-import useSsr from '@/ui/core/toolpad-utils/hooks/useSsr';
+import useSsr from '../../toolpad-utils/hooks/useSsr';
 
 /**
  *

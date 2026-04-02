@@ -20,7 +20,7 @@ import type {
   ShowNotificationOptions,
 } from './useNotifications';
 import { useLocaleText, type LocaleText } from '../AppProvider/LocalizationProvider';
-import { useNonNullableContext } from '@/ui/core/toolpad-utils/react';
+import { useNonNullableContext } from '../../toolpad-utils/react';
 
 export interface NotificationsProviderSlotProps {
   snackbar: SnackbarProps;

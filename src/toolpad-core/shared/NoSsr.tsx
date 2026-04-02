@@ -1,5 +1,5 @@
 import * as React from 'react';
-import useSsr from '@/ui/core/toolpad-utils/hooks/useSsr';
+import useSsr from '../../toolpad-utils/hooks/useSsr';
 
 export interface NoSsrProps {
   children?: React.ReactNode;
