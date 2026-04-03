@@ -27,6 +27,7 @@
   "scripts": {
     "build": "tsup --config tsup.config.ts && node scripts/add-use-client.js",
     "prepack": "pnpm build",
+    "test": "vitest",
     "format": "pretty-quick",
     "format:check": "prettier --check src",
     "format:fix": "prettier --check --write src",
@@ -67,14 +68,15 @@
     "@types/node": "^25.5.0",
     "@types/prop-types": "^15.7.15",
     "@types/react": "^19.2.14",
-    "@types/react-is": "^19.2.0",
     "@types/react-dom": "^19.2.3",
+    "@types/react-is": "^19.2.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
     "prettier": "3.8.1",
     "pretty-quick": "^4.2.2",
     "tsup": "^8.5.0",
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.2"
   },
   "publishConfig": {
     "access": "public"
