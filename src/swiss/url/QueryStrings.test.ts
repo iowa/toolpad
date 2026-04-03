@@ -1,39 +1,39 @@
 import { describe, expect, it } from "vitest";
-import { FormUtils } from "@/utils/FormUtils";
-import Fakes, { Movie } from "@/utils/Fakes";
+import Fakes, { Movie } from "@/swiss/test/Fakes";
+import { QueryStrings } from "@/swiss/url/QueryStrings";
 
-describe("FormUtils", () => {
-  it("toQueryString string", () => {
+describe("QueryStrings", () => {
+  it("parse string", () => {
     const example: Partial<Movie> = {
       title: Fakes.exampleMovieMatrix.title,
     }
 
-    const result = FormUtils.toQueryString(example);
+    const result = QueryStrings.parse(example);
 
     expect(result).toMatchInlineSnapshot(`"?title=The+Matrix"`);
   });
 
-  it("toQueryString arrays", () => {
+  it("parse arrays", () => {
     const example: Partial<Movie> = {
       genres: Fakes.exampleMovieMatrix.genres,
     }
 
-    const result = FormUtils.toQueryString(example);
+    const result = QueryStrings.parse(example);
 
     expect(result).toMatchInlineSnapshot(`"?genres=Action&genres=Sci-Fi"`);
   });
 
-  it("toQueryString number float", () => {
+  it("parse number float", () => {
     const example: Partial<Movie> = {
       rating: Fakes.exampleMovieMatrix.rating,
     }
 
-    const result = FormUtils.toQueryString(example);
+    const result = QueryStrings.parse(example);
 
     expect(result).toMatchInlineSnapshot(`"?rating=8.7"`);
   });
 
-  it("toQueryString object", () => {
+  it("parse object", () => {
     const example: Partial<Movie> = {
       id: Fakes.exampleMovieMatrix.id,
       title: Fakes.exampleMovieMatrix.title,
@@ -42,31 +42,31 @@ describe("FormUtils", () => {
       rating: Fakes.exampleMovieMatrix.rating,
     }
 
-    const result = FormUtils.toQueryString(example);
+    const result = QueryStrings.parse(example);
 
     expect(result).toMatchInlineSnapshot(`"?id=movie-1&title=The+Matrix&year=1999&genres=Action&genres=Sci-Fi&rating=8.7"`);
   });
 
-  it("toQueryString null", () => {
-    const result = FormUtils.toQueryString(null);
+  it("parse null", () => {
+    const result = QueryStrings.parse(null);
 
     expect(result).toMatchInlineSnapshot(`"?"`);
   });
 
-  it("toQueryString undefined", () => {
-    const result = FormUtils.toQueryString(undefined);
+  it("parse undefined", () => {
+    const result = QueryStrings.parse(undefined);
 
     expect(result).toMatchInlineSnapshot(`"?"`);
   });
 
-  it("toQueryString empty", () => {
-    const result = FormUtils.toQueryString({});
+  it("parse empty", () => {
+    const result = QueryStrings.parse({});
 
     expect(result).toMatchInlineSnapshot(`"?"`);
   });
 
-  it("toQueryString boolean", () => {
-    const result = FormUtils.toQueryString({
+  it("parse boolean", () => {
+    const result = QueryStrings.parse({
       featured: true,
       archived: false,
     });
@@ -74,24 +74,24 @@ describe("FormUtils", () => {
     expect(result).toMatchInlineSnapshot(`"?featured=true&archived=false"`);
   });
 
-  it("toQueryString date", () => {
-    const result = FormUtils.toQueryString({
+  it("parse date", () => {
+    const result = QueryStrings.parse({
       releasedAt: new Date("2024-01-02T03:04:05.000Z"),
     });
 
     expect(result).toMatchInlineSnapshot(`"?releasedAt=2024-01-02T03%3A04%3A05.000Z"`);
   });
 
-  it("toQueryString object as json", () => {
-    const result = FormUtils.toQueryString({
+  it("parse object as json", () => {
+    const result = QueryStrings.parse({
       filters: { year: 1999, exact: true },
     });
 
     expect(result).toMatchInlineSnapshot(`"?filters=%7B%22year%22%3A1999%2C%22exact%22%3Atrue%7D"`);
   });
 
-  it("toQueryString skip null undefined and empty arrays", () => {
-    const result = FormUtils.toQueryString({
+  it("parse skip null undefined and empty arrays", () => {
+    const result = QueryStrings.parse({
       title: Fakes.exampleMovieMatrix.title,
       id: null,
       year: undefined,
@@ -101,16 +101,16 @@ describe("FormUtils", () => {
     expect(result).toMatchInlineSnapshot(`"?title=The+Matrix"`);
   });
 
-  it("toQueryString trim strings", () => {
-    const result = FormUtils.toQueryString({
+  it("parse trim strings", () => {
+    const result = QueryStrings.parse({
       title: "  The Matrix  ",
     });
 
     expect(result).toMatchInlineSnapshot(`"?title=The+Matrix"`);
   });
 
-  it("toQueryString keeps whitespace-only string as empty value", () => {
-    const result = FormUtils.toQueryString({
+  it("parse keeps whitespace-only string as empty value", () => {
+    const result = QueryStrings.parse({
       q: "   ",
     });
 

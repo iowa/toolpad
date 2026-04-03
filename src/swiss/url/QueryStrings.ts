@@ -1,23 +1,6 @@
-export class FormUtils {
+export class QueryStrings {
 
-  private static isInvalidInput(values?: Record<string, unknown> | null): boolean {
-    return !values || typeof values !== 'object';
-  }
-
-  private static isSkippableTopLevelValue(value: unknown): boolean {
-    return value === null || value === undefined || (Array.isArray(value) && value.length === 0);
-  }
-
-  private static isSkippableSingleValue(value: unknown): boolean {
-    return (
-      value === null ||
-      value === undefined ||
-      value === '' ||
-      (Array.isArray(value) && value.length === 0)
-    );
-  }
-
-  static toQueryString(values?: Record<string, unknown> | null): string {
+  static parse(values?: Record<string, unknown> | null): string {
     if (this.isInvalidInput(values)) {
       return '?';
     }
@@ -60,5 +43,22 @@ export class FormUtils {
     } else {
       params.append(key, String(value));
     }
+  }
+
+  private static isInvalidInput(values?: Record<string, unknown> | null): boolean {
+    return !values || typeof values !== 'object';
+  }
+
+  private static isSkippableTopLevelValue(value: unknown): boolean {
+    return value === null || value === undefined || (Array.isArray(value) && value.length === 0);
+  }
+
+  private static isSkippableSingleValue(value: unknown): boolean {
+    return (
+      value === null ||
+      value === undefined ||
+      value === '' ||
+      (Array.isArray(value) && value.length === 0)
+    );
   }
 }
