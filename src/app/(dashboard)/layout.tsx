@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Container } from '@mui/material';
 import Box from '@mui/material/Box';
-import { DashboardLayout } from '@/toolpad-core/DashboardLayout';
+import { DashboardLayout } from '@iowas/toolpad';
 
 export default function Layout(props: { children: React.ReactNode }) {
   return (

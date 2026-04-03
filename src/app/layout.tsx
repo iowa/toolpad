@@ -2,7 +2,7 @@ import * as React from 'react';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter';
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 import { LinearProgress } from '@mui/material';
-import { NextAppProvider } from "@/toolpad-core/nextjs";
+import { NextAppProvider } from "@iowas/toolpad";
 import theme from "@/app/theme";
 
 export default function RootLayout(props: { children: React.ReactNode }) {
