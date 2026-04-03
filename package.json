@@ -1,6 +1,6 @@
 {
   "name": "@iowas/toolpad",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "license": "MIT",
   "repository": "https://github.com/iowa/toolpad",
   "description": "Custom mui-toolpad",
@@ -22,11 +22,6 @@
       "types": "./dist/core.d.ts",
       "import": "./dist/core.mjs",
       "require": "./dist/core.js"
-    },
-    "./utils": {
-      "types": "./dist/utils.d.ts",
-      "import": "./dist/utils.mjs",
-      "require": "./dist/utils.js"
     },
     "./nextjs": {
       "types": "./dist/nextjs.d.ts",

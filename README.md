@@ -20,7 +20,6 @@ Use subpath exports when you only need a subset:
 
 ```tsx
 import { AppProvider } from '@iowas/toolpad/core';
-import { useBoolean } from '@iowas/toolpad/utils';
 import { NextAppProvider } from '@iowas/toolpad/nextjs';
 ```
 
@@ -52,7 +51,6 @@ pnpm add /absolute/path/to/@iowas%2ftoolpad-1.0.0.tgz
 
 - `@iowas/toolpad`
 - `@iowas/toolpad/core`
-- `@iowas/toolpad/utils`
 - `@iowas/toolpad/nextjs`
 
 ```bash
