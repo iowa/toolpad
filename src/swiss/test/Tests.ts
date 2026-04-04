@@ -1,41 +1,9 @@
-export type Genre =
-  | 'Action'
-  | 'Adventure'
-  | 'Animation'
-  | 'Comedy'
-  | 'Crime'
-  | 'Documentary'
-  | 'Drama'
-  | 'Family'
-  | 'Fantasy'
-  | 'History'
-  | 'Horror'
-  | 'Music'
-  | 'Mystery'
-  | 'Romance'
-  | 'Sci-Fi'
-  | 'Sport'
-  | 'Thriller'
-  | 'War'
-  | 'Western';
-
-export interface Movie {
-  id: string;
-  title: string;
-  year?: number;
-  genres: Genre[];
-  rating?: number; // e.g. 0-10 scale
-  runtimeMinutes?: number;
-  overview?: string;
-  /** ISO date string for the movie's premiere/release date */
-  premiereDate?: string;
-  posterUrl?: string;
-}
-
-export class Fakes {
+import { Movie } from "@/app/ts/types/movieTypes";
 
 
-  static readonly exampleMovieMatrix: Movie = {
+export class Tests {
+
+  static readonly movie_Matrix: Movie = {
     id: 'movie-1',
     title: 'The Matrix',
     year: 1999,
@@ -48,7 +16,7 @@ export class Fakes {
     premiereDate: '1999-03-31',
   };
 
-  static readonly exampleMovieInception: Movie = {
+  static readonly movie_Inception: Movie = {
     id: 'movie-2',
     title: 'Inception',
     year: 2010,
@@ -61,7 +29,7 @@ export class Fakes {
     premiereDate: '2010-07-16',
   };
 
-  static readonly exampleMovieHatefulEight: Movie = {
+  static readonly movie_HatefulEight: Movie = {
     id: 'movie-3',
     title: 'The Hateful Eight',
     year: 2015,
@@ -75,16 +43,13 @@ export class Fakes {
   };
 
 
-  static readonly exampleMovies: Movie[] = [
-    Fakes.exampleMovieMatrix,
-    Fakes.exampleMovieInception,
-    Fakes.exampleMovieHatefulEight,
+  static readonly movies: Movie[] = [
+    Tests.movie_Matrix,
+    Tests.movie_Inception,
+    Tests.movie_HatefulEight,
   ];
 
-  static get all() {
-    return Fakes.exampleMovies;
-  }
 }
 
-export default Fakes;
+export default Tests;
 

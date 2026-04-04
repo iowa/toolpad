@@ -1,11 +1,12 @@
 import { describe, expect, it } from "vitest";
-import Fakes, { Movie } from "@/swiss/test/Fakes";
 import { QueryStrings } from "@/swiss/url/QueryStrings";
+import { Movie } from "@/app/ts/types/movieTypes";
+import Tests from "@/swiss/test/Tests";
 
 describe("QueryStrings", () => {
   it("parse string", () => {
     const example: Partial<Movie> = {
-      title: Fakes.exampleMovieMatrix.title,
+      title: Tests.movie_Matrix.title,
     }
 
     const result = QueryStrings.parse(example);
@@ -15,7 +16,7 @@ describe("QueryStrings", () => {
 
   it("parse arrays", () => {
     const example: Partial<Movie> = {
-      genres: Fakes.exampleMovieMatrix.genres,
+      genres: Tests.movie_Matrix.genres,
     }
 
     const result = QueryStrings.parse(example);
@@ -25,7 +26,7 @@ describe("QueryStrings", () => {
 
   it("parse number float", () => {
     const example: Partial<Movie> = {
-      rating: Fakes.exampleMovieMatrix.rating,
+      rating: Tests.movie_Matrix.rating,
     }
 
     const result = QueryStrings.parse(example);
@@ -35,11 +36,11 @@ describe("QueryStrings", () => {
 
   it("parse object", () => {
     const example: Partial<Movie> = {
-      id: Fakes.exampleMovieMatrix.id,
-      title: Fakes.exampleMovieMatrix.title,
-      year: Fakes.exampleMovieMatrix.year,
-      genres: Fakes.exampleMovieMatrix.genres,
-      rating: Fakes.exampleMovieMatrix.rating,
+      id: Tests.movie_Matrix.id,
+      title: Tests.movie_Matrix.title,
+      year: Tests.movie_Matrix.year,
+      genres: Tests.movie_Matrix.genres,
+      rating: Tests.movie_Matrix.rating,
     }
 
     const result = QueryStrings.parse(example);
@@ -92,7 +93,7 @@ describe("QueryStrings", () => {
 
   it("parse skip null undefined and empty arrays", () => {
     const result = QueryStrings.parse({
-      title: Fakes.exampleMovieMatrix.title,
+      title: Tests.movie_Matrix.title,
       id: null,
       year: undefined,
       genres: [],
