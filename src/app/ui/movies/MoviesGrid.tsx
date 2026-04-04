@@ -1,5 +1,28 @@
-export default function MoviesGrid({}: {}) {
+'use client'
+
+import { GridRows } from "@/swiss/grid/gridTypes";
+import { Movie } from "@/app/ts/types/movieTypes";
+import Box from "@mui/material/Box";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
+
+export default function MoviesGrid({ gridRows }: { gridRows: GridRows<Movie> }) {
+  const columns: GridColDef<Movie>[] = [
+    {
+      field: 'title',
+      flex: 1
+    },
+    {
+      field: 'year',
+      flex: 1,
+    }
+  ];
+
   return (
-    <div></div>
+    <Box sx={{ height: 400, width: '100%' }}>
+      <DataGrid<Movie>
+        rows={gridRows.rows}
+        columns={columns}
+      />
+    </Box>
   );
 };

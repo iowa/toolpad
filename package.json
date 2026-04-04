@@ -51,6 +51,7 @@
     "@mui/material": "^7.3.9",
     "@mui/material-nextjs": "^7.3.9",
     "@mui/utils": "^7.3.9",
+    "@mui/x-data-grid": "^8.28.2",
     "next": "^16.2.2",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
@@ -67,6 +68,7 @@
     }
   },
   "devDependencies": {
+    "@mui/x-data-grid": "^8.28.2",
     "@types/invariant": "^2.2.37",
     "@types/node": "^25.5.0",
     "@types/prop-types": "^15.7.15",
