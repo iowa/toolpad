@@ -1,28 +1,14 @@
 import Stack from '@mui/material/Stack';
-import { ShipmentsGrid } from '@/app/ui/shipments/ShipmentsGrid';
-import ShipmentsForm from '@/app/ui/shipments/ShipmentsForm';
-import { Suspense } from 'react';
-import { ShipmentsSearchParams } from '@/app/lib/types/shipmentsTypes';
-import { ShipmentsRepository } from '@/app/lib/db/repository/ShipmentsRepository';
+import { MovieSearchParams } from '@/app/ts/types/movieTypes';
+import { MoviesRepository } from '@/app/ts/db/repository/MoviesRepository';
+import MoviesGrid from '@/app/ui/movies/MoviesGrid';
 
-export default async function MoviesPage(props: {
-  searchParams: Promise<ShipmentsSearchParams>;
-}) {
+export default async function MoviesPage(props: { searchParams: Promise<MovieSearchParams> }) {
   const searchParams = await props.searchParams;
-  return (
-    <Stack spacing={2}>
-      <ShipmentsForm />
-      <Suspense
-        key={JSON.stringify(searchParams)}
-        fallback={<ShipmentsGrid data={[]} isLoading={true} />}
-      >
-        <MoviesData searchParams={searchParams} />
-      </Suspense>
-    </Stack>
-  );
+  return <Stack spacing={2}></Stack>;
 }
 
-async function MoviesData({ searchParams }: { searchParams: ShipmentsSearchParams }) {
-  const data = await ShipmentsRepository.searchSystemReferences(searchParams);
-  return <ShipmentsGrid data={data} isLoading={false} />;
+async function MoviesData({ searchParams }: { searchParams: MovieSearchParams }) {
+  const data = await MoviesRepository.search(searchParams);
+  return <MoviesGrid data={data} isLoading={false} />;
 }
