@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { QueryStrings } from "@/swiss/url/QueryStrings";
-import { Movie } from "@/app/ts/types/movieTypes";
+import { Movie } from "@/app/lib/types/movieTypes";
 import Tests from "@/swiss/test/Tests";
 
 describe("QueryStrings", () => {

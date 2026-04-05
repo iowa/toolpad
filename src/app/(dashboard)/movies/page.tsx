@@ -1,6 +1,6 @@
 import Stack from '@mui/material/Stack';
-import { MovieSearchParams } from '@/app/ts/types/movieTypes';
-import { MoviesRepository } from '@/app/ts/db/repository/MoviesRepository';
+import { MovieSearchParams } from '@/app/lib/types/movieTypes';
+import { MoviesRepository } from '@/app/lib/db/repository/MoviesRepository';
 import MoviesGrid from '@/app/ui/movies/MoviesGrid';
 import { Suspense } from "react";
 import { LinearProgress } from "@mui/material";

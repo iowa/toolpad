@@ -1,6 +1,6 @@
 import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool, PoolConfig } from "pg";
-import { DatabaseEnvConfig } from "@/app/ts/db/DatabaseEnvSchema";
+import { DatabaseEnvConfig } from "@/swiss/db/DatabaseEnvSchema";
 
 
 export class Drizzles {

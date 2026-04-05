@@ -1,7 +1,7 @@
 'use client'
 
 import { GridRows } from "@/swiss/grid/gridTypes";
-import { Movie } from "@/app/ts/types/movieTypes";
+import { Movie } from "@/app/lib/types/movieTypes";
 import Box from "@mui/material/Box";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import NoSsr from "@mui/material/NoSsr";
