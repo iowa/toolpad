@@ -1,6 +1,6 @@
 import { DatabaseEnvConfigZod } from "@/swiss/db";
 import { defineConfig } from 'drizzle-kit';
-import DrizzleClient from "@/swiss/db/DrizzleClient";
+import DrizzleClient from "@/swiss/db/DrizzleDB";
 
 const databaseEnv = DatabaseEnvConfigZod.parse();
 

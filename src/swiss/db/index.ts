@@ -1,3 +1,3 @@
 export * from './DatabaseEnvSchema';
-export * from './DrizzleClient';
-export * from './DrizzleClientManager';
+export * from './DrizzleDB';
+export * from './DrizzleDBManager';

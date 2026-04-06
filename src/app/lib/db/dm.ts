@@ -1,17 +1,17 @@
 import { DatabaseEnvConfigZod } from "@/swiss/db/DatabaseEnvSchema";
-import { DrizzleClient, DrizzleClientManager } from "@/swiss";
+import { DB, DrizzleDB, DrizzleDBManager } from "@/swiss";
 
-export const drizzleClientKeys = ['toolpad'] as const;
-export type DrizzleClientKey = (typeof drizzleClientKeys)[number];
+export const drizzleDatabaseKeys = ['toolpad'] as const;
+export type DrizzleDatabaseKey = (typeof drizzleDatabaseKeys)[number];
 
-const dm = new DrizzleClientManager();
+const dm = new DrizzleDBManager();
 
-export function getDc(key: DrizzleClientKey): DrizzleClient {
+export function getDB(key: DrizzleDatabaseKey): DB {
   switch (key) {
     case 'toolpad': {
       const databaseEnv = DatabaseEnvConfigZod.parse();
       return dm.get(key, {
-        connectionString: DrizzleClient.buildConnectionString(databaseEnv),
+        connectionString: DrizzleDB.buildConnectionString(databaseEnv),
         max: 4,
         idleTimeoutMillis: 30000,
         connectionTimeoutMillis: 2000,

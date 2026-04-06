@@ -2,20 +2,20 @@ import { Movie, MovieSearchParams } from "@/app/lib/types/movieTypes";
 import { GridRows } from "@/swiss/grid/gridTypes";
 import { moviesTable } from "@/app/lib/db/schema/schema";
 import { and, count, desc, SQL, sql } from "drizzle-orm";
-import { DrizzleClient } from "@/swiss";
+import { DB } from "@/swiss";
 
 export class MoviesRepository {
 
-  private readonly dc;
+  private readonly db;
 
-  constructor(dcInstance: DrizzleClient) {
-    this.dc = dcInstance;
+  constructor(dbInstance: DB) {
+    this.db = dbInstance;
   }
 
   async search(searchParams: MovieSearchParams): Promise<GridRows<Movie>> {
     const whereBase = this.whereConditions(searchParams)
     const [rows, rowCount] = await Promise.all([
-      this.dc.db
+      this.db
       .select()
       .from(moviesTable)
       .orderBy(desc(moviesTable.id)).where(whereBase)
@@ -27,7 +27,7 @@ export class MoviesRepository {
   }
 
   async getCount(whereBase?: SQL<unknown>): Promise<number | undefined> {
-    const result = await this.dc.db.select({ count: count() }).from(moviesTable).where(whereBase);
+    const result = await this.db.select({ count: count() }).from(moviesTable).where(whereBase);
     return result[0]?.count ?? undefined;
   }
 
