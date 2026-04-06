@@ -5,7 +5,7 @@ CREATE TABLE "toolpad"."movies" (
 	"title" varchar(255) NOT NULL,
 	"year" integer NOT NULL,
 	"overview" text,
-	"rating" integer,
+	"rating" double precision,
 	"runtime_minutes" integer,
 	"premiere_date" timestamp
 );

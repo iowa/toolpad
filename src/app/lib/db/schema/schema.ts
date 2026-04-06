@@ -1,5 +1,5 @@
 import * as p from 'drizzle-orm/pg-core';
-import { createSelectSchema } from "drizzle-zod";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
 export const toolpadPgSchema = p.pgSchema('toolpad');
 
@@ -8,9 +8,10 @@ export const moviesTable = toolpadPgSchema.table("movies", {
   title: p.varchar("title", { length: 255 }).notNull(),
   year: p.integer("year").notNull(),
   overview: p.text("overview"),
-  rating: p.integer("rating"),
+  rating: p.doublePrecision("rating"),
   runtimeMinutes: p.integer("runtime_minutes"),
   premiereDate: p.timestamp("premiere_date"),
 });
 
 export const MoviesSchema = createSelectSchema(moviesTable);
+export const MoviesInsertSchema = createInsertSchema(moviesTable);
