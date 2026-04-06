@@ -26,13 +26,13 @@ export class MoviesRepository {
     }
   }
 
-  async getCount(whereBase?: SQL<unknown>): Promise<number | undefined> {
+  private async getCount(whereBase?: SQL<unknown>): Promise<number | undefined> {
     const result = await this.db.select({ count: count() }).from(moviesTable).where(whereBase);
     return result[0]?.count ?? undefined;
   }
 
 
-  whereConditions(searchParams: MovieSearchParams): SQL | undefined {
+  private whereConditions(searchParams: MovieSearchParams): SQL | undefined {
     const conditions = [sql.raw('1=1')];
     return and(...conditions);
   }

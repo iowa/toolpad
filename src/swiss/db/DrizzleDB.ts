@@ -3,6 +3,7 @@ import { drizzle as pgLiteDrizzle } from 'drizzle-orm/pglite';
 import { Pool, PoolConfig } from "pg";
 import { DatabaseEnvConfig } from "@/swiss/db/DatabaseEnvSchema";
 import { PGlite } from "@electric-sql/pglite";
+import { migrate } from "drizzle-orm/pglite/migrator";
 
 export type PgDB = ReturnType<typeof pgDrizzle>
 export type DB = ReturnType<typeof pgDrizzle> | ReturnType<typeof pgLiteDrizzle>;
@@ -28,6 +29,10 @@ export class DrizzleTestDB {
   constructor() {
     this.pgLiteClient = new PGlite();
     this.db = pgLiteDrizzle(this.pgLiteClient)
+  }
+
+  async migrate(migrationsFolder: string) {
+    await migrate(this.db, { migrationsFolder: migrationsFolder });
   }
 
 }
