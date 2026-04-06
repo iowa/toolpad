@@ -5,7 +5,7 @@ import { count, SQL } from "drizzle-orm";
 import * as p from 'drizzle-orm/pg-core';
 
 
-export class Drizzles {
+export class DrizzleClient {
   public pool: Pool;
   public db: ReturnType<typeof drizzle>;
 
