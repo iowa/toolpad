@@ -1,26 +1,29 @@
-import { drizzle } from "drizzle-orm/node-postgres";
+import { drizzle as pgDrizzle } from "drizzle-orm/node-postgres";
+import { drizzle as pgLiteDrizzle } from 'drizzle-orm/pglite';
 import { Pool, PoolConfig } from "pg";
 import { DatabaseEnvConfig } from "@/swiss/db/DatabaseEnvSchema";
-import { count, SQL } from "drizzle-orm";
-import * as p from 'drizzle-orm/pg-core';
+import { PGlite } from "@electric-sql/pglite";
 
 
 export class DrizzleClient {
-  public pool: Pool;
-  public db: ReturnType<typeof drizzle>;
+  public pgLiteClient?: PGlite;
+  public db: ReturnType<typeof pgDrizzle> | ReturnType<typeof pgLiteDrizzle>;
 
-  constructor(config: PoolConfig) {
-    this.pool = new Pool(config);
-    this.db = drizzle(this.pool);
+  constructor(config?: PoolConfig) {
+    if (config) {
+      const pool = new Pool(config);
+      this.db = pgDrizzle(pool);
+    } else {
+      this.pgLiteClient = new PGlite();
+      this.db = pgLiteDrizzle(this.pgLiteClient)
+    }
   }
 
   static buildConnectionString(config: DatabaseEnvConfig): string {
     return `postgresql://${config.user}:${config.password}@${config.host}:${config.port}/${config.database}`;
   }
 
-  async getCount(table: p.PgTableWithColumns<any>, whereBase?: SQL<unknown>): Promise<number | undefined> {
-    const result = await this.db.select({ count: count() }).from(table).where(whereBase);
-    return result[0]?.count ?? undefined;
-  }
+  
+
 
 }
