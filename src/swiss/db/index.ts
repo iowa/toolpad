@@ -1,3 +1,2 @@
 export * from './DatabaseEnvSchema';
-export * from './DrizzleDB';
-export * from './DrizzleDBManager';
+export * from './DrizzlePoolManager';

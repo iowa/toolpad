@@ -1,6 +1,8 @@
 import { z } from "zod";
 
 export class DatabaseEnvConfigZod {
+  private config: DatabaseEnvConfig;
+
   public static Schema = z.object({
     user: z.string(),
     password: z.string(),
@@ -39,6 +41,15 @@ export class DatabaseEnvConfigZod {
       throw new Error(`Invalid environment variables:\n${messages.join('\n')}`);
     }
     return result.data;
+  }
+
+
+  constructor(config: DatabaseEnvConfig) {
+    this.config = config;
+  }
+
+  buildConnectionString(): string {
+    return `postgresql://${this.config.user}:${this.config.password}@${this.config.host}:${this.config.port}/${this.config.database}`;
   }
 
 }

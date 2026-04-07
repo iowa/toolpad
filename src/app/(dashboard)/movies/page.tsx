@@ -4,7 +4,7 @@ import { MoviesRepository } from '@/app/lib/db/repository/MoviesRepository';
 import MoviesGrid from '@/app/ui/movies/MoviesGrid';
 import { Suspense } from "react";
 import { LinearProgress } from "@mui/material";
-import { getDB } from "@/app/lib/db/dm";
+import { getDC } from "@/app/lib/db/dm";
 
 export default async function MoviesPage(props: { searchParams: Promise<MovieSearchParams> }) {
   const searchParams = await props.searchParams;
@@ -16,6 +16,6 @@ export default async function MoviesPage(props: { searchParams: Promise<MovieSea
 }
 
 async function MoviesData({ searchParams }: { searchParams: MovieSearchParams }) {
-  const gridRows = await new MoviesRepository(getDB('toolpad')).search(searchParams);
+  const gridRows = await new MoviesRepository(getDC('toolpad')).search(searchParams);
   return <MoviesGrid gridRows={gridRows}/>;
 }

@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 import Tests from "@/swiss/test/Tests";
-import { getDB } from "@/app/lib/db/dm";
 import { MoviesRepository } from "@/app/lib/db/repository/MoviesRepository";
+import { getDC } from "@/app/lib/db/dm";
 
 export async function POST(_req: Request) {
   try {
-    let moviesRepository = new MoviesRepository(getDB('toolpad'));
+    let moviesRepository = new MoviesRepository(getDC('toolpad'));
     await moviesRepository.insert(Tests.movie_Matrix)
     await moviesRepository.insert(Tests.movie_Inception)
     await moviesRepository.insert(Tests.movie_HatefulEight)

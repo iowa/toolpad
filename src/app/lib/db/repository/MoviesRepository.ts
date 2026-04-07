@@ -1,25 +1,29 @@
 import { Movie, MovieInsert, MovieSearchParams } from "@/app/lib/types/movieTypes";
 import { GridRows } from "@/swiss/grid/gridTypes";
 import { moviesTable } from "@/app/lib/db/schema/schema";
-import { and, count, desc, gte, SQL, sql } from "drizzle-orm";
-import { DB } from "@/swiss";
+import { and, count, desc, gte, SQL } from "drizzle-orm";
+import { DrizzleClient } from "@/app/lib/db/dm";
 
 export class MoviesRepository {
+  private readonly dc;
 
-  private readonly db;
-
-  constructor(dbInstance: DB) {
-    this.db = dbInstance;
+  constructor(drizzleClient: DrizzleClient) {
+    this.dc = drizzleClient;
   }
 
   async search(searchParams: MovieSearchParams): Promise<GridRows<Movie>> {
     const whereBase = this.whereConditions(searchParams)
-    const [rows, rowCount] = await Promise.all([
-      this.db
+
+    const [rows, rowCount] = await Promise.all(
+      [this.dc.db
       .select()
       .from(moviesTable)
-      .orderBy(desc(moviesTable.id)).where(whereBase)
-      , this.getCount(whereBase)]);
+      .orderBy(desc(moviesTable.id))
+      .where(whereBase)
+        ,
+        this.getCount(whereBase)
+      ]
+    );
     return {
       rows: rows,
       rowCount: rowCount ?? -1
@@ -27,21 +31,17 @@ export class MoviesRepository {
   }
 
   async insert(movie: MovieInsert): Promise<void> {
-    await this.db.insert(moviesTable).values(movie)
+    await this.dc.db.insert(moviesTable).values(movie)
   }
 
   private async getCount(whereBase?: SQL<unknown>): Promise<number | undefined> {
-    const result = await this.db.select({ count: count() }).from(moviesTable).where(whereBase);
+    const result = await this.dc.db.select({ count: count() }).from(moviesTable).where(whereBase);
     return result[0]?.count ?? undefined;
   }
 
 
   private whereConditions(searchParams: MovieSearchParams): SQL | undefined {
-    const conditions = [sql.raw('1=1')];
-    if (searchParams.year) {
-      conditions.push(gte(moviesTable.year, searchParams.year));
-    }
-    return and(...conditions);
+    return and(...[searchParams.year ? gte(moviesTable.year, searchParams.year) : undefined]);
   }
 
 }
