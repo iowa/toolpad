@@ -23,14 +23,14 @@
       "import": "./dist/core.mjs",
       "require": "./dist/core.js"
     },
-    "./swizz": {
+    "./swiss": {
       "types": "./dist/swizz.d.ts",
       "import": "./dist/swizz.mjs",
       "require": "./dist/swizz.js"
     }
   },
   "scripts": {
-    "build": "tsup --config tsup.config.ts && node scripts/add-use-client.js",
+    "build": "tsup --config tsup.config.ts && node scripts/add-use-client.js && node scripts/verify-no-app-exports.js",
     "prepack": "pnpm build",
     "test": "vitest",
     "format": "pretty-quick",
