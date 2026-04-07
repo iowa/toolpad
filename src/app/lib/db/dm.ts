@@ -1,4 +1,4 @@
-import { DatabaseEnvConfigZod, DrizzlePoolManager } from "@/swiss";
+import { DatabaseConfigUtils, DrizzlePoolManager } from "@/swiss";
 import { drizzle as pgDrizzle } from "drizzle-orm/node-postgres";
 import { drizzle as pgLiteDrizzle } from 'drizzle-orm/pglite';
 import { relations } from "@/app/lib/db/schema/relations";
@@ -15,16 +15,14 @@ export type DrizzleClient = ProdDrizzleClient | MockDrizzleClient
 
 
 export function getDC(key: DrizzleDatabaseKey) {
+  const statementTimeoutMs = 120000;
   switch (key) {
     case 'toolpad': {
-      const databaseEnv = DatabaseEnvConfigZod.parse();
       const client = dm.get(key, {
-        connectionString: new DatabaseEnvConfigZod(databaseEnv).buildConnectionString(),
+        connectionString: new DatabaseConfigUtils().buildConnectionString('toolpad', statementTimeoutMs),
         max: 4,
-        idleTimeoutMillis: 30000,
-        connectionTimeoutMillis: 2000,
-        query_timeout: 10000,
-        application_name: key,
+        query_timeout: statementTimeoutMs,
+        application_name: 'toolpad',
       });
       const db = pgDrizzle({ client: client, relations: relations });
       return { client, db };

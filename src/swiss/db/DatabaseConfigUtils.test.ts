@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { DatabaseEnvConfigZod } from '@/swiss';
+import { DatabaseConfigUtils } from '@/swiss';
 
 const restoreEnv = (orig: NodeJS.ProcessEnv) => {
   // Clear current keys
@@ -10,7 +10,7 @@ const restoreEnv = (orig: NodeJS.ProcessEnv) => {
   Object.assign(process.env, orig);
 };
 
-describe('DatabaseEnvConfigZod.parse', () => {
+describe('DatabaseConfigUtils', () => {
   const OLD_ENV = { ...process.env };
 
   beforeEach(() => {
@@ -21,33 +21,34 @@ describe('DatabaseEnvConfigZod.parse', () => {
     restoreEnv(OLD_ENV);
   });
 
+
   it('parses environment variables using defaults', () => {
     process.env.DB_USER = 'testuser';
     process.env.DB_PASSWORD = 'testpass';
     process.env.DB_HOST = 'localhost';
     process.env.DB_PORT = '5432';
-    process.env.DB_NAME = 'mydb';
 
-    const cfg = DatabaseEnvConfigZod.parse();
+    const cut = new DatabaseConfigUtils();
 
-    expect(cfg).toEqual({
+    expect(cut.config).toEqual({
       user: 'testuser',
       password: 'testpass',
       host: 'localhost',
-      port: 5432,
-      database: 'mydb',
+      port: 5432
     });
+
+    expect(cut.buildConnectionString('database')).toMatchInlineSnapshot(`"postgresql://testuser:testpass@localhost:5432/database"`)
+    expect(cut.buildConnectionString('database', 120000, 'toolpad')).toMatchInlineSnapshot(`"postgresql://testuser:testpass@localhost:5432/database?options=-c%20statement_timeout%3D120000%20-c%20search_path%3Dtoolpad"`)
   });
 
   it('throws when required env variables are missing', () => {
-    // Ensure none of the default env vars are set
     delete process.env.DB_USER;
     delete process.env.DB_PASSWORD;
     delete process.env.DB_HOST;
     delete process.env.DB_PORT;
     delete process.env.DB_NAME;
 
-    expect(() => DatabaseEnvConfigZod.parse()).toThrow(/Invalid environment variables/);
+    expect(() => new DatabaseConfigUtils()).toThrow(/Invalid database env config/);
   });
 
   it('accepts custom environment variable names', () => {
@@ -55,23 +56,24 @@ describe('DatabaseEnvConfigZod.parse', () => {
     process.env.MY_DB_PASS = 'customPass';
     process.env.MY_DB_HOST = 'customHost';
     process.env.MY_DB_PORT = '6543';
-    process.env.MY_DB_NAME = 'customDb';
 
-    const cfg = DatabaseEnvConfigZod.parse({
+    const cut = new DatabaseConfigUtils({
       user: 'MY_DB_USER',
       password: 'MY_DB_PASS',
       host: 'MY_DB_HOST',
       port: 'MY_DB_PORT',
-      database: 'MY_DB_NAME',
     });
 
-    expect(cfg).toEqual({
+    expect(cut.config).toEqual({
       user: 'customUser',
       password: 'customPass',
       host: 'customHost',
       port: 6543,
-      database: 'customDb',
     });
+
+    expect(cut.buildConnectionString('customDB', 120000)).toMatchInlineSnapshot(`"postgresql://customUser:customPass@customHost:6543/customDB?options=-c%20statement_timeout%3D120000"`)
   });
+
+
 });
 
