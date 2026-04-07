@@ -1,6 +1,6 @@
 {
   "name": "@iowas/toolpad",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "license": "MIT",
   "repository": "https://github.com/iowa/toolpad",
   "description": "Custom mui-toolpad",
@@ -24,9 +24,9 @@
       "require": "./dist/core.js"
     },
     "./swiss": {
-      "types": "./dist/swizz.d.ts",
-      "import": "./dist/swizz.mjs",
-      "require": "./dist/swizz.js"
+      "types": "./dist/swiss.d.ts",
+      "import": "./dist/swiss.mjs",
+      "require": "./dist/swiss.js"
     }
   },
   "scripts": {
