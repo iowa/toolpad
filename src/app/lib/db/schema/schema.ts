@@ -13,5 +13,22 @@ export const moviesTable = toolpadPgSchema.table("movies", {
   premiereDate: p.timestamp("premiere_date"),
 });
 
-export const MoviesSchema = createSelectSchema(moviesTable);
-export const MoviesInsertSchema = createInsertSchema(moviesTable);
+export const MovieSchema = createSelectSchema(moviesTable);
+export const MovieInsertSchema = createInsertSchema(moviesTable);
+
+export const genresTable = toolpadPgSchema.table("genres", {
+  id: p.serial("id").primaryKey(),
+  name: p.varchar("name", { length: 255 }).notNull().unique(),
+})
+
+export const GenreSchema = createSelectSchema(genresTable);
+export const GenreInsertSchema = createInsertSchema(genresTable);
+
+export const moviesGenresTable = toolpadPgSchema.table("movies_genres", {
+  id: p.serial("id").primaryKey(),
+  movieId: p.integer("movie_id").notNull().references(() => moviesTable.id),
+  genreId: p.integer("genre_id").notNull().references(() => genresTable.id),
+});
+
+export const MovieGenreSchema = createSelectSchema(moviesGenresTable);
+export const MovieGenreInsertSchema = createInsertSchema(moviesGenresTable);

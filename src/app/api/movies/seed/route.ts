@@ -1,14 +1,14 @@
 import { NextResponse } from "next/server";
 import Tests from "@/swiss/test/Tests";
-import { moviesTable } from "@/app/lib/db/schema/schema";
 import { getDB } from "@/app/lib/db/dm";
+import { MoviesRepository } from "@/app/lib/db/repository/MoviesRepository";
 
 export async function POST(_req: Request) {
   try {
-    const dz = getDB('toolpad');
-    await dz.db.insert(moviesTable).values(Tests.movie_Matrix)
-    await dz.db.insert(moviesTable).values(Tests.movie_Inception)
-    await dz.db.insert(moviesTable).values(Tests.movie_HatefulEight)
+    let moviesRepository = new MoviesRepository(getDB('toolpad'));
+    await moviesRepository.insert(Tests.movie_Matrix)
+    await moviesRepository.insert(Tests.movie_Inception)
+    await moviesRepository.insert(Tests.movie_HatefulEight)
     return new NextResponse(null, { status: 204 });
   } catch (err) {
     console.error("/api/movies/seed error:", err);

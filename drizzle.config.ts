@@ -1,6 +1,5 @@
-import { DatabaseEnvConfigZod } from "@/swiss/db";
+import { DatabaseEnvConfigZod, DrizzleDB } from "@/swiss/db";
 import { defineConfig } from 'drizzle-kit';
-import DrizzleClient from "@/swiss/db/DrizzleDB";
 
 const databaseEnv = DatabaseEnvConfigZod.parse();
 
@@ -9,7 +8,7 @@ export default defineConfig({
   schema: './src/app/lib/db/schema/schema.ts',
   dialect: 'postgresql',
   dbCredentials: {
-    url: DrizzleClient.buildConnectionString(
+    url: DrizzleDB.buildConnectionString(
       databaseEnv
     ),
   },

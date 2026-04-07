@@ -1,7 +1,7 @@
-import { Movie, MovieSearchParams } from "@/app/lib/types/movieTypes";
+import { Movie, MovieInsert, MovieSearchParams } from "@/app/lib/types/movieTypes";
 import { GridRows } from "@/swiss/grid/gridTypes";
 import { moviesTable } from "@/app/lib/db/schema/schema";
-import { and, count, desc, SQL, sql } from "drizzle-orm";
+import { and, count, desc, gte, SQL, sql } from "drizzle-orm";
 import { DB } from "@/swiss";
 
 export class MoviesRepository {
@@ -26,6 +26,10 @@ export class MoviesRepository {
     }
   }
 
+  async insert(movie: MovieInsert): Promise<void> {
+    await this.db.insert(moviesTable).values(movie)
+  }
+
   private async getCount(whereBase?: SQL<unknown>): Promise<number | undefined> {
     const result = await this.db.select({ count: count() }).from(moviesTable).where(whereBase);
     return result[0]?.count ?? undefined;
@@ -34,6 +38,9 @@ export class MoviesRepository {
 
   private whereConditions(searchParams: MovieSearchParams): SQL | undefined {
     const conditions = [sql.raw('1=1')];
+    if (searchParams.year) {
+      conditions.push(gte(moviesTable.year, searchParams.year));
+    }
     return and(...conditions);
   }
 
