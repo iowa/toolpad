@@ -1,9 +1,11 @@
 import { z } from 'zod';
 import { MovieInsertSchema, MovieSchema } from "@/app/lib/db/schema/schema";
+import { Genre } from "@/app/lib/types/genreTypes";
 
-export type Movie = z.infer<typeof MovieSchema> & {
-  genres?: string[];
-}
+export type Movie = z.infer<typeof MovieSchema>
+export type MovieWith = Movie & {
+  genres: Partial<Genre>[];
+};
 export type MovieInsert = z.infer<typeof MovieInsertSchema>
 
 export const MovieSearchParamsSchema = z.object({

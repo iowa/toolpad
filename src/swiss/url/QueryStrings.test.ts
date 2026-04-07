@@ -1,12 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { QueryStrings } from "@/swiss/url/QueryStrings";
 import { Movie } from "@/app/lib/types/movieTypes";
-import Tests from "@/swiss/test/Tests";
+import { TestMovies } from "@/app/lib/testing/TestMovies";
 
 describe("QueryStrings", () => {
   it("parse string", () => {
     const example: Partial<Movie> = {
-      title: Tests.movie_Matrix.title,
+      title: TestMovies.Matrix.movie.title,
     }
 
     const result = QueryStrings.parse(example);
@@ -15,18 +15,18 @@ describe("QueryStrings", () => {
   });
 
   it("parse arrays", () => {
-    const example: Partial<Movie> = {
-      genres: Tests.movie_Matrix.genres,
+    const genres = {
+      genres: TestMovies.Matrix.genres.map(value => value.name)
     }
 
-    const result = QueryStrings.parse(example);
+    const result = QueryStrings.parse(genres);
 
     expect(result).toMatchInlineSnapshot(`"?genres=Action&genres=Sci-Fi"`);
   });
 
   it("parse number float", () => {
     const example: Partial<Movie> = {
-      rating: Tests.movie_Matrix.rating,
+      rating: TestMovies.Matrix.movie.rating,
     }
 
     const result = QueryStrings.parse(example);
@@ -36,16 +36,14 @@ describe("QueryStrings", () => {
 
   it("parse object", () => {
     const example: Partial<Movie> = {
-      id: Tests.movie_Matrix.id,
-      title: Tests.movie_Matrix.title,
-      year: Tests.movie_Matrix.year,
-      genres: Tests.movie_Matrix.genres,
-      rating: Tests.movie_Matrix.rating,
+      title: TestMovies.Matrix.movie.title,
+      year: TestMovies.Matrix.movie.year,
+      rating: TestMovies.Matrix.movie.rating,
     }
 
     const result = QueryStrings.parse(example);
 
-    expect(result).toMatchInlineSnapshot(`"?id=movie-1&title=The+Matrix&year=1999&genres=Action&genres=Sci-Fi&rating=8.7"`);
+    expect(result).toMatchInlineSnapshot(`"?title=The+Matrix&year=1999&rating=8.7"`);
   });
 
   it("parse null", () => {
@@ -93,7 +91,7 @@ describe("QueryStrings", () => {
 
   it("parse skip null undefined and empty arrays", () => {
     const result = QueryStrings.parse({
-      title: Tests.movie_Matrix.title,
+      title: TestMovies.Matrix.movie.title,
       id: null,
       year: undefined,
       genres: [],
@@ -117,7 +115,6 @@ describe("QueryStrings", () => {
 
     expect(result).toMatchInlineSnapshot(`"?q="`);
   });
-
 
 
 });

@@ -1,23 +1,5 @@
 import { z } from 'zod';
+import { GenreInsertSchema, GenreSchema } from "@/app/lib/db/schema/schema";
 
-export const GenreSchema = z.enum([
-  'Action',
-  'Adventure',
-  'Animation',
-  'Comedy',
-  'Crime',
-  'Documentary',
-  'Drama',
-  'Family',
-  'Fantasy',
-  'History',
-  'Horror',
-  'Music',
-  'Mystery',
-  'Romance',
-  'Sci-Fi',
-  'Sport',
-  'Thriller',
-  'War',
-  'Western',
-]);
+export type Genre = z.infer<typeof GenreSchema>
+export type GenreInsert = z.infer<typeof GenreInsertSchema>
