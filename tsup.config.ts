@@ -10,11 +10,6 @@ export default defineConfig([
     treeshake: true,
     outDir: 'dist',
     tsconfig: 'tsconfig.build.json',
-    esbuildOptions(options) {
-      options.banner = {
-        js: '"use client";',
-      };
-    },
     onSuccess: async () => {
       const fs = await import('node:fs/promises');
       const path = await import('node:path');
