@@ -2,9 +2,10 @@ import * as React from 'react';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter';
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 import { LinearProgress } from '@mui/material';
-import theme from "@/app/theme";
 import { NextAppProvider } from "@/toolpad-core/nextjs";
-import MovieIcon from '@mui/icons-material/Movie';
+import MovieIcon from "@mui/icons-material/Movie";
+import theme from "@/app/theme";
+
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (

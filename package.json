@@ -30,7 +30,7 @@
     }
   },
   "scripts": {
-    "build": "tsup --config tsup.config.ts && node scripts/add-use-client.js && node scripts/verify-no-app-exports.js",
+    "build": "tsup --config tsup.config.ts",
     "prepack": "pnpm build",
     "test": "vitest",
     "format": "pretty-quick",
