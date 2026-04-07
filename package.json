@@ -46,7 +46,6 @@
     "react-is": "^19.2.4"
   },
   "peerDependencies": {
-    "@electric-sql/pglite": "^0.4.3",
     "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
