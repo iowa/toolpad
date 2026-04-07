@@ -13,11 +13,6 @@
   ],
   "sideEffects": false,
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    },
     "./core": {
       "types": "./dist/core.d.ts",
       "import": "./dist/core.mjs",

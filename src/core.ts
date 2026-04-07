@@ -9,3 +9,8 @@ export * from './toolpad-core/useDialogs';
 export * from './toolpad-core/useLocalStorageState';
 export * from './toolpad-core/useNotifications';
 export * from './toolpad-core/nextjs';
+export * from './toolpad-core/shared/branding';
+export * from './toolpad-core/shared/components';
+export * from './toolpad-core/shared/context';
+export * from './toolpad-core/shared/Link';
+export * from './toolpad-core/shared/navigation';

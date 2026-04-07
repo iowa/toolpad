@@ -2,7 +2,7 @@ import { drizzle as pgDrizzle } from "drizzle-orm/node-postgres";
 import { drizzle as pgLiteDrizzle } from 'drizzle-orm/pglite';
 import { relations } from "@/app/lib/db/schema/relations";
 import { PGlite } from "@electric-sql/pglite";
-import { DrizzlePoolManager, DatabaseConfigUtils } from "@/swiss/db";
+import { DrizzlePoolManager, DatabaseConfigUtils } from "@iowas/toolpad/swiss";
 
 export const drizzleDatabaseKeys = ['toolpad'] as const;
 export type DrizzleDatabaseKey = (typeof drizzleDatabaseKeys)[number];
