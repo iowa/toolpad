@@ -1,1 +1,1 @@
-export * from './gridTypes';
+export * from './GridTypes';

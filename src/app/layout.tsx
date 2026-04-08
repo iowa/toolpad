@@ -4,6 +4,7 @@ import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 import { LinearProgress } from '@mui/material';
 import { NextAppProvider } from "@/toolpad-core/nextjs";
 import MovieIcon from "@mui/icons-material/Movie";
+import TheaterComedyIcon from '@mui/icons-material/TheaterComedy';
 import theme from "@/app/theme";
 
 
@@ -19,6 +20,11 @@ export default function RootLayout(props: { children: React.ReactNode }) {
             {
               segment: '',
               title: 'Dashboard',
+            },
+            {
+              segment: 'genres',
+              title: 'Genres',
+              icon: <TheaterComedyIcon/>,
             },
             {
               segment: 'movies',

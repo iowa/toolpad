@@ -1,19 +1,15 @@
 'use client'
 
 import { GridRows } from "@/swiss/grid/GridTypes";
-import { MovieWith } from "@/app/lib/types/MovieTypes";
 import Box from "@mui/material/Box";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import NoSsr from "@mui/material/NoSsr";
+import { Genre } from "@/app/lib/types/GenreTypes";
 
-export default function MoviesGrid({ gridRows }: { gridRows: GridRows<MovieWith> }) {
-  const columns: GridColDef<MovieWith>[] = [
+export default function GenresGrid({ gridRows }: { gridRows: GridRows<Genre> }) {
+  const columns: GridColDef<Genre>[] = [
     {
-      field: 'title',
-      flex: 1
-    },
-    {
-      field: 'year',
+      field: 'name',
       flex: 1,
     }
   ];
@@ -21,7 +17,7 @@ export default function MoviesGrid({ gridRows }: { gridRows: GridRows<MovieWith>
   return (
     <NoSsr>
       <Box sx={{ height: 400, width: '100%' }}>
-        <DataGrid<MovieWith>
+        <DataGrid<Genre>
           rows={gridRows.rows}
           columns={columns}
         />

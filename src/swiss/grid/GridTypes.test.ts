@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { GridPagination, GridPaginationSchema, } from '@/swiss/grid/gridTypes';
+import { GridPagination, GridPaginationSchema, } from '@/swiss/grid/GridTypes';
 
 describe('gridTypes', () => {
   it('parses GridPagination with default values', () => {

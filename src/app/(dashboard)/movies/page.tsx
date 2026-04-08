@@ -1,5 +1,5 @@
 import Stack from '@mui/material/Stack';
-import { MovieSearchParams } from '@/app/lib/types/movieTypes';
+import { MovieSearchParams } from '@/app/lib/types/MovieTypes';
 import { MoviesRepository } from '@/app/lib/db/repository/MoviesRepository';
 import MoviesGrid from '@/app/ui/movies/MoviesGrid';
 import { Suspense } from "react";
@@ -10,12 +10,12 @@ export default async function MoviesPage(props: { searchParams: Promise<MovieSea
   const searchParams = await props.searchParams;
   return <Stack spacing={2}>
     <Suspense key={JSON.stringify(searchParams)} fallback={<LinearProgress/>}>
-      <MoviesData searchParams={searchParams}/>
+      <GridData searchParams={searchParams}/>
     </Suspense>
   </Stack>;
 }
 
-async function MoviesData({ searchParams }: { searchParams: MovieSearchParams }) {
+async function GridData({ searchParams }: { searchParams: MovieSearchParams }) {
   const gridRows = await new MoviesRepository(getDC('toolpad')).search(searchParams);
   return <MoviesGrid gridRows={gridRows}/>;
 }

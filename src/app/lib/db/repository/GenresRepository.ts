@@ -1,7 +1,9 @@
 import { genresTable } from "@/app/lib/db/schema/schema";
 import { DrizzleClient } from "@/app/lib/db/dm";
-import { Genre, GenreInsert } from "@/app/lib/types/genreTypes";
+import { Genre, GenreInsert, GenreSearchParams } from "@/app/lib/types/GenreTypes";
 import { eq } from "drizzle-orm";
+import { GridRows } from "@/swiss/grid";
+import { GridSearch } from "@/swiss/grid/GridSearch";
 
 export class GenresRepository {
   private readonly dc;
@@ -15,6 +17,16 @@ export class GenresRepository {
     if (newVar[0]) return newVar[0];
     const existing = await this.dc.db.select().from(genresTable).where(eq(genresTable.name, value.name));
     return existing[0] as Genre;
+  }
+
+  async search(searchParams: GenreSearchParams): Promise<GridRows<Genre>> {
+    const gs = new GridSearch<GenreSearchParams, Genre>(searchParams);
+    const whereBase = gs.whereAnd({});
+    const { offset, limit } = gs.paging();
+    return gs.search(
+      () => this.dc.db.select().from(genresTable).where(whereBase).offset(offset).limit(limit),
+      () => gs.getCount(this.dc.db, genresTable, whereBase)
+    )
   }
 
 }

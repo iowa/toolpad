@@ -13,7 +13,6 @@ export type ProdDrizzleClient = ReturnType<typeof getDC>
 export type MockDrizzleClient = ReturnType<typeof getMockDC>
 export type DrizzleClient = ProdDrizzleClient | MockDrizzleClient
 
-
 export function getDC(key: DrizzleDatabaseKey) {
   const statementTimeoutMs = 120000;
   switch (key) {

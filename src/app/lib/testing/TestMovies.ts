@@ -1,5 +1,5 @@
-import { MovieInsert } from "@/app/lib/types/movieTypes";
-import { GenreInsert } from "@/app/lib/types/genreTypes";
+import { MovieInsert } from "@/app/lib/types/MovieTypes";
+import { GenreInsert } from "@/app/lib/types/GenreTypes";
 import { MoviesRepository } from "@/app/lib/db/repository/MoviesRepository";
 import { GenresRepository } from "@/app/lib/db/repository/GenresRepository";
 import { TestGenres } from "@/app/lib/testing/TestGenres";

@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { MovieInsertSchema, MovieSchema } from "@/app/lib/db/schema/schema";
-import { Genre } from "@/app/lib/types/genreTypes";
+import { GridPagination } from "@/swiss/grid";
+import { Genre } from "@/app/lib/types/GenreTypes";
 
 export type Movie = z.infer<typeof MovieSchema>
 export type MovieWith = Movie & {
@@ -13,4 +14,4 @@ export const MovieSearchParamsSchema = z.object({
   genres: z.array(z.string()).optional(),
 });
 
-export type MovieSearchParams = z.infer<typeof MovieSearchParamsSchema>;
+export type MovieSearchParams = z.infer<typeof MovieSearchParamsSchema> & GridPagination;
