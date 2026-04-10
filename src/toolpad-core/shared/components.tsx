@@ -28,9 +28,10 @@ export function ErrorOverlay({ error }: ErrorOverlayProps) {
           alignItems: 'center',
         }}
       >
-        <ErrorIcon color="error" /> Error
+        <ErrorIcon color="error"/> Error
       </Typography>
-      <Typography textAlign="center">{(error as any)?.message ?? 'Unknown error'}</Typography>
+      <Typography
+        sx={{ textAlign: "center" }}>{(error as any)?.message ?? 'Unknown error'}</Typography>
     </OverlayRoot>
   );
 }
@@ -38,7 +39,7 @@ export function ErrorOverlay({ error }: ErrorOverlayProps) {
 export function LoadingOverlay() {
   return (
     <OverlayRoot>
-      <CircularProgress />
+      <CircularProgress/>
     </OverlayRoot>
   );
 }

@@ -89,7 +89,7 @@ function AccountPreview(props: AccountPreviewProps) {
   }
 
   const avatarContent = slots?.avatar ? (
-    <slots.avatar />
+    <slots.avatar/>
   ) : (
     <Avatar
       src={session.user?.image || ''}
@@ -101,11 +101,12 @@ function AccountPreview(props: AccountPreviewProps) {
 
   if (variant === 'expanded') {
     return (
-      <Stack direction="row" justifyContent="space-between" sx={{ py: 1, px: 2, gap: 2, ...sx }}>
-        <Stack direction="row" justifyContent="flex-start" spacing={2} overflow="hidden">
+      <Stack direction="row" sx={{ py: 1, px: 2, gap: 2, justifyContent: "space-between", ...sx }}>
+        <Stack direction="row" spacing={2}
+               sx={{ justifyContent: 'flex-start', overflow: 'hidden' }}>
           {avatarContent}
-          <Stack direction="column" justifyContent="space-evenly" overflow="hidden">
-            <Typography variant="body2" fontWeight="bolder" noWrap>
+          <Stack direction="column" sx={{ justifyContent: 'space-evenly', overflow: 'hidden' }}>
+            <Typography variant="body2" sx={{ fontWeight: "bolder", wrap: 'noWrap' }}>
               {session.user?.name}
             </Typography>
             <Typography variant="caption" noWrap>
@@ -115,7 +116,7 @@ function AccountPreview(props: AccountPreviewProps) {
         </Stack>
         {handleClick &&
           (slots?.moreIconButton ? (
-            <slots.moreIconButton />
+            <slots.moreIconButton/>
           ) : (
             <IconButton
               size="small"
@@ -123,7 +124,7 @@ function AccountPreview(props: AccountPreviewProps) {
               {...slotProps?.moreIconButton}
               sx={{ alignSelf: 'center', ...slotProps?.moreIconButton?.sx }}
             >
-              <MoreVertIcon fontSize="small" />
+              <MoreVertIcon fontSize="small"/>
             </IconButton>
           ))}
       </Stack>

@@ -290,19 +290,24 @@ export function PromptDialog({ open, payload, onClose }: PromptDialogProps) {
       fullWidth
       open={open}
       onClose={() => onClose(null)}
-      PaperProps={{
-        component: 'form',
-        onSubmit: async (event: React.FormEvent<HTMLFormElement>) => {
-          event.preventDefault();
-          try {
-            setLoading(true);
-            const formData = new FormData(event.currentTarget);
-            const value = formData.get(name) ?? '';
-            invariant(typeof value === 'string', 'Value must come from a text input');
-            await onClose(value);
-          } finally {
-            setLoading(false);
-          }
+      slotProps={{
+        paper: {
+          component: 'form' as any,
+          // slotProps.paper expects handlers for the Paper element (default div). Cast event to any
+          // and coerce the currentTarget to HTMLFormElement so we can access form data safely.
+          onSubmit: async (event: any) => {
+            event.preventDefault();
+            try {
+              setLoading(true);
+              const form = event.currentTarget as HTMLFormElement;
+              const formData = new FormData(form);
+              const value = formData.get(name) ?? '';
+              invariant(typeof value === 'string', 'Value must come from a text input');
+              await onClose(value);
+            } finally {
+              setLoading(false);
+            }
+          },
         },
       }}
       container={appWindowContext?.document.body}
