@@ -10,6 +10,7 @@ export default async function GenresPage(props: { searchParams: Promise<GenreSea
   const searchParams = await props.searchParams;
   return <Stack spacing={2}>
     <Suspense key={JSON.stringify(searchParams)} fallback={<LinearProgress/>}>
+
       <GridData searchParams={searchParams}/>
     </Suspense>
   </Stack>;

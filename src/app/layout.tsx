@@ -3,9 +3,8 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter';
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 import { LinearProgress } from '@mui/material';
 import { NextAppProvider } from "@/toolpad-core/nextjs";
-import MovieIcon from "@mui/icons-material/Movie";
-import TheaterComedyIcon from '@mui/icons-material/TheaterComedy';
 import theme from "@/app/theme";
+import { Nav } from "@/app/lib/nav/Nav";
 
 
 export default function RootLayout(props: { children: React.ReactNode }) {
@@ -16,22 +15,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
     <AppRouterCacheProvider options={{ enableCssLayer: true }}>
       <React.Suspense fallback={<LinearProgress/>}>
         <NextAppProvider
-          navigation={[
-            {
-              segment: '',
-              title: 'Dashboard',
-            },
-            {
-              segment: 'genres',
-              title: 'Genres',
-              icon: <TheaterComedyIcon/>,
-            },
-            {
-              segment: 'movies',
-              title: 'Movies',
-              icon: <MovieIcon/>,
-            },
-          ]}
+          navigation={Nav.menu()}
           theme={theme}
         >
           {props.children}
