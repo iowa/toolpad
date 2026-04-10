@@ -16,9 +16,11 @@ import { Account } from '../Account';
  */
 function ToolbarActions() {
   return (
-    <Stack direction="row" alignItems="center">
-      <ThemeSwitcher />
-      <Account />
+    <Stack direction="row" sx={{
+      alignItems: "center",
+    }}>
+      <ThemeSwitcher/>
+      <Account/>
     </Stack>
   );
 }

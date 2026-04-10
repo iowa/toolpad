@@ -30,8 +30,10 @@ export function AppTitle(props: AppTitleProps) {
   const title = props?.branding?.title ?? defaultTitle;
   return (
     <Link href={props?.branding?.homeUrl ?? '/'} style={{ textDecoration: 'none' }}>
-      <Stack direction="row" alignItems="center">
-        <LogoContainer>{props?.branding?.logo ?? <ToolpadLogo size={40} />}</LogoContainer>
+      <Stack direction="row" sx={{
+        alignItems: "center",
+      }}>
+        <LogoContainer>{props?.branding?.logo ?? <ToolpadLogo size={40}/>}</LogoContainer>
         <Typography
           variant="h6"
           sx={{

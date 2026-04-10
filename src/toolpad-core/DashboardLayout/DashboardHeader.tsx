@@ -82,6 +82,7 @@ export interface DashboardHeaderProps {
    */
   slotProps?: DashboardHeaderSlotProps;
 }
+
 /**
  *
  * Demos:
@@ -125,7 +126,7 @@ function DashboardHeader(props: DashboardHeaderProps) {
               aria-label={`${isExpanded ? collapseMenuActionText : expandMenuActionText} navigation menu`}
               onClick={handleMenuOpen}
             >
-              {isExpanded ? <MenuOpenIcon /> : <MenuIcon />}
+              {isExpanded ? <MenuOpenIcon/> : <MenuIcon/>}
             </IconButton>
           </div>
         </Tooltip>
@@ -142,11 +143,11 @@ function DashboardHeader(props: DashboardHeaderProps) {
       <Toolbar sx={{ backgroundColor: 'inherit', mx: { xs: -0.75, sm: -1 } }}>
         <Stack
           direction="row"
-          justifyContent="space-between"
-          alignItems="center"
           sx={{
             flexWrap: 'wrap',
             width: '100%',
+            justifyContent: 'space-between',
+            alignItems: 'center'
           }}
         >
           <Stack direction="row">
@@ -181,7 +182,7 @@ function DashboardHeader(props: DashboardHeaderProps) {
               <AppTitle branding={branding} {...slotProps?.appTitle} />
             )}
           </Stack>
-          <Stack direction="row" alignItems="center" spacing={1} sx={{ marginLeft: 'auto' }}>
+          <Stack direction="row" spacing={1} sx={{ marginLeft: 'auto', alignItems: 'center' }}>
             <ToolbarActionsSlot {...slotProps?.toolbarActions} />
             <ToolbarAccountSlot {...slotProps?.toolbarAccount} />
           </Stack>
