@@ -5,10 +5,12 @@ import MoviesGrid from '@/app/ui/movies/MoviesGrid';
 import { Suspense } from "react";
 import { LinearProgress } from "@mui/material";
 import { getDC } from "@/app/lib/db/dm";
+import MoviesForm from "@/app/ui/movies/MoviesForm";
 
 export default async function MoviesPage(props: { searchParams: Promise<MovieSearchParams> }) {
   const searchParams = await props.searchParams;
   return <Stack spacing={2}>
+    <MoviesForm/>
     <Suspense key={JSON.stringify(searchParams)} fallback={<LinearProgress/>}>
       <GridData searchParams={searchParams}/>
     </Suspense>

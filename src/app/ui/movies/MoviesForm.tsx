@@ -1,13 +1,13 @@
 'use client'
 
 import Grid from '@mui/material/Grid';
-import CreateGenreDialog from "@/app/ui/genres/dialog/create/CreateGenreDialog";
+import CreateMovieDialog from "@/app/ui/movies/dialog/CreateMovieDialog";
 
-export default function GenresForm({}: {}) {
+export default function MoviesForm({}: {}) {
   return (
     <Grid container direction={"row"} spacing={2}>
       <Grid size={12}>
-        <CreateGenreDialog/>
+        <CreateMovieDialog/>
       </Grid>
     </Grid>
   );
