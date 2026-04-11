@@ -1,7 +1,7 @@
 'use client'
 
 import Grid from '@mui/material/Grid';
-import CreateMovieDialog from "@/app/ui/movies/dialog/CreateMovieDialog";
+import CreateMovieDialog from "@/app/ui/movies/dialog/create/CreateMovieDialog";
 
 export default function MoviesForm({}: {}) {
   return (

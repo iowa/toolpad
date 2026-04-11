@@ -30,8 +30,9 @@ import {
   RefAttributes,
   SyntheticEvent,
 } from 'react'
-import { useFormError, useTransform } from "react-hook-form-mui";
-import { propertyExists } from "./utilsRHF";
+import { propertyExists } from "./utils";
+import { useFormError } from "@/swiss/form/rhf/FormErrorProvider";
+import { useTransform } from "@/swiss/form/rhf/useTransform";
 
 export type AutocompleteElementProps<
   TValue,
@@ -198,7 +199,7 @@ const AutocompleteElement = forwardRef(function AutocompleteElement<
       input:
         typeof transform?.input === 'function'
           ? transform.input
-          : (newValue) => {
+          : (newValue: any) => {
             return (
               multiple
                 ? (Array.isArray(newValue) ? newValue : []).map(

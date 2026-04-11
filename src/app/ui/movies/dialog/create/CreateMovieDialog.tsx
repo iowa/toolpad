@@ -7,7 +7,7 @@ import DialogActions from '@mui/material/DialogActions';
 import Stack from '@mui/material/Stack';
 import { DialogProps, DialogsProvider, useDialogs } from "@/toolpad-core/useDialogs";
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import CreateMovieDialogForm from "@/app/ui/movies/dialog/CreateMovieDialogForm";
+import CreateMovieForm from "@/app/ui/movies/dialog/create/form/CreateMovieForm";
 
 
 function Content({ open, onClose }: DialogProps<undefined, string | null>) {
@@ -15,7 +15,7 @@ function Content({ open, onClose }: DialogProps<undefined, string | null>) {
     <Dialog fullWidth open={open} onClose={() => onClose(null)}>
       <DialogTitle>Create Movie</DialogTitle>
       <DialogContent>
-        <CreateMovieDialogForm/>
+        <CreateMovieForm/>
       </DialogContent>
       <DialogActions>
         <Button onClick={() => onClose(null)}>Create</Button>
