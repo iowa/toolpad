@@ -1,9 +1,9 @@
 import { GenreInsert } from "@/app/lib/types/GenreTypes";
 import InputAdornment from "@mui/material/InputAdornment";
 import { FormProvider, useForm } from "react-hook-form";
-import { TextFieldElement } from "react-hook-form-mui";
 import TheaterComedyIcon from '@mui/icons-material/TheaterComedy';
 import Box from '@mui/material/Box';
+import TextFieldElement from "@/swiss/form/rhf/TextFieldElement";
 
 export default function CreateGenreDialogForm({}: {}) {
   const form = useForm<GenreInsert>({ defaultValues: { name: '' } });

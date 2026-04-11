@@ -11,7 +11,7 @@ export class TestGenres {
     name: 'Thriller'
   }
   static readonly Crime: GenreInsert = {
-    name: 'Crime:'
+    name: 'Crime'
   }
   static readonly Drama: GenreInsert = {
     name: 'Drama'

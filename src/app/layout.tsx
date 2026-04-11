@@ -5,6 +5,7 @@ import { LinearProgress } from '@mui/material';
 import { NextAppProvider } from "@/toolpad-core/nextjs";
 import theme from "@/app/theme";
 import { Nav } from "@/app/lib/nav/Nav";
+import QueryClientProviderWrapper from "@/swiss-client/provider/QueryClientProviderWrapper";
 
 
 export default function RootLayout(props: { children: React.ReactNode }) {
@@ -14,12 +15,14 @@ export default function RootLayout(props: { children: React.ReactNode }) {
     <InitColorSchemeScript attribute="class"/>
     <AppRouterCacheProvider options={{ enableCssLayer: true }}>
       <React.Suspense fallback={<LinearProgress/>}>
-        <NextAppProvider
-          navigation={Nav.menu()}
-          theme={theme}
-        >
-          {props.children}
-        </NextAppProvider>
+        <QueryClientProviderWrapper>
+          <NextAppProvider
+            navigation={Nav.menu()}
+            theme={theme}
+          >
+            {props.children}
+          </NextAppProvider>
+        </QueryClientProviderWrapper>
       </React.Suspense>
     </AppRouterCacheProvider>
     </body>
