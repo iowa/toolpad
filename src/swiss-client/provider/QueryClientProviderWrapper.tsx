@@ -4,6 +4,7 @@ import React from 'react';
 
 import { keepPreviousData, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useDeepMemo } from '@/swiss-client/hooks/useDeepMemo';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 export default function QueryClientProviderWrapper({ children }: { children: React.ReactNode }) {
   const queryClient = useDeepMemo(() => {
@@ -17,5 +18,8 @@ export default function QueryClientProviderWrapper({ children }: { children: Rea
     });
   }, []);
 
-  return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
+  return <QueryClientProvider client={queryClient}>
+    <ReactQueryDevtools initialIsOpen={false}/>
+    {children}
+  </QueryClientProvider>;
 }

@@ -4,6 +4,7 @@ import { MovieWith } from "@/app/lib/types/MovieTypes";
 import { Genre } from "@/app/lib/types/GenreTypes";
 import { ChipTypeMap } from "@mui/material";
 import { useQuery } from '@tanstack/react-query';
+import { fetchGenres } from "@/app/api/genres/actions";
 
 export default function GenresAutocomplete({}: {}) {
   const { control } = useFormContext<MovieWith>();
@@ -11,9 +12,7 @@ export default function GenresAutocomplete({}: {}) {
   const { data: options = [], isFetching } = useQuery<Genre[]>({
     queryKey: ['genres'],
     queryFn: async (): Promise<Genre[]> => {
-      const res = await fetch(`/api/genres`);
-      if (!res.ok) return [];
-      const data = await res.json();
+      const data = await fetchGenres();
       return data.rows as Genre[];
     },
     staleTime: 60_000
