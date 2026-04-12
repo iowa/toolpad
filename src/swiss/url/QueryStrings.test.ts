@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { QueryStrings } from "@/swiss/url/QueryStrings";
-import { Movie } from "@/app/lib/types/MovieTypes";
-import { TestMovies } from "@/app/lib/testing/TestMovies";
+import { Movie } from "@/demo/modules/movies/types";
+import { TestMovies } from "@/demo/modules/movies/test/TestMovies";
 
 describe("QueryStrings", () => {
   it("parse string", () => {

@@ -1,11 +1,11 @@
 import Stack from '@mui/material/Stack';
-import { MovieSearchParams } from '@/app/lib/types/MovieTypes';
-import { MoviesRepository } from '@/app/lib/db/repository/MoviesRepository';
-import MoviesGrid from '@/app/ui/movies/MoviesGrid';
+import { MovieSearchParams } from '@/demo/modules/movies/types';
+import { MoviesRepository } from '@/demo/modules/movies/services/MoviesRepository';
+import MoviesGrid from '@/demo/modules/movies/ui/grid/MoviesGrid';
 import { Suspense } from "react";
 import { LinearProgress } from "@mui/material";
-import { getDC } from "@/app/lib/db/dm";
-import MoviesForm from "@/app/ui/movies/MoviesForm";
+import { getDC } from "@/demo/lib/db/dm";
+import MoviesForm from "@/demo/modules/movies/ui/form/MoviesForm";
 
 export default async function MoviesPage(props: { searchParams: Promise<MovieSearchParams> }) {
   const searchParams = await props.searchParams;

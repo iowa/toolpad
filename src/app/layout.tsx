@@ -4,7 +4,7 @@ import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 import { LinearProgress } from '@mui/material';
 import { NextAppProvider } from "@/toolpad-core/nextjs";
 import theme from "@/app/theme";
-import { Nav } from "@/app/lib/nav/Nav";
+import { Nav } from "@/demo/ui/nav/Nav";
 import QueryClientProviderWrapper from "@/swiss-client/provider/QueryClientProviderWrapper";
 
 

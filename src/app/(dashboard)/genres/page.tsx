@@ -1,11 +1,11 @@
 import Stack from '@mui/material/Stack';
 import { Suspense } from "react";
 import { LinearProgress } from "@mui/material";
-import { getDC } from "@/app/lib/db/dm";
-import { GenreSearchParams } from "@/app/lib/types/GenreTypes";
-import { GenresRepository } from "@/app/lib/db/repository/GenresRepository";
-import GenresGrid from "@/app/ui/genres/GenresGrid";
-import GenresForm from "@/app/ui/genres/GenresForm";
+import { getDC } from "@/demo/lib/db/dm";
+import { GenreSearchParams } from "@/demo/modules/genres/types";
+import { GenresRepository } from "@/demo/modules/genres/services/GenresRepository";
+import GenresGrid from "@/demo/modules/genres/ui/grid/GenresGrid";
+import GenresForm from "@/demo/modules/genres/ui/form/GenresForm";
 
 export default async function GenresPage(props: { searchParams: Promise<GenreSearchParams> }) {
   const searchParams = await props.searchParams;
