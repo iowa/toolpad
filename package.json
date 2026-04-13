@@ -32,7 +32,9 @@
     "format:check": "prettier --check src",
     "format:fix": "prettier --check --write src",
     "prepare": "husky",
-    "dev": "next dev",
+    "next:dev": "next dev",
+    "next:build": "next build",
+    "next:start": "next start",
     "db:generate": "pnpm exec drizzle-kit generate",
     "db:migrate": "pnpm exec drizzle-kit migrate",
     "upgrade-dependencies": "ncu -u"

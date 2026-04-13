@@ -1,4 +1,4 @@
-import AutocompleteElement from "@/swiss/form/rhf/AutocompleteElement";
+import AutocompleteElement from "@/swiss-client/form/rhf/AutocompleteElement";
 import { useFormContext } from "react-hook-form";
 import { MovieWith } from "@/demo/modules/movies/types";
 import { Genre } from "@/demo/modules/genres/types";

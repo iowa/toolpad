@@ -1,12 +1,17 @@
 import { Movie, MovieInsert, MovieSearchParams, MovieWith } from "@/demo/modules/movies/types";
 import { GridRows } from "@/swiss/grid/GridTypes";
 import { moviesGenresTable, moviesTable } from "@/demo/lib/db/schema/schema";
-import { gte } from "drizzle-orm";
+import { gte, like } from "drizzle-orm";
 import { GridSearch } from "@/swiss/grid/GridSearch";
 import { DrizzleClient } from "@/demo/lib/db/dm";
 
 export class MoviesRepository {
   private readonly dc;
+
+  // Utility to pause execution for a given number of milliseconds
+  private sleep(ms = 2000): Promise<void> {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
 
   constructor(drizzleClient: DrizzleClient) {
     this.dc = drizzleClient;
@@ -24,19 +29,25 @@ export class MoviesRepository {
   async search(searchParams: MovieSearchParams): Promise<GridRows<MovieWith>> {
     const gs = new GridSearch<MovieSearchParams, MovieWith>(searchParams);
     const whereBase = gs.whereAnd({
+      title: searchParams.title ? like(moviesTable.title, `%${searchParams.title}%`) : undefined,
       year: searchParams.year ? gte(moviesTable.year, searchParams.year) : undefined
     });
+    const paging = gs.paging();
     return gs.search(() => this.dc.db.query.moviesTable.findMany({
       with: {
         genres: {
           columns: { name: true }
         }
       },
-      where: { year: { gte: searchParams.year } },
+      where: {
+        title: { like: searchParams.title ? `%${searchParams.title}%` : undefined },
+        year: { gte: searchParams.year }
+      },
       orderBy: {
         id: "desc"
       },
-      ...gs.paging()
+      offset: paging.offset,
+      limit: paging.limit,
     }), () => gs.getCount(this.dc.db, moviesTable, whereBase))
   }
 

@@ -10,6 +10,7 @@ export type MovieWith = Movie & {
 export type MovieInsert = z.infer<typeof MovieInsertSchema>
 
 export const MovieSearchParamsSchema = z.object({
+  title: z.string().optional(),
   year: z.number().int().positive().optional(),
   genres: z.array(z.string()).optional(),
 });

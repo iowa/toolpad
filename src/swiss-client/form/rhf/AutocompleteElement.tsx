@@ -31,8 +31,8 @@ import {
   SyntheticEvent,
 } from 'react'
 import { propertyExists } from "./utils";
-import { useFormError } from "@/swiss/form/rhf/FormErrorProvider";
-import { useTransform } from "@/swiss/form/rhf/useTransform";
+import { useFormError } from "@/swiss-client/form/rhf/FormErrorProvider";
+import { useTransform } from "@/swiss-client/form/rhf/useTransform";
 
 export type AutocompleteElementProps<
   TValue,

@@ -63,8 +63,25 @@ describe("MoviesRepository", async () => {
     await testMovies.create(TestMovies.Inception)
     await testMovies.create(TestMovies.HatefulEight)
 
-    const yearSearchResult = await cut.search({ year: 2000 });
+    const titleSearchResult = await cut.search({ title: 'The' });
+    expect(titleSearchResult.rowCount).toBe(2)
+    expect(titleSearchResult.rows.map(({ title, year }) => ({
+      title,
+      year
+    }))).toMatchInlineSnapshot(`
+      [
+        {
+          "title": "The Hateful Eight",
+          "year": 2015,
+        },
+        {
+          "title": "The Matrix",
+          "year": 1999,
+        },
+      ]
+    `)
 
+    const yearSearchResult = await cut.search({ year: 2000 });
     expect(yearSearchResult.rowCount).toBe(2)
     expect(yearSearchResult.rows.map(({ title, year }) => ({
       title,

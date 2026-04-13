@@ -2,11 +2,15 @@
 
 import { GridRows } from "@/swiss/grid/GridTypes";
 import { MovieWith } from "@/demo/modules/movies/types";
-import Box from "@mui/material/Box";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import NoSsr from "@mui/material/NoSsr";
+import { useDataGrid } from "@/swiss-client/hooks/useDataGrid";
 
-export default function MoviesGrid({ gridRows }: { gridRows: GridRows<MovieWith> }) {
+export default function MoviesGrid({ gridRows, isLoading }: {
+  gridRows: GridRows<MovieWith>,
+  isLoading: boolean
+}) {
+  const dataGrid = useDataGrid();
+
   const columns: GridColDef<MovieWith>[] = [
     {
       field: 'title',
@@ -19,13 +23,15 @@ export default function MoviesGrid({ gridRows }: { gridRows: GridRows<MovieWith>
   ];
 
   return (
-    <NoSsr>
-      <Box sx={{ height: 400, width: '100%' }}>
-        <DataGrid<MovieWith>
-          rows={gridRows.rows}
-          columns={columns}
-        />
-      </Box>
-    </NoSsr>
+    <DataGrid<MovieWith>
+      columns={columns}
+      rows={gridRows.rows}
+      rowCount={gridRows.rowCount}
+      loading={isLoading}
+      paginationMode="server"
+      paginationModel={dataGrid.paginationModel}
+      onPaginationModelChange={dataGrid.onPaginationModelChange}
+    />
+
   );
 };

@@ -1,4 +1,9 @@
-import { GridPagination, GridPaginationSchema, GridRows } from "@/swiss/grid/GridTypes";
+import {
+  GridPagination,
+  GridPaginationDefaults,
+  GridPaginationSchema,
+  GridRows
+} from "@/swiss/grid/GridTypes";
 import { and, count, SQL } from "drizzle-orm";
 import { SQLWrapper } from "drizzle-orm/sql/sql";
 import { DrizzleDB, DrizzleTable } from "@/swiss/db/DrizzleTypes";
@@ -10,19 +15,20 @@ export class GridSearch<SearchParams extends GridPagination, Rows> {
 
   async search(rowsQuery: () => Promise<Rows[]>, countsQuery?: () => Promise<number | undefined>): Promise<GridRows<Rows>> {
     const [rows, rowCount] = await Promise.all(
-      [rowsQuery(), countsQuery ? countsQuery() : -1]
+      [rowsQuery(), countsQuery ? countsQuery() : undefined]
     );
     return {
       rows,
-      rowCount: rowCount ?? -1
+      rowCount: rowCount
     }
   }
 
   paging() {
-    const { page, pageSize } = GridPaginationSchema.parse(this.searchParams);
+    const page = GridPaginationDefaults.page
+    const pageSize = GridPaginationDefaults.pageSize
     return {
-      offset: page!! * pageSize!!,
-      limit: pageSize!! + 1
+      offset: page * pageSize,
+      limit: pageSize
     }
   }
 
@@ -33,7 +39,7 @@ export class GridSearch<SearchParams extends GridPagination, Rows> {
 
   async getCount(db: DrizzleDB, table: DrizzleTable, where?: SQL): Promise<number | undefined> {
     const result = await db.select({ count: count() }).from(table).where(where);
-    return result[0]?.count ?? undefined;
+    return result[0]?.count;
   }
 
 }
