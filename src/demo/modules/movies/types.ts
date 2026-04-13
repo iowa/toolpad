@@ -14,7 +14,7 @@ export const MovieSearchParamsSchema = z.object({
   title: z.string().optional(),
   year: z.number().int().positive().optional(),
   premiereDateAfter: z.union([z.custom<dayjs.Dayjs>((val) => dayjs.isDayjs(val)), z.string()]).optional(),
-  premiereDateBefore: z.union([z.custom<dayjs.Dayjs>((val) => dayjs.isDayjs(val)), z.string()]).optional(),
+  premiereDateBefore: z.union([z.custom<dayjs.Dayjs>((val) => dayjs.isDayjs(val)), z.string()]).nullish().optional(),
   genres: z.array(z.string()).optional(),
 });
 
