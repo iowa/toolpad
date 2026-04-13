@@ -9,7 +9,7 @@ export type GridPagination = z.infer<typeof GridPaginationSchema>;
 
 export const GridPaginationDefaults: Required<GridPagination> = {
   page: 0,
-  pageSize: 2,
+  pageSize: 100,
 }
 
 export type GridRows<T> = {

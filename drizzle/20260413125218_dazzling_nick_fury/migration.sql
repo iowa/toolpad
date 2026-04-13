@@ -18,7 +18,7 @@ CREATE TABLE "toolpad"."movies" (
 	"overview" text,
 	"rating" double precision,
 	"runtime_minutes" integer,
-	"premiere_date" timestamp
+	"premiere_date" date
 );
 --> statement-breakpoint
 ALTER TABLE "toolpad"."movies_genres" ADD CONSTRAINT "movies_genres_movie_id_movies_id_fkey" FOREIGN KEY ("movie_id") REFERENCES "toolpad"."movies"("id");--> statement-breakpoint

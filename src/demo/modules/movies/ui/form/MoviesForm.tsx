@@ -9,6 +9,10 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import { useRouter, useSearchParams } from "next/navigation.js";
 import { QueryStrings } from "@/swiss/url";
+import PremiereDateAfterDatePicker
+  from "@/demo/modules/movies/ui/form/input/PremiereDateAfterDatePicker";
+import { Dates } from "@/swiss/date/Dates";
+import dayjs from "dayjs";
 
 
 const MOVIES_FORM_DEFAULTS: MovieSearchParams = {
@@ -25,10 +29,15 @@ export default function MoviesForm() {
     }
   });
 
-  const onSubmit = form.handleSubmit(async (values) => {
-    const qs = QueryStrings.parse(values);
+  function pushQs(values: MovieSearchParams) {
+    const qs = QueryStrings.parse({
+      ...values,
+      premiereDateAfter: values.premiereDateAfter ? Dates.toQueryString(values.premiereDateAfter) : undefined,
+    });
     router.push(qs, { scroll: false });
-  });
+  }
+
+  const onSubmit = form.handleSubmit(async (values) => pushQs(values));
 
   return (
     <FormProvider {...form}>
@@ -40,7 +49,7 @@ export default function MoviesForm() {
           <Grid size={12}>
             <CreateMovieDialog/>
           </Grid>
-          <Grid size={6}>
+          <Grid size={12}>
             <TextFieldElement
               control={form.control}
               name={'title'}
@@ -48,6 +57,11 @@ export default function MoviesForm() {
               fullWidth
               size={'small'}
             />
+          </Grid>
+          <Grid size={3}>
+            <PremiereDateAfterDatePicker pushQs={pushQs}/>
+          </Grid>
+          <Grid size={3}>
           </Grid>
           <Grid size={6}>
             <Stack spacing={2} direction='row'

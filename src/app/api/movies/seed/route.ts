@@ -9,6 +9,7 @@ export async function POST(_req: Request) {
     const dc = getDC('toolpad');
     const testMovies = new TestMovies(new MoviesRepository(dc), new GenresRepository(dc));
     await testMovies.create(TestMovies.Matrix);
+    await testMovies.create(TestMovies.FellowshipOfTheRing);
     await testMovies.create(TestMovies.Inception);
     await testMovies.create(TestMovies.HatefulEight);
     return new NextResponse(null, { status: 204 });

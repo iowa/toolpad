@@ -1,7 +1,7 @@
-import { Movie, MovieInsert, MovieSearchParams, MovieWith } from "@/demo/modules/movies/types";
+import { Movie, MovieInsert, MovieSearchParams } from "@/demo/modules/movies/types";
 import { GridRows } from "@/swiss/grid/GridTypes";
 import { moviesGenresTable, moviesTable } from "@/demo/lib/db/schema/schema";
-import { gte, like } from "drizzle-orm";
+import { gte, like, lte } from "drizzle-orm";
 import { GridSearch } from "@/swiss/grid/GridSearch";
 import { DrizzleClient } from "@/demo/lib/db/dm";
 
@@ -26,29 +26,17 @@ export class MoviesRepository {
     await this.dc.db.insert(moviesGenresTable).values({ movieId, genreId })
   }
 
-  async search(searchParams: MovieSearchParams): Promise<GridRows<MovieWith>> {
-    const gs = new GridSearch<MovieSearchParams, MovieWith>(searchParams);
+  async search(searchParams: MovieSearchParams): Promise<GridRows<Movie>> {
+    const gs = new GridSearch<MovieSearchParams, Movie>(searchParams);
     const whereBase = gs.whereAnd({
       title: searchParams.title ? like(moviesTable.title, `%${searchParams.title}%`) : undefined,
-      year: searchParams.year ? gte(moviesTable.year, searchParams.year) : undefined
+      premiereDateAfter: searchParams.premiereDateAfter ? gte(moviesTable.premiereDate, searchParams.premiereDateAfter as string) : undefined,
+      premiereDateBefore: searchParams.premiereDateBefore ? lte(moviesTable.premiereDate, searchParams.premiereDateBefore as string) : undefined,
     });
     const paging = gs.paging();
-    return gs.search(() => this.dc.db.query.moviesTable.findMany({
-      with: {
-        genres: {
-          columns: { name: true }
-        }
-      },
-      where: {
-        title: { like: searchParams.title ? `%${searchParams.title}%` : undefined },
-        year: { gte: searchParams.year }
-      },
-      orderBy: {
-        id: "desc"
-      },
-      offset: paging.offset,
-      limit: paging.limit,
-    }), () => gs.getCount(this.dc.db, moviesTable, whereBase))
+    return gs.search(
+      () => this.dc.db.select().from(moviesTable).where(whereBase).offset(paging.offset).limit(paging.limit),
+      () => gs.getCount(this.dc.db, moviesTable, whereBase))
   }
 
 }

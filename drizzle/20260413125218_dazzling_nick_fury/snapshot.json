@@ -1,7 +1,7 @@
 {
   "version": "8",
   "dialect": "postgres",
-  "id": "e7503145-a814-4d1f-8056-1076af16cc65",
+  "id": "3e751178-ef2e-4b61-b199-ba9211f4a5e8",
   "prevIds": [
     "00000000-0000-0000-0000-000000000000"
   ],
@@ -172,7 +172,7 @@
       "table": "movies"
     },
     {
-      "type": "timestamp",
+      "type": "date",
       "typeSchema": null,
       "notNull": false,
       "dimensions": 0,

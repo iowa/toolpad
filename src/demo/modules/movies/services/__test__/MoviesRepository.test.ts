@@ -34,17 +34,9 @@ describe("MoviesRepository", async () => {
         "rowCount": 1,
         "rows": [
           {
-            "genres": [
-              {
-                "name": "Action",
-              },
-              {
-                "name": "Sci-Fi",
-              },
-            ],
             "id": 1,
             "overview": "A hacker discovers the nature of his reality and his role in the war against its controllers.",
-            "premiereDate": 1999-03-31T00:00:00.000Z,
+            "premiereDate": "1999-03-31 00:00:00",
             "rating": 8.7,
             "runtimeMinutes": 136,
             "title": "The Matrix",
@@ -60,41 +52,71 @@ describe("MoviesRepository", async () => {
     await migrate(dc.db, { migrationsFolder: migrationsFolder });
 
     await testMovies.create(TestMovies.Matrix)
+    await testMovies.create(TestMovies.FellowshipOfTheRing)
     await testMovies.create(TestMovies.Inception)
     await testMovies.create(TestMovies.HatefulEight)
 
     const titleSearchResult = await cut.search({ title: 'The' });
-    expect(titleSearchResult.rowCount).toBe(2)
-    expect(titleSearchResult.rows.map(({ title, year }) => ({
+    expect(titleSearchResult.rowCount).toBe(3)
+    expect(titleSearchResult.rows.map(({ title }) => ({
       title,
-      year
     }))).toMatchInlineSnapshot(`
       [
         {
-          "title": "The Hateful Eight",
-          "year": 2015,
+          "title": "The Matrix",
         },
         {
-          "title": "The Matrix",
-          "year": 1999,
+          "title": "The Lord of the Rings: The Fellowship of the Ring",
+        },
+        {
+          "title": "The Hateful Eight",
         },
       ]
     `)
 
-    const yearSearchResult = await cut.search({ year: 2000 });
-    expect(yearSearchResult.rowCount).toBe(2)
-    expect(yearSearchResult.rows.map(({ title, year }) => ({
+    const titleSearchResult2 = await cut.search({ title: 'Ring' });
+    expect(titleSearchResult2.rowCount).toBe(1)
+    expect(titleSearchResult2.rows.map(({ title }) => ({
       title,
-      year
     }))).toMatchInlineSnapshot(`
       [
         {
-          "title": "The Hateful Eight",
-          "year": 2015,
+          "title": "The Lord of the Rings: The Fellowship of the Ring",
+        },
+      ]
+    `)
+
+
+    const premiereAfterSearchResult = await cut.search({ premiereDateAfter: '2009-01-01' });
+    expect(premiereAfterSearchResult.rows.map(({ title, premiereDate }) => ({
+      title,
+      premiereDate
+    }))).toMatchInlineSnapshot(`
+      [
+        {
+          "premiereDate": "2010-07-16 00:00:00",
+          "title": "Inception",
         },
         {
-          "title": "Inception",
-          "year": 2010,
+          "premiereDate": "2015-12-25 00:00:00",
+          "title": "The Hateful Eight",
+        },
+      ]
+    `)
+
+    const premiereBeforeSearchResult = await cut.search({ premiereDateBefore: '2009-01-01' });
+    expect(premiereBeforeSearchResult.rows.map(({ title, premiereDate }) => ({
+      title,
+      premiereDate
+    }))).toMatchInlineSnapshot(`
+      [
+        {
+          "premiereDate": "1999-03-31 00:00:00",
+          "title": "The Matrix",
+        },
+        {
+          "premiereDate": "2001-12-19 00:00:00",
+          "title": "The Lord of the Rings: The Fellowship of the Ring",
         },
       ]
     `)

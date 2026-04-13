@@ -10,7 +10,9 @@ export const moviesTable = toolpadPgSchema.table("movies", {
   overview: p.text("overview"),
   rating: p.doublePrecision("rating"),
   runtimeMinutes: p.integer("runtime_minutes"),
-  premiereDate: p.timestamp("premiere_date"),
+  premiereDate: p.date('premiere_date', {
+    mode: 'string',
+  }),
 });
 
 export const MovieSchema = createSelectSchema(moviesTable);

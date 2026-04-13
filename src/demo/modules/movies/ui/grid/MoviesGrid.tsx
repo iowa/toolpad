@@ -1,17 +1,18 @@
 'use client'
 
 import { GridRows } from "@/swiss/grid/GridTypes";
-import { MovieWith } from "@/demo/modules/movies/types";
+import { Movie } from "@/demo/modules/movies/types";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useDataGrid } from "@/swiss-client/hooks/useDataGrid";
+import NoSsr from "@mui/material/NoSsr";
 
 export default function MoviesGrid({ gridRows, isLoading }: {
-  gridRows: GridRows<MovieWith>,
+  gridRows: GridRows<Movie>,
   isLoading: boolean
 }) {
   const dataGrid = useDataGrid();
 
-  const columns: GridColDef<MovieWith>[] = [
+  const columns: GridColDef<Movie>[] = [
     {
       field: 'title',
       flex: 1
@@ -19,19 +20,24 @@ export default function MoviesGrid({ gridRows, isLoading }: {
     {
       field: 'year',
       flex: 1,
+    },
+    {
+      field: 'premiereDate',
+      flex: 1,
     }
   ];
 
   return (
-    <DataGrid<MovieWith>
-      columns={columns}
-      rows={gridRows.rows}
-      rowCount={gridRows.rowCount}
-      loading={isLoading}
-      paginationMode="server"
-      paginationModel={dataGrid.paginationModel}
-      onPaginationModelChange={dataGrid.onPaginationModelChange}
-    />
-
+    <NoSsr>
+      <DataGrid<Movie>
+        columns={columns}
+        rows={gridRows.rows}
+        rowCount={gridRows.rowCount}
+        loading={isLoading}
+        paginationMode="server"
+        paginationModel={dataGrid.paginationModel}
+        onPaginationModelChange={dataGrid.onPaginationModelChange}
+      />
+    </NoSsr>
   );
 };

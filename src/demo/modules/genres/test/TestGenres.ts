@@ -22,5 +22,11 @@ export class TestGenres {
   static readonly Western: GenreInsert = {
     name: 'Western'
   }
+  static readonly Fantasy: GenreInsert = {
+    name: 'Fantasy'
+  }
+  static readonly Adventure: GenreInsert = {
+    name: 'Adventure'
+  }
 }
 
