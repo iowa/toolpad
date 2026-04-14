@@ -13,21 +13,20 @@ import { Dates } from "@/swiss/date/Dates";
 import { useFormQueryString } from "@/swiss-client/hooks/useFormQueryString";
 import { useQueryString } from "@/swiss-client/hooks/useQueryString";
 
-
-const MOVIES_FORM_DEFAULTS: MovieSearchParams = {
-  title: "",
-}
-
 export default function MoviesForm() {
-  const { getParam, getParams } = useQueryString();
-  const { form, onSubmit, reset, pushQueryString } = useFormQueryString<MovieSearchParams>({
-    resetValues: MOVIES_FORM_DEFAULTS,
+  const qs = useQueryString<MovieSearchParams>();
+  const { form, onSubmit, reset, push } = useFormQueryString<MovieSearchParams>({
+    resetValues: {
+      title: "",
+      premiereDateAfter: null
+    },
     onPush: (values) => ({
       ...values,
-      premiereDateAfter: values.premiereDateAfter ? Dates.toQueryString(values.premiereDateAfter) : undefined,
+      premiereDateAfter: Dates.toQueryStringDate(values.premiereDateAfter),
     }),
     defaultValues: {
-      title: getParam('title', MOVIES_FORM_DEFAULTS.title)
+      title: qs.getParam('title'),
+      premiereDateAfter: qs.getDateDayjs('premiereDateAfter')
     }
   });
 
@@ -51,7 +50,7 @@ export default function MoviesForm() {
             />
           </Grid>
           <Grid size={3}>
-            <PremiereDateAfterDatePicker pushQueryString={pushQueryString}/>
+            <PremiereDateAfterDatePicker pushQueryString={push}/>
           </Grid>
           <Grid size={3}>
           </Grid>

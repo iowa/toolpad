@@ -13,7 +13,7 @@ export type MovieInsert = z.infer<typeof MovieInsertSchema>
 export const MovieSearchParamsSchema = z.object({
   title: z.string().optional(),
   year: z.number().int().positive().optional(),
-  premiereDateAfter: z.union([z.custom<dayjs.Dayjs>((val) => dayjs.isDayjs(val)), z.string()]).optional(),
+  premiereDateAfter: z.union([z.custom<dayjs.Dayjs>((val) => dayjs.isDayjs(val)), z.string(), z.null()]).optional(),
   premiereDateBefore: z.union([z.custom<dayjs.Dayjs>((val) => dayjs.isDayjs(val)), z.string()]).nullish().optional(),
   genres: z.array(z.string()).optional(),
 });

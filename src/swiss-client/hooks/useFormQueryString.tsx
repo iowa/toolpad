@@ -13,7 +13,7 @@ export interface UseFormSearchParamsOptions<TFieldValues extends FieldValues> ex
 export interface UseFormSearchParamsReturn<TFieldValues extends FieldValues> {
   form: UseFormReturn<TFieldValues>;
   onSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;
-  pushQueryString: (values: TFieldValues) => void;
+  push: (values: TFieldValues) => void;
   reset: () => void;
 }
 
@@ -27,23 +27,24 @@ export function useFormQueryString<TFieldValues extends FieldValues>(
     ...useFormOptions,
   });
 
-  const pushQueryString = useCallback((values: TFieldValues) => {
-    const transformedValues = onPush ? onPush(values) : values;
-    const qs = QueryStrings.parse(transformedValues);
-    router.push(qs, { scroll: false });
-  }, [onPush, router]);
 
-  const onSubmit = form.handleSubmit(async (values) => pushQueryString(values));
+  const onSubmit = form.handleSubmit(async (values) => push(values));
 
   const reset = useCallback(() => {
     form.reset(resetValues as DefaultValues<TFieldValues>);
     router.push('?', { scroll: false });
   }, [resetValues, form, router]);
 
+  const push = useCallback((values: TFieldValues) => {
+    const transformedValues = onPush ? onPush(values) : values;
+    const qs = QueryStrings.parse(transformedValues);
+    router.push(qs, { scroll: false });
+  }, [onPush, router]);
+
   return {
     form,
     onSubmit,
-    pushQueryString,
     reset,
+    push,
   };
 }
