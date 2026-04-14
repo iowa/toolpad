@@ -5,14 +5,13 @@ import CreateMovieDialog from "@/demo/modules/movies/ui/dialog/create/CreateMovi
 import TextFieldElement from "@/swiss-client/form/rhf/TextFieldElement";
 import { FormProvider } from "react-hook-form";
 import { MovieSearchParams } from "@/demo/modules/movies/types";
-import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
 import PremiereDateAfterDatePicker
   from "@/demo/modules/movies/ui/form/input/PremiereDateAfterDatePicker";
 import { Dates } from "@/swiss/date/Dates";
 import { useFormQueryString, useQueryString } from "@/swiss-client";
+import FormSearchActions from "@/swiss-client/form/ui/FormSearchActions";
 
-export default function MoviesForm() {
+export default function MoviesForm({ isLoading }: { isLoading: boolean }) {
   const qs = useQueryString<MovieSearchParams>();
   const { form, onSubmit, reset, push } = useFormQueryString<MovieSearchParams>({
     resetValues: {
@@ -49,31 +48,12 @@ export default function MoviesForm() {
             />
           </Grid>
           <Grid size={3}>
-            <PremiereDateAfterDatePicker pushQueryString={push}/>
+            <PremiereDateAfterDatePicker push={push}/>
           </Grid>
           <Grid size={3}>
           </Grid>
           <Grid size={6}>
-            <Stack spacing={2} direction='row'
-                   sx={{ justifyContent: "center", alignItems: "center" }}
-            >
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                fullWidth={true}
-              >
-                Search
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                fullWidth={true}
-                onClick={reset}
-              >
-                Clear
-              </Button>
-            </Stack>
+            <FormSearchActions reset={reset} isLoading={isLoading}/>
           </Grid>
         </Grid>
       </form>

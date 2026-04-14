@@ -6,8 +6,8 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 
-export default function PremiereDateAfterDatePicker({ pushQueryString }: {
-  pushQueryString: (values: MovieSearchParams) => void
+export default function PremiereDateAfterDatePicker({ push }: {
+  push: (values: MovieSearchParams) => void
 }) {
   const { control, setValue, getValues } = useFormContext<MovieSearchParams>();
 
@@ -28,7 +28,7 @@ export default function PremiereDateAfterDatePicker({ pushQueryString }: {
             ...getValues(),
             premiereDateAfter: value,
           } as MovieSearchParams;
-          pushQueryString(merged);
+          push(merged);
         }}
       />
     </LocalizationProvider>

@@ -27,6 +27,7 @@ export class MoviesRepository {
   }
 
   async search(searchParams: MovieSearchParams): Promise<GridRows<Movie>> {
+    await this.sleep()
     const gs = new GridSearch<MovieSearchParams, Movie>(searchParams);
     const whereBase = gs.whereAnd({
       title: searchParams.title ? like(moviesTable.title, `%${searchParams.title}%`) : undefined,
