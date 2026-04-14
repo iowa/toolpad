@@ -3,8 +3,8 @@
 import { GridRows } from "@/swiss/grid/GridTypes";
 import { Movie } from "@/demo/modules/movies/types";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { useDataGrid } from "@/swiss-client/hooks/useDataGrid";
 import NoSsr from "@mui/material/NoSsr";
+import { useDataGrid } from "@/swiss-client";
 
 export default function MoviesGrid({ gridRows, isLoading }: {
   gridRows: GridRows<Movie>,

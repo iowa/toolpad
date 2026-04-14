@@ -1,4 +1,5 @@
 import {usePickerAdapter, type PickerValidDate} from '@mui/x-date-pickers'
+import dayjs from "dayjs";
 
 export function propertyExists<X, Y extends PropertyKey>(
   obj: X,
@@ -15,9 +16,9 @@ export function getTimezone<TDate extends PickerValidDate>(
   adapter: ReturnType<typeof usePickerAdapter>,
   value: TDate
 ): string | null {
-  return value == null || !adapter.isValid(value as unknown as Date)
+  return value == null || !adapter.isValid(value as unknown as dayjs.Dayjs)
     ? null
-    : adapter.getTimezone(value as unknown as Date)
+    : adapter.getTimezone(value as unknown as dayjs.Dayjs)
 }
 
 export function readValueAsDate<TDate extends PickerValidDate>(

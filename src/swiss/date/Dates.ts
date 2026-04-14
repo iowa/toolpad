@@ -7,16 +7,6 @@ export class Dates {
   public static readonly _DateFormat = 'DD-MM-YYYY';
   public static readonly _ISO_8601_DateFormat = 'YYYY-MM-DD';
 
-  static of(v: string | Date, inFormat: string, outFormat: string) {
-    if (v instanceof Date) {
-      return dayjs(v).format(outFormat);
-    }
-    if (dayjs.isDayjs(v)) {
-      return v.format(outFormat);
-    }
-    return dayjs(v, inFormat).format(outFormat);
-  }
-
   static dayjsFromQueryStringDate(v: string | null): dayjs.Dayjs | null {
     if (v == null) return null
     const parsed = dayjs(v, Dates._ISO_8601_DateFormat, true)

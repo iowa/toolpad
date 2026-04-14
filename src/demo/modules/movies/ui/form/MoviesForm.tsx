@@ -10,8 +10,7 @@ import Stack from "@mui/material/Stack";
 import PremiereDateAfterDatePicker
   from "@/demo/modules/movies/ui/form/input/PremiereDateAfterDatePicker";
 import { Dates } from "@/swiss/date/Dates";
-import { useFormQueryString } from "@/swiss-client/hooks/useFormQueryString";
-import { useQueryString } from "@/swiss-client/hooks/useQueryString";
+import { useFormQueryString, useQueryString } from "@/swiss-client";
 
 export default function MoviesForm() {
   const qs = useQueryString<MovieSearchParams>();

@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { useMemoized } from "@/swiss-client/hooks/useMemoized";
+import { useMemoized } from "@/swiss-client";
 
 /**
  * Hook that memoizes the given dependency array and checks the consecutive calls with deep equality and returns the same value as the first call if dependencies are not changed.
