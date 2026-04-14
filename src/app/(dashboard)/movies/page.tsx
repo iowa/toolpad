@@ -13,9 +13,11 @@ export default async function MoviesPage(props: { searchParams: Promise<MovieSea
   const gridRowsPromise = new MoviesRepository(getDC('toolpad')).search(searchParams);
 
   return (
+
     <Suspense key={JSON.stringify(searchParams)} fallback={<MoviesPageContent isLoading={true}/>}>
       <MoviesPageContent gridRowsPromise={gridRowsPromise}/>
     </Suspense>
+
   );
 }
 
@@ -26,12 +28,12 @@ async function MoviesPageContent({
   gridRowsPromise?: Promise<GridRows<Movie>>;
   isLoading?: boolean;
 }) {
-  const gridRows = gridRowsPromise ? await gridRowsPromise : { rows: [], rowCount: -1 };
+  const gridRows = gridRowsPromise ? await gridRowsPromise : { rows: [], rowCount: 0 };
 
   return (
-    <Stack spacing={2}>
+    <Stack spacing={2} sx={{ flex: 1, minHeight: 0 }}>
       <MoviesForm isLoading={isLoading}/>
-      <Box sx={{ width: '100%' }}>
+      <Box sx={{ flex: 1, minHeight: 0 }}>
         <MoviesGrid gridRows={gridRows} isLoading={isLoading}/>
       </Box>
     </Stack>
