@@ -6,7 +6,7 @@ import { NextAppProvider } from "@/toolpad-core/nextjs";
 import theme from "@/app/theme";
 import { Nav } from "@/demo/ui/nav/Nav";
 import QueryClientProviderWrapper from "@/swiss-client/provider/QueryClientProviderWrapper";
-
+import './globals.css';
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
