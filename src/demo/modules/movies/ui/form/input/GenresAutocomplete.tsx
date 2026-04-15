@@ -15,12 +15,13 @@ export default function GenresAutocomplete({ push }: {
   const currentValues = getValues().genres ?? [];
 
   useEffect(() => {
-    if (isFetchingGenres || genres.length === 0) return;
+    if (isFetchingGenres || genres.length === 0 || currentValues.length === 0) return;
     const valid = currentValues.filter(v => options.includes(v));
     if (valid.length !== currentValues.length) {
       setValue('genres', valid);
       push({ ...getValues(), genres: valid });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFetchingGenres, genres.length]);
 
   return (

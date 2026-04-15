@@ -6,7 +6,10 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import NoSsr from "@mui/material/NoSsr";
 import { Genre } from "@/demo/modules/genres/types";
 
-export default function GenresGrid({ gridRows }: { gridRows: GridRows<Genre> }) {
+export default function GenresGrid({ gridRows, isLoading }: {
+  gridRows: GridRows<Genre>,
+  isLoading?: boolean
+}) {
   const columns: GridColDef<Genre>[] = [
     {
       field: 'name',
@@ -16,12 +19,10 @@ export default function GenresGrid({ gridRows }: { gridRows: GridRows<Genre> }) 
 
   return (
     <NoSsr>
-      <Box sx={{ height: 400, width: '100%' }}>
-        <DataGrid<Genre>
-          rows={gridRows.rows}
-          columns={columns}
-        />
-      </Box>
+      <DataGrid<Genre>
+        rows={gridRows.rows}
+        columns={columns}
+      />
     </NoSsr>
   );
 };

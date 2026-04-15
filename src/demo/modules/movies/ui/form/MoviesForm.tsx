@@ -13,29 +13,29 @@ import GenresAutocomplete from "@/demo/modules/movies/ui/form/input/GenresAutoco
 
 export default function MoviesForm({ isLoading }: { isLoading: boolean }) {
   const qs = useQueryString<MovieSearchParams>();
-  const { form, onSubmit, push, FormSearchActions } = useFormQueryString<MovieSearchParams>({
+  const formQs = useFormQueryString<MovieSearchParams>({
     resetValues: {
       title: "",
       premiereDateAfter: null,
       genres: []
     },
-    onPush: (values) => ({
-      ...values,
-      premiereDateAfter: Dates.toQueryStringDate(values.premiereDateAfter)
-    }),
-    isLoading,
     defaultValues: {
       title: qs.getParam('title'),
       premiereDateAfter: qs.getDateDayjs('premiereDateAfter'),
       genres: qs.getParams('genres')
-    }
+    },
+    onPush: (values) => ({
+      ...values,
+      premiereDateAfter: Dates.toQueryStringDate(values.premiereDateAfter)
+    }),
+    isLoading
   });
 
   return (
-    <FormProvider {...form}>
+    <FormProvider {...formQs.form}>
       <form
         autoComplete="off"
-        onSubmit={onSubmit}
+        onSubmit={formQs.onSubmit}
       >
         <Grid container direction={"row"} spacing={2}>
           <Grid size={12}>
@@ -43,7 +43,7 @@ export default function MoviesForm({ isLoading }: { isLoading: boolean }) {
           </Grid>
           <Grid size={6}>
             <TextFieldElement
-              control={form.control}
+              control={formQs.form.control}
               name={'title'}
               label={'Title'}
               fullWidth
@@ -51,15 +51,15 @@ export default function MoviesForm({ isLoading }: { isLoading: boolean }) {
             />
           </Grid>
           <Grid size={6}>
-            <GenresAutocomplete push={push}/>
+            <GenresAutocomplete push={formQs.push}/>
           </Grid>
           <Grid size={3}>
-            <PremiereDateAfterDatePicker push={push}/>
+            <PremiereDateAfterDatePicker push={formQs.push}/>
           </Grid>
           <Grid size={3}>
           </Grid>
           <Grid size={6}>
-            {FormSearchActions}
+            {formQs.FormSearchActions}
           </Grid>
         </Grid>
       </form>

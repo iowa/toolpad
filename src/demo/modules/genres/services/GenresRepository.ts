@@ -1,7 +1,7 @@
 import { genresTable } from "@/demo/lib/db/schema/schema";
 import { DrizzleClient } from "@/demo/lib/db/dm";
 import { Genre, GenreInsert, GenreSearchParams } from "@/demo/modules/genres/types";
-import { eq } from "drizzle-orm";
+import { eq, like } from "drizzle-orm";
 import { GridRows } from "@/swiss/grid";
 import { GridSearch } from "@/swiss/grid/GridSearch";
 
@@ -21,7 +21,9 @@ export class GenresRepository {
 
   async search(searchParams: GenreSearchParams): Promise<GridRows<Genre>> {
     const gs = new GridSearch<GenreSearchParams, Genre>(searchParams);
-    const whereBase = gs.whereAnd({});
+    const whereBase = gs.whereAnd({
+      name: searchParams.name ? like(genresTable.name, `%${searchParams.name}%`) : undefined,
+    });
     const { offset, limit } = gs.paging();
     return gs.search(
       () => this.dc.db.select().from(genresTable).where(whereBase).offset(offset).limit(limit),
