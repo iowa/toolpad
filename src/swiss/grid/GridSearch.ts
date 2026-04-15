@@ -15,7 +15,7 @@ export class GridSearch<SearchParams extends GridPagination, Rows> {
 
   async search(rowsQuery: () => Promise<Rows[]>, countsQuery?: () => Promise<number | undefined>): Promise<GridRows<Rows>> {
     const [rows, rowCount] = await Promise.all(
-      [rowsQuery(), countsQuery ? countsQuery() : undefined]
+      [rowsQuery(), countsQuery ? countsQuery() : -1]
     );
     return {
       rows,

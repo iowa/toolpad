@@ -1,7 +1,7 @@
 import { Movie, MovieInsert, MovieSearchParams } from "@/demo/modules/movies/types";
 import { GridRows } from "@/swiss/grid/GridTypes";
-import { moviesGenresTable, moviesTable } from "@/demo/lib/db/schema/schema";
-import { gte, like, lte } from "drizzle-orm";
+import { genresTable, moviesGenresTable, moviesTable } from "@/demo/lib/db/schema/schema";
+import { eq, gte, inArray, like, lte } from "drizzle-orm";
 import { GridSearch } from "@/swiss/grid/GridSearch";
 import { DrizzleClient } from "@/demo/lib/db/dm";
 
@@ -27,12 +27,14 @@ export class MoviesRepository {
   }
 
   async search(searchParams: MovieSearchParams): Promise<GridRows<Movie>> {
-    await this.sleep()
     const gs = new GridSearch<MovieSearchParams, Movie>(searchParams);
+    const genresSubquery = this.genresSubquery(searchParams);
+
     const whereBase = gs.whereAnd({
       title: searchParams.title ? like(moviesTable.title, `%${searchParams.title}%`) : undefined,
       premiereDateAfter: searchParams.premiereDateAfter ? gte(moviesTable.premiereDate, searchParams.premiereDateAfter as string) : undefined,
       premiereDateBefore: searchParams.premiereDateBefore ? lte(moviesTable.premiereDate, searchParams.premiereDateBefore as string) : undefined,
+      genres: genresSubquery ? inArray(moviesTable.id, genresSubquery) : undefined,
     });
     const paging = gs.paging();
     return gs.search(
@@ -40,4 +42,12 @@ export class MoviesRepository {
       () => gs.getCount(this.dc.db, moviesTable, whereBase))
   }
 
+  private genresSubquery(searchParams: MovieSearchParams) {
+    return searchParams.genres && searchParams.genres.length > 0
+      ? this.dc.db.select({ movieId: moviesGenresTable.movieId })
+      .from(moviesGenresTable)
+      .innerJoin(genresTable, eq(moviesGenresTable.genreId, genresTable.id))
+      .where(inArray(genresTable.name, Array.isArray(searchParams.genres) ? searchParams.genres : [searchParams.genres]))
+      : undefined;
+  }
 }
