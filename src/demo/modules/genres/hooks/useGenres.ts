@@ -5,6 +5,7 @@ import { Genre } from "@/demo/modules/genres/types";
 export function useGenres() {
   const { data: genres = [], isFetching: isFetchingGenres } = useQuery<Genre[]>({
     queryKey: ['genres'],
+    staleTime: 1000 * 60 * 5,
     queryFn: async (): Promise<Genre[]> => {
       const data = await fetchGenres();
       return data.rows as Genre[];
@@ -12,4 +13,3 @@ export function useGenres() {
   });
   return { genres, isFetchingGenres };
 }
-

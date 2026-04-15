@@ -9,22 +9,25 @@ import PremiereDateAfterDatePicker
   from "@/demo/modules/movies/ui/form/input/PremiereDateAfterDatePicker";
 import { Dates } from "@/swiss/date/Dates";
 import { useFormQueryString, useQueryString } from "@/swiss-client";
-import FormSearchActions from "@/swiss-client/form/ui/FormSearchActions";
+import GenresAutocomplete from "@/demo/modules/movies/ui/form/input/GenresAutocomplete";
 
 export default function MoviesForm({ isLoading }: { isLoading: boolean }) {
   const qs = useQueryString<MovieSearchParams>();
-  const { form, onSubmit, reset, push } = useFormQueryString<MovieSearchParams>({
+  const { form, onSubmit, push, FormSearchActions } = useFormQueryString<MovieSearchParams>({
     resetValues: {
       title: "",
-      premiereDateAfter: null
+      premiereDateAfter: null,
+      genres: []
     },
     onPush: (values) => ({
       ...values,
-      premiereDateAfter: Dates.toQueryStringDate(values.premiereDateAfter),
+      premiereDateAfter: Dates.toQueryStringDate(values.premiereDateAfter)
     }),
+    isLoading,
     defaultValues: {
       title: qs.getParam('title'),
-      premiereDateAfter: qs.getDateDayjs('premiereDateAfter')
+      premiereDateAfter: qs.getDateDayjs('premiereDateAfter'),
+      genres: qs.getParams('genres')
     }
   });
 
@@ -38,7 +41,7 @@ export default function MoviesForm({ isLoading }: { isLoading: boolean }) {
           <Grid size={12}>
             <CreateMovieDialog/>
           </Grid>
-          <Grid size={12}>
+          <Grid size={6}>
             <TextFieldElement
               control={form.control}
               name={'title'}
@@ -47,13 +50,16 @@ export default function MoviesForm({ isLoading }: { isLoading: boolean }) {
               size={'small'}
             />
           </Grid>
+          <Grid size={6}>
+            <GenresAutocomplete push={push}/>
+          </Grid>
           <Grid size={3}>
             <PremiereDateAfterDatePicker push={push}/>
           </Grid>
           <Grid size={3}>
           </Grid>
           <Grid size={6}>
-            <FormSearchActions reset={reset} isLoading={isLoading}/>
+            {FormSearchActions}
           </Grid>
         </Grid>
       </form>

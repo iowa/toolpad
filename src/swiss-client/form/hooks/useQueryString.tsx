@@ -20,11 +20,11 @@ export function useQueryString<T extends Record<string, any>>() {
   const getParams = useCallback(
     <K extends keyof T>(
       name: K,
-      defaultValue: T[K][] = []
-    ): T[K][] => {
+      defaultValue: string[] = []
+    ): string[] => {
       const values = searchParams.getAll(String(name))
       if (values.length === 0) return defaultValue
-      return values as unknown as T[K][]
+      return values
     },
     [searchParams],
   )
