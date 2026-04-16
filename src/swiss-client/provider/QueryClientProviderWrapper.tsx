@@ -19,7 +19,7 @@ export default function QueryClientProviderWrapper({ children }: { children: Rea
   }, []);
 
   return <QueryClientProvider client={queryClient}>
-    <ReactQueryDevtools initialIsOpen={false}/>
+    <ReactQueryDevtools initialIsOpen={false} buttonPosition={"top-left"}/>
     {children}
   </QueryClientProvider>;
 }
