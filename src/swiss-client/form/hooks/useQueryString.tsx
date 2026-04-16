@@ -4,6 +4,7 @@ import { useSearchParams } from 'next/navigation'
 import { useCallback } from 'react'
 import dayjs from "dayjs";
 import { Dates } from "@/swiss/date/Dates";
+import { z, ZodType } from "zod";
 
 export function useQueryString<T extends Record<string, any>>() {
   const searchParams = useSearchParams()
@@ -29,6 +30,28 @@ export function useQueryString<T extends Record<string, any>>() {
     [searchParams],
   )
 
+  const getParamsParsed = useCallback(
+    <K extends keyof T, S extends ZodType>(
+      name: K,
+      schema: S,
+      defaultValue: z.infer<S>[] = []
+    ): z.infer<S>[] => {
+      const values = searchParams.getAll(String(name));
+      if (values.length === 0) return defaultValue;
+
+      return values.map((value) => {
+        try {
+          const parsed = JSON.parse(value);
+          const validated = schema.safeParse(parsed);
+          return validated.success ? validated.data : null;
+        } catch (e) {
+          return null;
+        }
+      }).filter((v): v is z.infer<S> => v !== null);
+    },
+    [searchParams],
+  )
+
   const getDateDayjs = useCallback(
     <K extends keyof T>(name: K): dayjs.Dayjs | null => {
       const value = searchParams.get(String(name))
@@ -40,6 +63,7 @@ export function useQueryString<T extends Record<string, any>>() {
   return {
     getParam,
     getParams,
+    getParamsParsed,
     getDateDayjs
   }
 }

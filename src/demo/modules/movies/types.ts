@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { MovieInsertSchema, MovieSchema } from "@/demo/lib/db/schema/schema";
+import { GenreSchema, MovieInsertSchema, MovieSchema } from "@/demo/lib/db/schema/schema";
 import { GridPagination } from "@/swiss/grid";
 import { Genre } from "@/demo/modules/genres/types";
 import dayjs from 'dayjs';
@@ -21,6 +21,7 @@ export const MovieSearchParamsSchema = z.object({
   premiereDateAfter: z.union([z.custom<dayjs.Dayjs>((val) => dayjs.isDayjs(val)), z.string(), z.null()]).optional(),
   premiereDateBefore: z.union([z.custom<dayjs.Dayjs>((val) => dayjs.isDayjs(val)), z.string()]).nullish().optional(),
   genres: z.array(z.string()).optional(),
+  genreObjs: z.array(GenreSchema).optional(),
 });
 
 export type MovieSearchParams = z.infer<typeof MovieSearchParamsSchema> & GridPagination;

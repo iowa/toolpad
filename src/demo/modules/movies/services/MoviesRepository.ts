@@ -59,11 +59,17 @@ export class MoviesRepository {
   }
 
   private genresSubquery(searchParams: MovieSearchParams) {
-    return searchParams.genres && searchParams.genres.length > 0
+    const genres = [
+      ...(Array.isArray(searchParams.genres) ? searchParams.genres : (searchParams.genres ? [searchParams.genres] : [])),
+      ...(Array.isArray(searchParams.genreObjs) ? searchParams.genreObjs : (searchParams.genreObjs ? [searchParams.genreObjs] : []))
+        .map((g) => (typeof g === 'string' ? JSON.parse(g).name : g.name)),
+    ];
+
+    return genres.length > 0
       ? this.dc.db.select({ movieId: moviesGenresTable.movieId })
       .from(moviesGenresTable)
       .innerJoin(genresTable, eq(moviesGenresTable.genreId, genresTable.id))
-      .where(inArray(genresTable.name, Array.isArray(searchParams.genres) ? searchParams.genres : [searchParams.genres]))
+      .where(inArray(genresTable.name, genres))
       : undefined;
   }
 }

@@ -10,6 +10,8 @@ import PremiereDateAfterDatePicker
 import { Dates } from "@/swiss/date/Dates";
 import { useFormQueryString, useQueryString } from "@/swiss-client";
 import GenresAutocomplete from "@/demo/modules/movies/ui/form/input/GenresAutocomplete";
+import GenresObjAutocomplete from "@/demo/modules/movies/ui/form/input/GenresObjAutocomplete";
+import { GenreSchema } from "@/demo/lib/db/schema/schema";
 
 export default function MoviesForm({ isLoading }: { isLoading: boolean }) {
   const qs = useQueryString<MovieSearchParams>();
@@ -17,17 +19,21 @@ export default function MoviesForm({ isLoading }: { isLoading: boolean }) {
     resetValues: {
       title: "",
       premiereDateAfter: null,
-      genres: []
+      genres: [],
+      genreObjs: []
     },
     defaultValues: {
       title: qs.getParam('title'),
       premiereDateAfter: qs.getDateDayjs('premiereDateAfter'),
-      genres: qs.getParams('genres')
+      genres: qs.getParams('genres'),
+      genreObjs: qs.getParamsParsed('genreObjs', GenreSchema)
     },
-    onPush: (values) => ({
-      ...values,
-      premiereDateAfter: Dates.toQueryStringDate(values.premiereDateAfter)
-    }),
+    onPush: (values) => {
+      return {
+        ...values,
+        premiereDateAfter: Dates.toQueryStringDate(values.premiereDateAfter),
+      };
+    },
     isLoading
   });
 
@@ -41,7 +47,7 @@ export default function MoviesForm({ isLoading }: { isLoading: boolean }) {
           <Grid size={12}>
             <CreateMovieDialog/>
           </Grid>
-          <Grid size={6}>
+          <Grid size={12}>
             <TextFieldElement
               control={formQs.form.control}
               name={'title'}
@@ -52,6 +58,9 @@ export default function MoviesForm({ isLoading }: { isLoading: boolean }) {
           </Grid>
           <Grid size={6}>
             <GenresAutocomplete push={formQs.push}/>
+          </Grid>
+          <Grid size={6}>
+            <GenresObjAutocomplete push={formQs.push}/>
           </Grid>
           <Grid size={3}>
             <PremiereDateAfterDatePicker push={formQs.push}/>
