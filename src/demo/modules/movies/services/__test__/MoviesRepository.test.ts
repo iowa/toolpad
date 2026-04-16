@@ -5,6 +5,7 @@ import { getMockDC, MockDrizzleClient } from "@/demo/lib/db/dm";
 import { migrate } from "drizzle-orm/pglite/migrator";
 import { TestMovies } from "@/demo/modules/movies/test/TestMovies";
 import { GenresRepository } from "@/demo/modules/genres/services/GenresRepository";
+import { TestGenres } from "@/demo/modules/genres/test/TestGenres";
 
 describe("MoviesRepository", async () => {
   let dc: MockDrizzleClient;
@@ -94,11 +95,11 @@ describe("MoviesRepository", async () => {
     }))).toMatchInlineSnapshot(`
       [
         {
-          "premiereDate": "2010-07-16 00:00:00",
+          "premiereDate": "2010-07-16",
           "title": "Inception",
         },
         {
-          "premiereDate": "2015-12-25 00:00:00",
+          "premiereDate": "2015-12-25",
           "title": "The Hateful Eight",
         },
       ]
@@ -111,15 +112,27 @@ describe("MoviesRepository", async () => {
     }))).toMatchInlineSnapshot(`
       [
         {
-          "premiereDate": "1999-03-31 00:00:00",
+          "premiereDate": "1999-03-31",
           "title": "The Matrix",
         },
         {
-          "premiereDate": "2001-12-19 00:00:00",
+          "premiereDate": "2001-12-19",
           "title": "The Lord of the Rings: The Fellowship of the Ring",
         },
       ]
     `)
+
+    const genresSearchResult = await cut.search({ genres: [TestGenres.Fantasy.name] });
+    expect(genresSearchResult.rows.map(({ title }) => ({
+      title
+    }))).toMatchInlineSnapshot(`
+      [
+        {
+          "title": "The Lord of the Rings: The Fellowship of the Ring",
+        },
+      ]
+    `)
+
   });
 
 });
