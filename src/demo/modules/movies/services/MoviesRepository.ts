@@ -1,7 +1,7 @@
 import { Movie, MovieInsert, MovieSearchParams } from "@/demo/modules/movies/types";
 import { GridRows } from "@/swiss/grid/GridTypes";
 import { genresTable, moviesGenresTable, moviesTable } from "@/demo/lib/db/schema/schema";
-import { eq, gte, inArray, like, lte } from "drizzle-orm";
+import { eq, gte, inArray, like, lte, sql } from "drizzle-orm";
 import { GridSearch } from "@/swiss/grid/GridSearch";
 import { DrizzleClient } from "@/demo/lib/db/dm";
 
@@ -38,7 +38,24 @@ export class MoviesRepository {
     });
     const paging = gs.paging();
     return gs.search(
-      () => this.dc.db.select().from(moviesTable).where(whereBase).offset(paging.offset).limit(paging.limit),
+      () => this.dc.db.select({
+        id: moviesTable.id,
+        title: moviesTable.title,
+        year: moviesTable.year,
+        premiereDate: moviesTable.premiereDate,
+        genresString: sql<string>`string_agg
+        (
+        ${genresTable.name},
+        ','
+        )`
+      })
+      .from(moviesTable)
+      .leftJoin(moviesGenresTable, eq(moviesTable.id, moviesGenresTable.movieId))
+      .leftJoin(genresTable, eq(moviesGenresTable.genreId, genresTable.id))
+      .where(whereBase)
+      .groupBy(moviesTable.id)
+      .offset(paging.offset)
+      .limit(paging.limit) as any,
       () => gs.getCount(this.dc.db, moviesTable, whereBase))
   }
 

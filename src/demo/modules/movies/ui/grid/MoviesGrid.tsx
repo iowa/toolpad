@@ -24,6 +24,11 @@ export default function MoviesGrid({ gridRows, isLoading }: {
     {
       field: 'premiereDate',
       flex: 1,
+    },
+    {
+      field: 'genresString',
+      headerName: 'Genres',
+      flex: 1,
     }
   ];
 
