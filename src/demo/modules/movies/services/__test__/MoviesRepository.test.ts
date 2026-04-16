@@ -35,11 +35,12 @@ describe("MoviesRepository", async () => {
         "rowCount": 1,
         "rows": [
           {
+            "genres": [
+              "Action",
+              "Sci-Fi",
+            ],
             "id": 1,
-            "overview": "A hacker discovers the nature of his reality and his role in the war against its controllers.",
-            "premiereDate": "1999-03-31 00:00:00",
-            "rating": 8.7,
-            "runtimeMinutes": 136,
+            "premiereDate": "1999-03-31",
             "title": "The Matrix",
             "year": 1999,
           },
@@ -67,10 +68,10 @@ describe("MoviesRepository", async () => {
           "title": "The Matrix",
         },
         {
-          "title": "The Lord of the Rings: The Fellowship of the Ring",
+          "title": "The Hateful Eight",
         },
         {
-          "title": "The Hateful Eight",
+          "title": "The Lord of the Rings: The Fellowship of the Ring",
         },
       ]
     `)
@@ -95,12 +96,12 @@ describe("MoviesRepository", async () => {
     }))).toMatchInlineSnapshot(`
       [
         {
-          "premiereDate": "2010-07-16",
-          "title": "Inception",
-        },
-        {
           "premiereDate": "2015-12-25",
           "title": "The Hateful Eight",
+        },
+        {
+          "premiereDate": "2010-07-16",
+          "title": "Inception",
         },
       ]
     `)
@@ -123,11 +124,17 @@ describe("MoviesRepository", async () => {
     `)
 
     const genresSearchResult = await cut.search({ genres: [TestGenres.Fantasy.name] });
-    expect(genresSearchResult.rows.map(({ title }) => ({
-      title
+    expect(genresSearchResult.rows.map(({ title, genres }) => ({
+      title,
+      genres
     }))).toMatchInlineSnapshot(`
       [
         {
+          "genres": [
+            "Fantasy",
+            "Adventure",
+            "Drama",
+          ],
           "title": "The Lord of the Rings: The Fellowship of the Ring",
         },
       ]

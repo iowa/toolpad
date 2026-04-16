@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { QueryStrings } from "@/swiss/url/QueryStrings";
-import { Movie } from "@/demo/modules/movies/types";
+import { MovieList } from "@/demo/modules/movies/types";
 import { TestMovies } from "@/demo/modules/movies/test/TestMovies";
 
 describe("QueryStrings", () => {
   it("parse string", () => {
-    const example: Partial<Movie> = {
+    const example: Partial<MovieList> = {
       title: TestMovies.Matrix.movie.title,
     }
 
@@ -25,7 +25,7 @@ describe("QueryStrings", () => {
   });
 
   it("parse number float", () => {
-    const example: Partial<Movie> = {
+    const example: Partial<MovieList> = {
       rating: TestMovies.Matrix.movie.rating,
     }
 
@@ -35,7 +35,7 @@ describe("QueryStrings", () => {
   });
 
   it("parse object", () => {
-    const example: Partial<Movie> = {
+    const example: Partial<MovieList> = {
       title: TestMovies.Matrix.movie.title,
       year: TestMovies.Matrix.movie.year,
       rating: TestMovies.Matrix.movie.rating,

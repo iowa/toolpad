@@ -4,10 +4,13 @@ import { GridPagination } from "@/swiss/grid";
 import { Genre } from "@/demo/modules/genres/types";
 import dayjs from 'dayjs';
 
-export type Movie = z.infer<typeof MovieSchema> & {
-  genresString?: string;
+export type Movie = z.infer<typeof MovieSchema>
+
+export type MovieList = Movie & {
+  genres: string[];
 };
-export type MovieWith = Movie & {
+
+export type MovieWith = MovieList & {
   genres: Partial<Genre>[];
 };
 export type MovieInsert = z.infer<typeof MovieInsertSchema>

@@ -1,4 +1,4 @@
-import { Movie, MovieInsert, MovieSearchParams } from "@/demo/modules/movies/types";
+import { MovieList, MovieInsert, MovieSearchParams, Movie } from "@/demo/modules/movies/types";
 import { GridRows } from "@/swiss/grid/GridTypes";
 import { genresTable, moviesGenresTable, moviesTable } from "@/demo/lib/db/schema/schema";
 import { eq, gte, inArray, like, lte, sql } from "drizzle-orm";
@@ -26,8 +26,8 @@ export class MoviesRepository {
     await this.dc.db.insert(moviesGenresTable).values({ movieId, genreId })
   }
 
-  async search(searchParams: MovieSearchParams): Promise<GridRows<Movie>> {
-    const gs = new GridSearch<MovieSearchParams, Movie>(searchParams);
+  async search(searchParams: MovieSearchParams): Promise<GridRows<MovieList>> {
+    const gs = new GridSearch<MovieSearchParams, MovieList>(searchParams);
     const genresSubquery = this.genresSubquery(searchParams);
 
     const whereBase = gs.whereAnd({
@@ -43,10 +43,9 @@ export class MoviesRepository {
         title: moviesTable.title,
         year: moviesTable.year,
         premiereDate: moviesTable.premiereDate,
-        genresString: sql<string>`string_agg
+        genres: sql<string[]>`array_agg
         (
-        ${genresTable.name},
-        ','
+        ${genresTable.name}
         )`
       })
       .from(moviesTable)

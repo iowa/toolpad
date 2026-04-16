@@ -1,18 +1,18 @@
 'use client'
 
 import { GridRows } from "@/swiss/grid/GridTypes";
-import { Movie } from "@/demo/modules/movies/types";
+import { MovieList } from "@/demo/modules/movies/types";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import NoSsr from "@mui/material/NoSsr";
 import { useDataGrid } from "@/swiss-client";
 
 export default function MoviesGrid({ gridRows, isLoading }: {
-  gridRows: GridRows<Movie>,
+  gridRows: GridRows<MovieList>,
   isLoading: boolean
 }) {
   const dataGrid = useDataGrid();
 
-  const columns: GridColDef<Movie>[] = [
+  const columns: GridColDef<MovieList>[] = [
     {
       field: 'title',
       flex: 1
@@ -26,15 +26,18 @@ export default function MoviesGrid({ gridRows, isLoading }: {
       flex: 1,
     },
     {
-      field: 'genresString',
+      field: 'genres',
       headerName: 'Genres',
       flex: 1,
+      valueGetter: (params, row) => {
+        return row.genres?.filter(Boolean).join(', ');
+      }
     }
   ];
 
   return (
     <NoSsr>
-      <DataGrid<Movie>
+      <DataGrid<MovieList>
         columns={columns}
         rows={gridRows.rows}
         rowCount={gridRows.rowCount}

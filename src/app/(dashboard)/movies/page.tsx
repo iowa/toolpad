@@ -1,5 +1,5 @@
 import Stack from '@mui/material/Stack';
-import { Movie, MovieSearchParams } from '@/demo/modules/movies/types';
+import { MovieList, MovieSearchParams } from '@/demo/modules/movies/types';
 import { MoviesRepository } from '@/demo/modules/movies/services/MoviesRepository';
 import MoviesGrid from '@/demo/modules/movies/ui/grid/MoviesGrid';
 import { Suspense } from "react";
@@ -25,7 +25,7 @@ async function MoviesPageContent({
                                    gridRowsPromise,
                                    isLoading = false,
                                  }: {
-  gridRowsPromise?: Promise<GridRows<Movie>>;
+  gridRowsPromise?: Promise<GridRows<MovieList>>;
   isLoading?: boolean;
 }) {
   const gridRows = gridRowsPromise ? await gridRowsPromise : { rows: [], rowCount: 0 };
