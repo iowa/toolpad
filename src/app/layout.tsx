@@ -2,27 +2,25 @@ import * as React from 'react';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter';
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 import { LinearProgress } from '@mui/material';
-import { NextAppProvider } from "@/toolpad-core/nextjs";
-import theme from "@/app/theme";
-import { Nav } from "@/demo/ui/nav/Nav";
-import QueryClientProviderWrapper from "@/swiss-client/provider/QueryClientProviderWrapper";
 import './globals.css';
+import { auth } from "@/demo/lib/auth/auth";
+import { SessionProvider } from "next-auth/react";
+import ToolpadProvider from "@/swiss-client/provider/ToolpadProvider";
 
-export default function RootLayout(props: { children: React.ReactNode }) {
+
+export default async function RootLayout(props: { children: React.ReactNode }) {
+  const session = await auth();
   return (
     <html lang="en" suppressHydrationWarning>
     <body suppressHydrationWarning>
     <InitColorSchemeScript attribute="class"/>
     <AppRouterCacheProvider options={{ enableCssLayer: true }}>
       <React.Suspense fallback={<LinearProgress/>}>
-        <QueryClientProviderWrapper>
-          <NextAppProvider
-            navigation={Nav.menu()}
-            theme={theme}
-          >
+        <SessionProvider session={session}>
+          <ToolpadProvider>
             {props.children}
-          </NextAppProvider>
-        </QueryClientProviderWrapper>
+          </ToolpadProvider>
+        </SessionProvider>
       </React.Suspense>
     </AppRouterCacheProvider>
     </body>

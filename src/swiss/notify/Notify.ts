@@ -31,6 +31,14 @@ export class Notify {
     return id ? `Error editing ${resource} ${id}` : `Error editing ${resource}`
   }
 
+  success(msg: string, options?: ShowNotificationOptions) {
+    this.show('msg', { severity: 'success', ...options })
+  }
+
+  error(msg: string, options?: ShowNotificationOptions) {
+    this.show('msg', { severity: 'error', ...options })
+  }
+
   createSuccess(msg: {
     resource: string,
     id?: string

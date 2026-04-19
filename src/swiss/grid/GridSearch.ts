@@ -1,7 +1,6 @@
 import {
   GridPagination,
   GridPaginationDefaults,
-  GridPaginationSchema,
   GridRows
 } from "@/swiss/grid/GridTypes";
 import { and, count, SQL } from "drizzle-orm";
