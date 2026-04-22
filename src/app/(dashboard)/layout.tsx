@@ -2,13 +2,15 @@
 
 import * as React from 'react';
 import { Container } from '@mui/material';
-import { DashboardLayout } from "@/toolpad-core/DashboardLayout";
+import { DashboardLayout, ThemeSwitcher } from "@/toolpad-core/DashboardLayout";
+import Stack from "@mui/material/Stack";
 import { AccountMenu } from "@/swiss-client";
+
 
 export default function Layout(props: { children: React.ReactNode }) {
   return (
     <DashboardLayout slots={{
-      toolbarAccount: AccountMenu,
+      toolbarActions: CustomToolbarActions
     }} sidebarExpandedWidth={200} defaultSidebarCollapsed={false}>
       <Container maxWidth={false} disableGutters={true} sx={{
         px: 2,
@@ -20,5 +22,16 @@ export default function Layout(props: { children: React.ReactNode }) {
         {props.children}
       </Container>
     </DashboardLayout>
+  );
+}
+
+function CustomToolbarActions() {
+  return (
+    <Stack direction="row" sx={{
+      alignItems: "center",
+    }}>
+      <ThemeSwitcher/>
+      <AccountMenu/>
+    </Stack>
   );
 }

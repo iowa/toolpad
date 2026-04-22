@@ -1,15 +1,13 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useTheme, SxProps } from '@mui/material/styles';
+import { SxProps, useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import type {} from '@mui/material/themeCssVarsAugmentation';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
 import { NavigationContext, WindowContext } from '../shared/context';
 import type { Branding, Navigation, NavigationPageItem } from '../AppProvider';
-import type { AccountProps } from '../Account';
 import {
   DashboardHeader,
   type DashboardHeaderProps,
@@ -27,7 +25,6 @@ export interface SidebarFooterProps {
 export interface DashboardLayoutSlotProps {
   appTitle?: DashboardHeaderSlotProps['appTitle'];
   toolbarActions?: DashboardHeaderSlotProps['toolbarActions'];
-  toolbarAccount?: DashboardHeaderSlotProps['toolbarAccount'];
   sidebarFooter?: SidebarFooterProps;
   header?: DashboardHeaderProps;
 }
@@ -47,13 +44,6 @@ export interface DashboardLayoutSlots {
    * @see [DashboardLayout#slots](https://mui.com/toolpad/core/react-dashboard-layout/#slots)
    */
   toolbarActions?: React.JSXElementConstructor<{}>;
-  /**
-   * The toolbar account component used in the layout header.
-   * @default Account
-   * @deprecated Place your custom component on the right in the `toolbarActions` slot instead.
-   * @see [DashboardLayout#slots](https://mui.com/toolpad/core/react-dashboard-layout/#slots)
-   */
-  toolbarAccount?: React.JSXElementConstructor<AccountProps>;
   /**
    * The component used for the layout header.
    * @default DashboardHeader
@@ -213,7 +203,8 @@ function DashboardLayout(props: DashboardLayoutProps) {
 
     setIsNavigationFullyExpanded(false);
 
-    return () => {};
+    return () => {
+    };
   }, [isNavigationExpanded, theme]);
 
   React.useEffect(() => {
@@ -227,7 +218,8 @@ function DashboardLayout(props: DashboardLayoutProps) {
 
     setIsNavigationFullyCollapsed(false);
 
-    return () => {};
+    return () => {
+    };
   }, [isNavigationExpanded, theme]);
 
   const handleSetNavigationExpanded = React.useCallback(
@@ -265,12 +257,10 @@ function DashboardLayout(props: DashboardLayoutProps) {
       slots: {
         appTitle: slots?.appTitle,
         toolbarActions: slots?.toolbarActions,
-        toolbarAccount: slots?.toolbarAccount,
       },
       slotProps: {
         appTitle: slotProps?.appTitle,
         toolbarActions: slotProps?.toolbarActions,
-        toolbarAccount: slotProps?.toolbarAccount,
       },
       ...slotProps?.header,
     }),
@@ -289,7 +279,7 @@ function DashboardLayout(props: DashboardLayoutProps) {
   const getDrawerContent = React.useCallback(
     (isMini: boolean, viewport: 'phone' | 'tablet' | 'desktop') => (
       <React.Fragment>
-        <Toolbar />
+        <Toolbar/>
         <Box
           component="nav"
           aria-label={`${viewport.charAt(0).toUpperCase()}${viewport.slice(1)}`}
@@ -424,7 +414,7 @@ function DashboardLayout(props: DashboardLayoutProps) {
           minWidth: 0,
         }}
       >
-        <Toolbar sx={{ displayPrint: 'none' }} />
+        <Toolbar sx={{ displayPrint: 'none' }}/>
         <Box
           component="main"
           sx={{

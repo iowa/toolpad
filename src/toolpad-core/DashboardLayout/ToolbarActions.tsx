@@ -2,7 +2,6 @@
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import { ThemeSwitcher } from './ThemeSwitcher';
-import { Account } from '../Account';
 
 /**
  *
@@ -20,7 +19,6 @@ function ToolbarActions() {
       alignItems: "center",
     }}>
       <ThemeSwitcher/>
-      <Account/>
     </Stack>
   );
 }

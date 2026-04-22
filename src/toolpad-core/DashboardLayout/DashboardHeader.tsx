@@ -11,7 +11,6 @@ import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import Stack from '@mui/material/Stack';
 import { BrandingContext } from '../shared/context';
 import type { Branding } from '../AppProvider';
-import type { AccountProps } from '../Account';
 import { AppTitle, type AppTitleProps } from './AppTitle';
 import { ToolbarActions } from './ToolbarActions';
 
@@ -27,7 +26,6 @@ const AppBar = styled(MuiAppBar)(({ theme }) => ({
 export interface DashboardHeaderSlotProps {
   appTitle?: AppTitleProps;
   toolbarActions?: {};
-  toolbarAccount?: AccountProps;
 }
 
 export interface DashboardHeaderSlots {
@@ -43,13 +41,6 @@ export interface DashboardHeaderSlots {
    * @see [DashboardLayout#slots](https://mui.com/toolpad/core/react-dashboard-layout/#slots)
    */
   toolbarActions?: React.JSXElementConstructor<{}>;
-  /**
-   * The toolbar account component to be used.
-   * @default Account
-   * @deprecated Place your custom component on the right in the `toolbarActions` slot instead.
-   * @see [DashboardLayout#slots](https://mui.com/toolpad/core/react-dashboard-layout/#slots)
-   */
-  toolbarAccount?: React.JSXElementConstructor<AccountProps>;
 }
 
 export interface DashboardHeaderProps {
@@ -136,7 +127,6 @@ function DashboardHeader(props: DashboardHeaderProps) {
   );
 
   const ToolbarActionsSlot = slots?.toolbarActions ?? ToolbarActions;
-  const ToolbarAccountSlot = slots?.toolbarAccount ?? (() => null);
 
   return (
     <AppBar color="inherit" position="absolute" sx={{ displayPrint: 'none' }}>
@@ -184,7 +174,6 @@ function DashboardHeader(props: DashboardHeaderProps) {
           </Stack>
           <Stack direction="row" spacing={1} sx={{ marginLeft: 'auto', alignItems: 'center' }}>
             <ToolbarActionsSlot {...slotProps?.toolbarActions} />
-            <ToolbarAccountSlot {...slotProps?.toolbarAccount} />
           </Stack>
         </Stack>
       </Toolbar>
@@ -229,23 +218,6 @@ DashboardHeader.propTypes /* remove-proptypes */ = {
         homeUrl: PropTypes.string,
         logo: PropTypes.node,
         title: PropTypes.string,
-      }),
-    }),
-    toolbarAccount: PropTypes.shape({
-      localeText: PropTypes.object,
-      slotProps: PropTypes.shape({
-        popover: PropTypes.object,
-        popoverContent: PropTypes.object,
-        preview: PropTypes.object,
-        signInButton: PropTypes.object,
-        signOutButton: PropTypes.object,
-      }),
-      slots: PropTypes.shape({
-        popover: PropTypes.elementType,
-        popoverContent: PropTypes.elementType,
-        preview: PropTypes.elementType,
-        signInButton: PropTypes.elementType,
-        signOutButton: PropTypes.elementType,
       }),
     }),
     toolbarActions: PropTypes.object,
