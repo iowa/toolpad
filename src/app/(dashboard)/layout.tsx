@@ -3,10 +3,13 @@
 import * as React from 'react';
 import { Container } from '@mui/material';
 import { DashboardLayout } from "@/toolpad-core/DashboardLayout";
+import { AccountMenu } from "@/swiss-client";
 
 export default function Layout(props: { children: React.ReactNode }) {
   return (
-    <DashboardLayout sidebarExpandedWidth={200} defaultSidebarCollapsed={false}>
+    <DashboardLayout slots={{
+      toolbarAccount: AccountMenu,
+    }} sidebarExpandedWidth={200} defaultSidebarCollapsed={false}>
       <Container maxWidth={false} disableGutters={true} sx={{
         px: 2,
         py: 2,
