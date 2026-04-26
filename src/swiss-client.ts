@@ -1,1 +1,1 @@
-export * from './swiss-client'
+export * from './swiss-client/index'
