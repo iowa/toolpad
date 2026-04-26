@@ -1,4 +1,3 @@
-export * from './toolpad-core/Account';
 export * from './toolpad-core/AppProvider';
 export * from './toolpad-core/DashboardLayout';
 export * from './toolpad-core/locales';
@@ -14,6 +13,3 @@ export * from './toolpad-core/shared/components';
 export * from './toolpad-core/shared/context';
 export * from './toolpad-core/shared/Link';
 export * from './toolpad-core/shared/navigation';
-export * from './toolpad-core/shared/navigation';
-export * from './toolpad-core/shared/navigation';
-export * from './swiss-client'

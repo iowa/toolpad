@@ -11,11 +11,10 @@ import Typography from '@mui/material/Typography';
 import Popover from '@mui/material/Popover';
 import { bindPopover, bindTrigger, usePopupState } from 'material-ui-popup-state/hooks';
 import Stack from '@mui/material/Stack';
-import { AccountProps } from '@iowas/toolpad/core';
 import ListItemText from '@mui/material/ListItemText';
 import { useAuth } from "@/swiss-client/auth";
 
-export function AccountMenu({}: AccountProps) {
+export function AccountMenu() {
   const authProvider = useAuth();
 
   const identity = authProvider.getIdentity();

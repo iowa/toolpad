@@ -22,6 +22,11 @@
       "types": "./dist/swiss.d.ts",
       "import": "./dist/swiss.mjs",
       "require": "./dist/swiss.js"
+    },
+    "./swiss-client": {
+      "types": "./dist/swiss-client.d.ts",
+      "import": "./dist/swiss-client.mjs",
+      "require": "./dist/swiss-client.js"
     }
   },
   "scripts": {
