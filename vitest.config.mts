@@ -11,6 +11,11 @@ export default defineConfig({
     globals: true,
     // Set global test timeout (milliseconds). Adjust as needed; 30000 = 30s
     testTimeout: 30000,
+    server: {
+      deps: {
+        inline: ['next-auth', 'next-auth/react'],
+      },
+    },
   },
   resolve: {
     alias: {

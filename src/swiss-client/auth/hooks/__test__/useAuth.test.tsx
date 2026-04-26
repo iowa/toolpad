@@ -1,31 +1,33 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook } from '@testing-library/react';
+
+const mockDecode = vi.fn();
+
 const { mockSignIn, mockSignOut, mockUseSession, mockUsePathname } = vi.hoisted(() => ({
   mockSignIn: vi.fn(),
   mockSignOut: vi.fn(),
   mockUseSession: vi.fn(),
   mockUsePathname: vi.fn(),
 }));
+
 // We mock these BEFORE importing useAuth
 vi.mock('next-auth/react', () => ({
   signIn: mockSignIn,
   signOut: mockSignOut,
   useSession: mockUseSession,
 }));
+
 vi.mock('next/navigation', () => ({
   usePathname: mockUsePathname,
 }));
+
 vi.mock('@/swiss/auth/Jwts', () => ({
-  Jwts: {
-    decode: vi.fn(),
-  },
-}));
-vi.mock('@/swiss/auth', () => ({
-  SIGNIN_PATH: '/auth/signin',
+  Jwts: vi.fn().mockImplementation(function (this: any) {
+    this.decode = mockDecode;
+  }),
 }));
 import { useAuth } from '../useAuth';
 import { Jwts } from "@/swiss/auth/Jwts";
-import { SIGNIN_PATH } from "@/swiss/auth";
 describe('useAuth', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -65,7 +67,7 @@ describe('useAuth', () => {
       family_name: 'Doe',
     };
     mockUseSession.mockReturnValue({ data: mockSession, status: 'authenticated' });
-    vi.mocked(Jwts.decode).mockReturnValue(mockDecoded);
+    mockDecode.mockReturnValue(mockDecoded);
     const { result } = renderHook(() => useAuth());
     const identity = result.current.getIdentity();
     expect(identity).toEqual({
@@ -86,7 +88,7 @@ describe('useAuth', () => {
       family_name: 'Doe',
     };
     mockUseSession.mockReturnValue({ data: mockSession, status: 'authenticated' });
-    vi.mocked(Jwts.decode).mockReturnValue(mockDecoded);
+    mockDecode.mockReturnValue(mockDecoded);
     const { result } = renderHook(() => useAuth());
     expect(result.current.getInitials()).toBe('JD');
   });
@@ -96,7 +98,7 @@ describe('useAuth', () => {
       accessToken: 'mock-token',
     };
     mockUseSession.mockReturnValue({ data: mockSession, status: 'authenticated' });
-    vi.mocked(Jwts.decode).mockReturnValue({}); // No given_name, family_name
+    mockDecode.mockReturnValue({}); // No given_name, family_name
     const { result } = renderHook(() => useAuth());
     expect(result.current.getInitials()).toBe('JS');
   });

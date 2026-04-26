@@ -24,7 +24,7 @@ export const useAuth = () => {
   const getIdentity = (): UserIdentity | null => {
     if (session?.user) {
       const { user } = session;
-      const decodedAccessToken = Jwts.decode(session?.accessToken);
+      const decodedAccessToken = new Jwts(session?.accessToken).decode();
       return {
         name: user.name,
         email: user.email,
