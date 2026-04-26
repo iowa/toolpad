@@ -1,7 +1,7 @@
 import { FormProvider, useForm } from "react-hook-form";
 import Box from '@mui/material/Box';
-import { MovieWith } from "@/demo/modules/movies/types";
-import GenresAutocomplete from "@/demo/modules/movies/ui/dialog/create/input/GenresAutocomplete";
+import { MovieWith } from "@/modules/movies/types";
+import GenresAutocomplete from "@/modules/movies/ui/dialog/create/input/GenresAutocomplete";
 
 
 export default function CreateMovieForm({}: {}) {

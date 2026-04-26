@@ -1,11 +1,11 @@
 'use client'
 
 import Grid from '@mui/material/Grid';
-import CreateGenreDialog from "@/demo/modules/genres/ui/dialog/create/CreateGenreDialog";
-import { useFormQueryString, useQueryString } from "@/swiss-client";
-import { GenreSearchParams } from "@/demo/modules/genres/types";
+import CreateGenreDialog from "@/modules/genres/ui/dialog/create/CreateGenreDialog";
+import { GenreSearchParams } from "@/modules/genres/types";
 import { FormProvider } from "react-hook-form";
-import TextFieldElement from "@/swiss-client/form/rhf/TextFieldElement";
+import { useFormQueryString, useQueryString } from "@/toolpad/core/kit";
+import TextFieldElement from "@/toolpad/core/kit/form/rhf/TextFieldElement";
 
 export default function GenresForm({ isLoading }: { isLoading: boolean }) {
   const qs = useQueryString<GenreSearchParams>();

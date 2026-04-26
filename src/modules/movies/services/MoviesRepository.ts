@@ -1,9 +1,8 @@
-import { MovieList, MovieInsert, MovieSearchParams, Movie } from "@/demo/modules/movies/types";
-import { GridRows } from "@/swiss/grid/GridTypes";
-import { genresTable, moviesGenresTable, moviesTable } from "@/demo/lib/db/schema/schema";
+import { MovieList, MovieInsert, MovieSearchParams, Movie } from "@/modules/movies/types";
+import { genresTable, moviesGenresTable, moviesTable } from "@/lib/db/schema/schema";
 import { eq, gte, inArray, like, lte, sql } from "drizzle-orm";
-import { GridSearch } from "@/swiss/grid/GridSearch";
-import { DrizzleClient } from "@/demo/lib/db/dm";
+import { DrizzleClient } from "@/lib/db/dm";
+import { GridRows, GridSearch } from "@/toolpad/node/grid";
 
 export class MoviesRepository {
   private readonly dc;

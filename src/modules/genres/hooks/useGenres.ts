@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchGenres } from "@/demo/modules/genres/actions/genresActions";
-import { Genre } from "@/demo/modules/genres/types";
+import { fetchGenres } from "@/modules/genres/actions/genresActions";
+import { Genre } from "@/modules/genres/types";
 
 export function useGenres() {
   const { data: genres = [], isFetching: isFetchingGenres } = useQuery<Genre[]>({

@@ -1,10 +1,10 @@
-import AutocompleteElement from '@/swiss-client/form/rhf/AutocompleteElement';
 import { useFormContext } from 'react-hook-form';
-import { MovieSearchParams } from '@/demo/modules/movies/types';
+import { MovieSearchParams } from '@/modules/movies/types';
 import { ChipTypeMap } from '@mui/material';
-import { useGenres } from '@/demo/modules/genres/hooks/useGenres';
-import { Genre } from '@/demo/modules/genres/types';
+import { useGenres } from '@/modules/genres/hooks/useGenres';
+import { Genre } from '@/modules/genres/types';
 import { useEffect } from 'react';
+import AutocompleteElement from "@/toolpad/core/kit/form/rhf/AutocompleteElement";
 
 export default function GenresObjAutocomplete({
   push,

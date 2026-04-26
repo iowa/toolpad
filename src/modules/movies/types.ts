@@ -1,8 +1,8 @@
 import { z } from 'zod';
-import { GenreSchema, MovieInsertSchema, MovieSchema } from "@/demo/lib/db/schema/schema";
-import { GridPagination } from "@/swiss/grid";
-import { Genre } from "@/demo/modules/genres/types";
+import { GenreSchema, MovieInsertSchema, MovieSchema } from "@/lib/db/schema/schema";
+import { Genre } from "@/modules/genres/types";
 import dayjs from 'dayjs';
+import { GridPagination } from "@/toolpad/node/grid";
 
 export type Movie = z.infer<typeof MovieSchema>
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import { MovieSearchParams } from "@/demo/modules/movies/types";
-import DatePickerElement from "@/swiss-client/form/rhf/DatePickerElement";
+import { MovieSearchParams } from "@/modules/movies/types";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
+import DatePickerElement from "@/toolpad/core/kit/form/rhf/DatePickerElement";
 
 export default function PremiereDateAfterDatePicker({ push }: {
   push: (values: MovieSearchParams) => void

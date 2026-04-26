@@ -1,10 +1,10 @@
 'use client'
 
-import { GridRows } from "@/swiss/grid/GridTypes";
-import { MovieList } from "@/demo/modules/movies/types";
+import { MovieList } from "@/modules/movies/types";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import NoSsr from "@mui/material/NoSsr";
-import { useDataGrid } from "@/swiss-client";
+import { GridRows } from "@/toolpad/node/grid";
+import { useDataGrid } from "@/toolpad/core/kit";
 
 export default function MoviesGrid({ gridRows, isLoading }: {
   gridRows: GridRows<MovieList>,

@@ -1,10 +1,9 @@
 'use client'
 
-import { GridRows } from "@/swiss/grid/GridTypes";
-import Box from "@mui/material/Box";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import NoSsr from "@mui/material/NoSsr";
-import { Genre } from "@/demo/modules/genres/types";
+import { Genre } from "@/modules/genres/types";
+import { GridRows } from "@/toolpad/node/grid";
 
 export default function GenresGrid({ gridRows, isLoading }: {
   gridRows: GridRows<Genre>,

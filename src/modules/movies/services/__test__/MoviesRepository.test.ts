@@ -1,11 +1,11 @@
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import path from "node:path";
-import { MoviesRepository } from "@/demo/modules/movies/services/MoviesRepository";
-import { getMockDC, MockDrizzleClient } from "@/demo/lib/db/dm";
+import { MoviesRepository } from "@/modules/movies/services/MoviesRepository";
+import { getMockDC, MockDrizzleClient } from "@/lib/db/dm";
 import { migrate } from "drizzle-orm/pglite/migrator";
-import { TestMovies } from "@/demo/modules/movies/test/TestMovies";
-import { GenresRepository } from "@/demo/modules/genres/services/GenresRepository";
-import { TestGenres } from "@/demo/modules/genres/test/TestGenres";
+import { TestMovies } from "@/modules/movies/test/TestMovies";
+import { GenresRepository } from "@/modules/genres/services/GenresRepository";
+import { TestGenres } from "@/modules/genres/test/TestGenres";
 
 describe("MoviesRepository", async () => {
   let dc: MockDrizzleClient;

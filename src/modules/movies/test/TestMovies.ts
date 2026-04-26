@@ -1,8 +1,8 @@
-import { MovieInsert } from "@/demo/modules/movies/types";
-import { GenreInsert } from "@/demo/modules/genres/types";
-import { MoviesRepository } from "@/demo/modules/movies/services/MoviesRepository";
-import { GenresRepository } from "@/demo/modules/genres/services/GenresRepository";
-import { TestGenres } from "@/demo/modules/genres/test/TestGenres";
+import { MovieInsert } from "@/modules/movies/types";
+import { GenreInsert } from "@/modules/genres/types";
+import { MoviesRepository } from "@/modules/movies/services/MoviesRepository";
+import { GenresRepository } from "@/modules/genres/services/GenresRepository";
+import { TestGenres } from "@/modules/genres/test/TestGenres";
 
 export type TestMovie = {
   movie: MovieInsert

@@ -1,17 +1,17 @@
 'use client'
 
 import Grid from '@mui/material/Grid';
-import CreateMovieDialog from "@/demo/modules/movies/ui/dialog/create/CreateMovieDialog";
-import TextFieldElement from "@/swiss-client/form/rhf/TextFieldElement";
+import CreateMovieDialog from "@/modules/movies/ui/dialog/create/CreateMovieDialog";
 import { FormProvider } from "react-hook-form";
-import { MovieSearchParams } from "@/demo/modules/movies/types";
+import { MovieSearchParams } from "@/modules/movies/types";
 import PremiereDateAfterDatePicker
-  from "@/demo/modules/movies/ui/form/input/PremiereDateAfterDatePicker";
-import { Dates } from "@/swiss/date/Dates";
-import { useFormQueryString, useQueryString } from "@/swiss-client";
-import GenresAutocomplete from "@/demo/modules/movies/ui/form/input/GenresAutocomplete";
-import GenresObjAutocomplete from "@/demo/modules/movies/ui/form/input/GenresObjAutocomplete";
-import { GenreSchema } from "@/demo/lib/db/schema/schema";
+  from "@/modules/movies/ui/form/input/PremiereDateAfterDatePicker";
+import GenresAutocomplete from "@/modules/movies/ui/form/input/GenresAutocomplete";
+import GenresObjAutocomplete from "@/modules/movies/ui/form/input/GenresObjAutocomplete";
+import { GenreSchema } from "@/lib/db/schema/schema";
+import { useFormQueryString, useQueryString } from "@/toolpad/core/kit";
+import { Dates } from "@/toolpad/node/date";
+import TextFieldElement from "@/toolpad/core/kit/form/rhf/TextFieldElement";
 
 export default function MoviesForm({ isLoading }: { isLoading: boolean }) {
   const qs = useQueryString<MovieSearchParams>();

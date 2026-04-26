@@ -1,4 +1,4 @@
-import { GenreInsert } from "@/demo/modules/genres/types";
+import { GenreInsert } from "@/modules/genres/types";
 
 export class TestGenres {
   static readonly Action: GenreInsert = {

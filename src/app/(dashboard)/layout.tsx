@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import { Container } from '@mui/material';
-import { DashboardLayout, ThemeSwitcher } from "@/toolpad-core/DashboardLayout";
 import Stack from "@mui/material/Stack";
-import { AccountMenu } from "@/swiss-client";
+import { AccountMenu } from "@/toolpad/core/kit";
+import { DashboardLayout, ThemeSwitcher } from "@/toolpad/core/toolpad-core/DashboardLayout";
 
 
 export default function Layout(props: { children: React.ReactNode }) {

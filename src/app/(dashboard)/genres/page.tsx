@@ -1,12 +1,12 @@
 import Stack from '@mui/material/Stack';
 import { Suspense } from "react";
-import { getDC } from "@/demo/lib/db/dm";
-import { Genre, GenreSearchParams } from "@/demo/modules/genres/types";
-import { GenresRepository } from "@/demo/modules/genres/services/GenresRepository";
-import GenresGrid from "@/demo/modules/genres/ui/grid/GenresGrid";
-import GenresForm from "@/demo/modules/genres/ui/form/GenresForm";
+import { getDC } from "@/lib/db/dm";
+import { Genre, GenreSearchParams } from "@/modules/genres/types";
+import { GenresRepository } from "@/modules/genres/services/GenresRepository";
+import GenresGrid from "@/modules/genres/ui/grid/GenresGrid";
+import GenresForm from "@/modules/genres/ui/form/GenresForm";
 import Box from "@mui/material/Box";
-import { GridRows } from "@/swiss/grid";
+import { GridRows } from "@/toolpad/node/grid";
 
 export default async function GenresPage(props: { searchParams: Promise<GenreSearchParams> }) {
   const searchParams = await props.searchParams;

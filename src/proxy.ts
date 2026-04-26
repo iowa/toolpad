@@ -1,6 +1,6 @@
-import { auth } from "@/demo/lib/auth/auth";
+import { auth } from "@/lib/auth/auth";
 import { NextRequest, NextResponse } from 'next/server';
-import { ProxyGuard } from "@/swiss/auth/ProxyGuard";
+import { ProxyGuard } from "@/toolpad/node/auth";
 
 export default auth;
 
@@ -9,7 +9,8 @@ export const config = {
 };
 
 export async function proxy(request: NextRequest) {
-  const shouldRedirect = await new ProxyGuard(request).redirectToSignIn();
+  const session = await auth();
+  const shouldRedirect = await new ProxyGuard(session, request).redirectToSignIn();
   if (shouldRedirect) {
     return shouldRedirect
   }
