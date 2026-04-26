@@ -11,7 +11,11 @@ import ToolpadProvider from "@/swiss-client/provider/ToolpadProvider";
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const session = await auth();
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" data-toolpad-color-scheme="light" suppressHydrationWarning>
+    <head>
+      <title>Toolpad</title>
+      <link rel="icon" href="/favicon.ico"/>
+    </head>
     <body suppressHydrationWarning>
     <InitColorSchemeScript attribute="class"/>
     <AppRouterCacheProvider options={{ enableCssLayer: true }}>
