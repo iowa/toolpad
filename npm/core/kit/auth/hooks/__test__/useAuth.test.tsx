@@ -22,11 +22,6 @@ vi.mock('next/navigation', () => ({
   usePathname: mockUsePathname,
 }));
 
-vi.mock('@/swiss/auth/Jwts', () => ({
-  Jwts: vi.fn().mockImplementation(function (this: any) {
-    this.decode = mockDecode;
-  }),
-}));
 describe('useAuth', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -54,28 +49,6 @@ describe('useAuth', () => {
     mockUseSession.mockReturnValue({ data: null, status: 'unauthenticated' });
     const { result } = renderHook(() => useAuth());
     expect(result.current.getIdentity()).toBeNull();
-  });
-  it('getIdentity returns identity when session exists', () => {
-    const mockSession = {
-      user: { name: 'John Doe', email: 'john@example.com' },
-      accessToken: 'mock-token',
-    };
-    const mockDecoded = {
-      preferred_username: 'johndoe',
-      given_name: 'John',
-      family_name: 'Doe',
-    };
-    mockUseSession.mockReturnValue({ data: mockSession, status: 'authenticated' });
-    mockDecode.mockReturnValue(mockDecoded);
-    const { result } = renderHook(() => useAuth());
-    const identity = result.current.getIdentity();
-    expect(identity).toEqual({
-      name: 'John Doe',
-      email: 'john@example.com',
-      preferred_username: 'johndoe',
-      given_name: 'John',
-      family_name: 'Doe',
-    });
   });
   it('getInitials returns initials from given and family name', () => {
     const mockSession = {

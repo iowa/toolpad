@@ -9,7 +9,6 @@ import {
   UseControllerProps,
 } from 'react-hook-form'
 import { TextFieldProps, useForkRef } from '@mui/material'
-import { useFormError } from '@/swiss-client'
 import {
   DatePicker,
   DatePickerProps,
@@ -23,7 +22,8 @@ import { PickerValidDate } from '@mui/x-date-pickers/models'
 import { useApplyDefaultValuesToDateValidationProps } from '@mui/x-date-pickers/internals'
 import { useTransform } from './useTransform'
 import { getTimezone, readValueAsDate } from './utils'
-import { defaultErrorMessages } from "@/swiss-client/form/rhf/messages/DatePicker";
+import { useFormError } from "./FormErrorProvider";
+import { defaultErrorMessages } from "./messages/DatePicker";
 
 export type DatePickerElementProps<
   TFieldValues extends FieldValues = FieldValues,

@@ -40,6 +40,7 @@
     "upgrade-dependencies": "ncu -u"
   },
   "lint-staged": {
+    "npm/**/*.{js,jsx,ts,tsx,json,css,md}": "pnpm run format",
     "src/**/*.{js,jsx,ts,tsx,json,css,md}": "pnpm run format"
   },
   "dependencies": {

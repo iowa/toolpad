@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { DatabaseConfigUtils } from "@/swiss/db/DatabaseConfigUtils";
+import { DatabaseConfigUtils } from "./DatabaseConfigUtils";
 
 const restoreEnv = (orig: NodeJS.ProcessEnv) => {
   // Clear current keys

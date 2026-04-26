@@ -1,5 +1,5 @@
-import { DatabaseConfigUtils } from "@/swiss/db";
 import { defineConfig } from 'drizzle-kit';
+import { DatabaseConfigUtils } from "./npm/node";
 
 export default defineConfig({
   out: './drizzle',

@@ -2,9 +2,9 @@
 
 import { useRouter } from "next/navigation.js";
 import { DefaultValues, FieldValues, useForm, UseFormProps, UseFormReturn } from "react-hook-form";
-import { QueryStrings } from "@/swiss/url";
 import React, { useCallback, useMemo } from "react";
-import FormSearchActions from "@/swiss-client/form/ui/FormSearchActions";
+import { QueryStrings } from "../../url";
+import FormSearchActions from "../ui/FormSearchActions";
 
 export interface UseFormSearchParamsOptions<TFieldValues extends FieldValues> extends UseFormProps<TFieldValues> {
   resetValues: DefaultValues<TFieldValues>,

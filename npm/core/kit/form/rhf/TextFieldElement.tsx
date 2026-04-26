@@ -8,9 +8,9 @@ import {
   useController,
   UseControllerProps,
 } from 'react-hook-form';
-import { useFormError } from '@/swiss-client';
 import { ChangeEvent, forwardRef, type ReactElement, ReactNode, Ref, RefAttributes } from 'react';
 import { useTransform } from './useTransform';
+import { useFormError } from "./FormErrorProvider";
 
 export type TextFieldElementProps<
   TFieldValues extends FieldValues = FieldValues,

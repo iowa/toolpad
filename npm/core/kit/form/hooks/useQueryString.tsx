@@ -3,8 +3,8 @@
 import { useSearchParams } from 'next/navigation'
 import { useCallback } from 'react'
 import dayjs from "dayjs";
-import { Dates } from "@/swiss/date/Dates";
 import { z, ZodType } from "zod";
+import { Dates } from "../../../../node";
 
 export function useQueryString<T extends Record<string, any>>() {
   const searchParams = useSearchParams()

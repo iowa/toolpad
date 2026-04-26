@@ -13,7 +13,7 @@ pnpm add @iowas/toolpad
 **@iowas/toolpad/core**
 Foundational UI layer providing Material UI dashboard layouts, application providers, and common interface patterns.
 
-**@iowas/toolpad/swiss**
+**@iowas/toolpad/node**
 A collection of infrastructure utilities for database connection pooling, URL query string management, and standardized data grid types.
 
 ## Demo Implementation

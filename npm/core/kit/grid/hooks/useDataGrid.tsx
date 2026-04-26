@@ -2,7 +2,7 @@ import { useCallback, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { GridPaginationModel } from '@mui/x-data-grid';
 import { useRouter } from "next/navigation.js";
-import { GridPaginationDefaults } from "@/swiss/grid";
+import { GridPaginationDefaults } from "../../../../node";
 
 
 export function useDataGrid() {
