@@ -9,8 +9,8 @@
     ]
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
+    "npm/**/*.ts",
+    "npm/**/*.tsx"
   ],
   "exclude": [
     "node_modules",

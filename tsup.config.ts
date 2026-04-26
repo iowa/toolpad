@@ -2,7 +2,7 @@ import { defineConfig } from 'tsup';
 
 export default defineConfig([
   {
-    entry: ['src/core.ts', 'src/swiss.ts', 'src/swiss-client.ts'],
+    entry: ['npm/core.ts', 'npm/node.ts'],
     format: ['esm', 'cjs'],
     dts: true,
     clean: true,
@@ -13,7 +13,7 @@ export default defineConfig([
     onSuccess: async () => {
       const fs = await import('node:fs/promises');
       const path = await import('node:path');
-      const files = ['dist/core.mjs', 'dist/core.js', 'dist/swiss-client.mjs', 'dist/swiss-client.js'];
+      const files = ['dist/core.mjs', 'dist/core.js'];
       for (const file of files) {
         const filePath = path.resolve(process.cwd(), file);
         try {
