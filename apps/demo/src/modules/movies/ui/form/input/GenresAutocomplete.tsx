@@ -16,12 +16,12 @@ export default function GenresAutocomplete({ push }: {
 
   useEffect(() => {
     if (isFetchingGenres || genres.length === 0 || currentValues.length === 0) return;
-    const valid = currentValues.filter(v => options.includes(v));
+    const valid = currentValues.filter((v: any) => options.includes(v));
     if (valid.length !== currentValues.length) {
       setValue('genres', valid);
       push({ ...getValues(), genres: valid });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFetchingGenres, genres.length]);
 
   return (

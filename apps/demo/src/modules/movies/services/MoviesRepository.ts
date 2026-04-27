@@ -2,7 +2,8 @@ import { MovieList, MovieInsert, MovieSearchParams, Movie } from "@/modules/movi
 import { genresTable, moviesGenresTable, moviesTable } from "@/lib/db/schema/schema";
 import { eq, gte, inArray, like, lte, sql } from "drizzle-orm";
 import { DrizzleClient } from "@/lib/db/dm";
-import { GridRows, GridSearch } from "@/toolpad/node";
+import { GridSearch } from "@/toolpad/node";
+import { GridRows } from "@/toolpad/utils";
 
 export class MoviesRepository {
   private readonly dc;
@@ -61,7 +62,7 @@ export class MoviesRepository {
     const genres = [
       ...(Array.isArray(searchParams.genres) ? searchParams.genres : (searchParams.genres ? [searchParams.genres] : [])),
       ...(Array.isArray(searchParams.genreObjs) ? searchParams.genreObjs : (searchParams.genreObjs ? [searchParams.genreObjs] : []))
-        .map((g) => (typeof g === 'string' ? JSON.parse(g).name : g.name)),
+      .map((g:any) => (typeof g === 'string' ? JSON.parse(g).name : g.name)),
     ];
 
     return genres.length > 0

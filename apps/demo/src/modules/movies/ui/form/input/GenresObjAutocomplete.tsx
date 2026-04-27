@@ -19,7 +19,7 @@ export default function GenresObjAutocomplete({
 
   useEffect(() => {
     if (isFetchingGenres || genres.length === 0 || currentValues.length === 0) return;
-    const valid = currentValues.filter((v) => options.map((t) => t.id).includes(v.id));
+    const valid = currentValues.filter((v:any) => options.map((t) => t.id).includes(v.id));
     if (valid.length !== currentValues.length) {
       setValue('genreObjs', valid);
       push({ ...getValues(), genreObjs: valid });

@@ -2,7 +2,8 @@ import { genresTable } from "@/lib/db/schema/schema";
 import { DrizzleClient } from "@/lib/db/dm";
 import { Genre, GenreInsert, GenreSearchParams } from "@/modules/genres/types";
 import { eq, like } from "drizzle-orm";
-import { GridRows, GridSearch } from "@/toolpad/node";
+import { GridRows } from "@/toolpad/utils";
+import { GridSearch } from "@/toolpad/node";
 
 export class GenresRepository {
   private readonly dc;

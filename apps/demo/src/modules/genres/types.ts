@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { GenreInsertSchema, GenreSchema } from "@/lib/db/schema/schema";
-import { GridPagination } from "@/toolpad/node";
+import { GridPagination } from "@/toolpad/utils";
 
 export type Genre = z.infer<typeof GenreSchema>
 export type GenreInsert = z.infer<typeof GenreInsertSchema>

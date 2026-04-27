@@ -3,7 +3,7 @@
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import NoSsr from "@mui/material/NoSsr";
 import { Genre } from "@/modules/genres/types";
-import { GridRows } from "@/toolpad/node";
+import { GridRows } from "@/toolpad/utils";
 
 export default function GenresGrid({ gridRows, isLoading }: {
   gridRows: GridRows<Genre>,

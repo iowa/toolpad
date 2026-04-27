@@ -11,7 +11,9 @@
       "@/toolpad/core": ["../../packages/toolpad/core"],
       "@/toolpad/core/*": ["../../packages/toolpad/core/*"],
       "@/toolpad/node": ["../../packages/toolpad/node"],
-      "@/toolpad/node/*": ["../../packages/toolpad/node/*"]
+      "@/toolpad/node/*": ["../../packages/toolpad/node/*"],
+      "@/toolpad/utils": ["../../packages/toolpad/utils"],
+      "@/toolpad/utils/*": ["../../packages/toolpad/utils/*"]
     }
   },
   "include": [

@@ -6,7 +6,7 @@ import { GenresRepository } from "@/modules/genres/services/GenresRepository";
 import GenresGrid from "@/modules/genres/ui/grid/GenresGrid";
 import GenresForm from "@/modules/genres/ui/form/GenresForm";
 import Box from "@mui/material/Box";
-import { GridRows } from "@/toolpad/node";
+import { GridRows } from "@/toolpad/utils";
 
 export default async function GenresPage(props: { searchParams: Promise<GenreSearchParams> }) {
   const searchParams = await props.searchParams;
