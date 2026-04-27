@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { TestFiles } from "../../test";
 import { Jwts } from "../Jwts";
+import { TestFiles } from "../../../node";
 
 describe("Jwts", () => {
   it("decode", () => {

@@ -10,18 +10,16 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     // Set global test timeout (milliseconds). Adjust as needed; 30000 = 30s
-    testTimeout: 30000,
-    server: {
-      deps: {
-        inline: ['next-auth', 'next-auth/react'],
-      },
-    },
+    testTimeout: 30000
   },
   resolve: {
-    alias: {
-      // map '@' to the src directory so imports like '@/utils/Urls' resolve to ./src/utils/Urls
-      '@': path.resolve(__dirname, 'src'),
-    },
-    tsconfigPaths: true,
+    alias: [
+      // Match specific toolpad aliases first; otherwise the generic '@' alias captures them.
+      { find: '@/toolpad/core', replacement: path.resolve(__dirname, '../../packages/toolpad/core') },
+      { find: '@/toolpad/node', replacement: path.resolve(__dirname, '../../packages/toolpad/node') },
+      { find: '@/toolpad/utils', replacement: path.resolve(__dirname, '../../packages/toolpad/utils') },
+      // map '@' to src so imports like '@/utils/Urls' resolve to ./src/utils/Urls
+      { find: '@', replacement: path.resolve(__dirname, 'src') },
+    ],
   }
 });

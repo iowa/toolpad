@@ -1,7 +1,7 @@
 import { and, count, SQL } from "drizzle-orm";
 import { SQLWrapper } from "drizzle-orm/sql/sql";
 import { DrizzleDB, DrizzleTable } from "../db";
-import { GridPagination, GridPaginationDefaults, GridRows } from "../../utils/grid";
+import { GridPagination, GridPaginationDefaults, GridRows } from "../../utils";
 
 export class GridSearch<SearchParams extends GridPagination, Rows> {
 
