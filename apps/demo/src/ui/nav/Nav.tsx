@@ -1,7 +1,7 @@
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import MovieIcon from "@mui/icons-material/Movie";
 import TheaterComedyIcon from '@mui/icons-material/TheaterComedy';
-import { NavigationPageItem, Navigation } from "@/toolpad/core/toolpad-core/AppProvider";
+import { NavigationPageItem, Navigation } from "@/toolpad/core";
 
 export class Nav {
   static DASHBOARD: NavigationPageItem = {

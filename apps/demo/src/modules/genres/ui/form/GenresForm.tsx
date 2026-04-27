@@ -4,8 +4,7 @@ import Grid from '@mui/material/Grid';
 import CreateGenreDialog from "@/modules/genres/ui/dialog/create/CreateGenreDialog";
 import { GenreSearchParams } from "@/modules/genres/types";
 import { FormProvider } from "react-hook-form";
-import { useFormQueryString, useQueryString } from "@/toolpad/core/kit";
-import TextFieldElement from "@/toolpad/core/kit/form/rhf/TextFieldElement";
+import { useFormQueryString, useQueryString, TextFieldElement } from "@/toolpad/core";
 
 export default function GenresForm({ isLoading }: { isLoading: boolean }) {
   const qs = useQueryString<GenreSearchParams>();

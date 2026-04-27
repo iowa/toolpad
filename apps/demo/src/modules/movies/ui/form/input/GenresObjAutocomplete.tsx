@@ -4,7 +4,7 @@ import { ChipTypeMap } from '@mui/material';
 import { useGenres } from '@/modules/genres/hooks/useGenres';
 import { Genre } from '@/modules/genres/types';
 import { useEffect } from 'react';
-import AutocompleteElement from "@/toolpad/core/kit/form/rhf/AutocompleteElement";
+import { AutocompleteElement } from "@/toolpad/core";
 
 export default function GenresObjAutocomplete({
   push,

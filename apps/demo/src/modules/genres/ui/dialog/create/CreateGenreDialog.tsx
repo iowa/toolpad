@@ -7,7 +7,7 @@ import DialogActions from '@mui/material/DialogActions';
 import Stack from '@mui/material/Stack';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import CreateGenreDialogForm from "@/modules/genres/ui/dialog/create/CreateGenreDialogForm";
-import { DialogsProvider, useDialogs, DialogProps } from "@/toolpad/core/toolpad-core/useDialogs";
+import { DialogsProvider, useDialogs, DialogProps } from "@/toolpad/core";
 
 
 function Content({ open, onClose }: DialogProps<undefined, string | null>) {

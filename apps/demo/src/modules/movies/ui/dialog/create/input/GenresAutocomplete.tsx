@@ -3,7 +3,7 @@ import { MovieWith } from "@/modules/movies/types";
 import { Genre } from "@/modules/genres/types";
 import { ChipTypeMap } from "@mui/material";
 import { useGenres } from "@/modules/genres/hooks/useGenres";
-import AutocompleteElement from "@/toolpad/core/kit/form/rhf/AutocompleteElement";
+import { AutocompleteElement } from "@/toolpad/core";
 
 export default function GenresAutocomplete({}: {}) {
   const { control } = useFormContext<MovieWith>();

@@ -1,5 +1,5 @@
 import NextAuth from "next-auth";
-import { NextAuthKeycloak } from "@/toolpad/node/auth";
+import { NextAuthKeycloak } from "@/toolpad/node";
 
 export const { handlers, auth } = NextAuth(new NextAuthKeycloak({
   clientId: process.env.KEYCLOAK_CLIENT_ID as string,

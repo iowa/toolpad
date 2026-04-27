@@ -1,1 +1,1 @@
-export * from './FormSearchActions'
+export { default as FormSearchActions } from './FormSearchActions'

@@ -9,9 +9,8 @@ import PremiereDateAfterDatePicker
 import GenresAutocomplete from "@/modules/movies/ui/form/input/GenresAutocomplete";
 import GenresObjAutocomplete from "@/modules/movies/ui/form/input/GenresObjAutocomplete";
 import { GenreSchema } from "@/lib/db/schema/schema";
-import { useFormQueryString, useQueryString } from "@/toolpad/core/kit";
-import { Dates } from "@/toolpad/node/date";
-import TextFieldElement from "@/toolpad/core/kit/form/rhf/TextFieldElement";
+import { useFormQueryString, useQueryString, TextFieldElement } from "@/toolpad/core";
+import { Dates } from "@/toolpad/node";
 
 export default function MoviesForm({ isLoading }: { isLoading: boolean }) {
   const qs = useQueryString<MovieSearchParams>();

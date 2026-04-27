@@ -3,8 +3,7 @@
 import * as React from 'react';
 import { Container } from '@mui/material';
 import Stack from "@mui/material/Stack";
-import { AccountMenu } from "@/toolpad/core/kit";
-import { DashboardLayout, ThemeSwitcher } from "@/toolpad/core/toolpad-core/DashboardLayout";
+import { AccountMenu, DashboardLayout, ThemeSwitcher } from "@/toolpad/core";
 
 
 export default function Layout(props: { children: React.ReactNode }) {

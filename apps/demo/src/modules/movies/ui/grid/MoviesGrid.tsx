@@ -3,8 +3,7 @@
 import { MovieList } from "@/modules/movies/types";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import NoSsr from "@mui/material/NoSsr";
-import { GridRows } from "@/toolpad/node/grid";
-import { useDataGrid } from "@/toolpad/core/kit";
+import { GridRows, useDataGrid } from "@/toolpad/core";
 
 export default function MoviesGrid({ gridRows, isLoading }: {
   gridRows: GridRows<MovieList>,

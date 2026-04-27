@@ -2,7 +2,7 @@ import { MovieList, MovieInsert, MovieSearchParams, Movie } from "@/modules/movi
 import { genresTable, moviesGenresTable, moviesTable } from "@/lib/db/schema/schema";
 import { eq, gte, inArray, like, lte, sql } from "drizzle-orm";
 import { DrizzleClient } from "@/lib/db/dm";
-import { GridRows, GridSearch } from "@/toolpad/node/grid";
+import { GridRows, GridSearch } from "@/toolpad/node";
 
 export class MoviesRepository {
   private readonly dc;

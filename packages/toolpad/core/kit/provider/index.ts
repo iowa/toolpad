@@ -1,2 +1,2 @@
 export * from './hooks';
-export * from './QueryClientProviderWrapper';
+export { default as QueryClientProviderWrapper } from './QueryClientProviderWrapper';

@@ -6,7 +6,7 @@ import { Suspense } from "react";
 import { getDC } from "@/lib/db/dm";
 import MoviesForm from "@/modules/movies/ui/form/MoviesForm";
 import Box from "@mui/material/Box";
-import { GridRows } from "@/toolpad/node/grid";
+import { GridRows } from "@/toolpad/node";
 
 export default async function MoviesPage(props: { searchParams: Promise<MovieSearchParams> }) {
   const searchParams = await props.searchParams;

@@ -4,7 +4,7 @@ import { MovieSearchParams } from "@/modules/movies/types";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
-import DatePickerElement from "@/toolpad/core/kit/form/rhf/DatePickerElement";
+import { DatePickerElement } from "@/toolpad/core";
 
 export default function PremiereDateAfterDatePicker({ push }: {
   push: (values: MovieSearchParams) => void

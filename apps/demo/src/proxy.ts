@@ -1,6 +1,6 @@
 import { auth } from "@/lib/auth/auth";
 import { NextRequest, NextResponse } from 'next/server';
-import { ProxyGuard } from "@/toolpad/node/auth";
+import { ProxyGuard } from "@/toolpad/node";
 
 export default auth;
 

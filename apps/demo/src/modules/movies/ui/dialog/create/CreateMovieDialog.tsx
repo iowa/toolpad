@@ -7,7 +7,7 @@ import DialogActions from '@mui/material/DialogActions';
 import Stack from '@mui/material/Stack';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import CreateMovieForm from "@/modules/movies/ui/dialog/create/CreateMovieForm";
-import { DialogProps, DialogsProvider, useDialogs } from "@/toolpad/core/toolpad-core/useDialogs";
+import { DialogProps, DialogsProvider, useDialogs } from "@/toolpad/core";
 
 
 function Content({ open, onClose }: DialogProps<undefined, string | null>) {
