@@ -19,7 +19,7 @@
     "lint-staged": "^16.4.0",
     "prettier": "3.8.3",
     "pretty-quick": "^4.2.2",
-    "turbo": "^2.5.4",
+    "turbo": "^2.9.6",
     "typescript": "^6.0.3"
   }
 }
