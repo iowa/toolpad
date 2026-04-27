@@ -1,1 +1,1 @@
-export * from './GridSearch';
+export * from './GridQuery';

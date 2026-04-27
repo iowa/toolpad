@@ -7,29 +7,29 @@ export const DatabaseConfigSchema = z.object({
   port: z.coerce.number().int().positive(),
 });
 
-export type DatabaseConfig = z.infer<typeof DatabaseConfigSchema>;
+export type DatabaseConfigType = z.infer<typeof DatabaseConfigSchema>;
 
-export const DEFAULT_ENV_NAMES: Record<keyof DatabaseConfig, string> = {
+export const DEFAULT_ENV_NAMES: Record<keyof DatabaseConfigType, string> = {
   user: 'DB_USER',
   password: 'DB_PASSWORD',
   host: 'DB_HOST',
   port: 'DB_PORT',
 };
 
-export class DatabaseConfigUtils {
-  private readonly _config: DatabaseConfig
+export class DatabaseConfig {
+  private readonly _config: DatabaseConfigType
 
-  constructor(envNames?: Partial<Record<keyof DatabaseConfig, string>>) {
+  constructor(envNames?: Partial<Record<keyof DatabaseConfigType, string>>) {
     this._config = this.parse(envNames)
   }
 
-  get config(): DatabaseConfig {
+  get config(): DatabaseConfigType {
     return this._config;
   }
 
   private parse(
-    envNames?: Partial<Record<keyof DatabaseConfig, string>>
-  ): DatabaseConfig {
+    envNames?: Partial<Record<keyof DatabaseConfigType, string>>
+  ): DatabaseConfigType {
     const names = { ...DEFAULT_ENV_NAMES, ...(envNames ?? {}) } as Record<string, string>;
 
     const raw = {

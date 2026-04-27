@@ -2,12 +2,12 @@ import { drizzle as pgDrizzle } from "drizzle-orm/node-postgres";
 import { drizzle as pgLiteDrizzle } from 'drizzle-orm/pglite';
 import { relations } from "@/lib/db/schema/relations";
 import { PGlite } from "@electric-sql/pglite";
-import { DatabaseConfigUtils, DrizzlePoolManager } from "@/toolpad/node";
+import { DatabaseConfig, PoolManager } from "@/toolpad/node";
 
 export const drizzleDatabaseKeys = ['toolpad'] as const;
 export type DrizzleDatabaseKey = (typeof drizzleDatabaseKeys)[number];
 
-const dm = new DrizzlePoolManager();
+const dm = new PoolManager();
 
 export type ProdDrizzleClient = ReturnType<typeof getDC>
 export type MockDrizzleClient = ReturnType<typeof getMockDC>
@@ -18,7 +18,7 @@ export function getDC(key: DrizzleDatabaseKey) {
   switch (key) {
     case 'toolpad': {
       const client = dm.get(key, {
-        connectionString: new DatabaseConfigUtils().buildConnectionString('toolpad', statementTimeoutMs),
+        connectionString: new DatabaseConfig().buildConnectionString('toolpad', statementTimeoutMs),
         max: 4,
         query_timeout: statementTimeoutMs,
         application_name: 'toolpad',

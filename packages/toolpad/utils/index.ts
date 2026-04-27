@@ -1,4 +1,4 @@
 export * from './auth';
 export * from './date';
-export * from './error';
+export * from './http';
 export * from './grid';

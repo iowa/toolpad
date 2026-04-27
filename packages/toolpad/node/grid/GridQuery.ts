@@ -3,7 +3,7 @@ import { SQLWrapper } from "drizzle-orm/sql/sql";
 import { DrizzleDB, DrizzleTable } from "../db";
 import { GridPagination, GridPaginationDefaults, GridRows } from "../../utils";
 
-export class GridSearch<SearchParams extends GridPagination, Rows> {
+export class GridQuery<SearchParams extends GridPagination, Rows> {
 
   constructor(private readonly searchParams: SearchParams) {
   }

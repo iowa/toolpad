@@ -3,7 +3,7 @@ import { DrizzleClient } from "@/lib/db/dm";
 import { Genre, GenreInsert, GenreSearchParams } from "@/modules/genres/types";
 import { eq, like } from "drizzle-orm";
 import { GridRows } from "@/toolpad/utils";
-import { GridSearch } from "@/toolpad/node";
+import { GridQuery } from "@/toolpad/node";
 
 export class GenresRepository {
   private readonly dc;
@@ -20,7 +20,7 @@ export class GenresRepository {
   }
 
   async search(searchParams: GenreSearchParams): Promise<GridRows<Genre>> {
-    const gs = new GridSearch<GenreSearchParams, Genre>(searchParams);
+    const gs = new GridQuery<GenreSearchParams, Genre>(searchParams);
     const whereBase = gs.whereAnd({
       name: searchParams.name ? like(genresTable.name, `%${searchParams.name}%`) : undefined,
     });

@@ -1,6 +1,6 @@
 import { Pool, PoolConfig } from 'pg';
 
-export class DrizzlePoolManager {
+export class PoolManager {
   private pools: Record<string, Pool> = {};
 
   get(key: string, config: PoolConfig): Pool {

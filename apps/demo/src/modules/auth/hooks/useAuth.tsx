@@ -1,7 +1,7 @@
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 import { SIGNIN_PATH, UserIdentity } from "@/lib/auth/types";
-import { Jwts } from "@/toolpad/utils";
+import { JwtDecoder } from "@/toolpad/utils";
 
 export const useAuth = () => {
   const { data: session } = useSession();
@@ -24,7 +24,7 @@ export const useAuth = () => {
   const getIdentity = (): UserIdentity | null => {
     if (session?.user) {
       const { user } = session;
-      const decodedAccessToken = new Jwts(session?.accessToken).decode();
+      const decodedAccessToken = new JwtDecoder(session?.accessToken).decode();
       return {
         name: user.name,
         email: user.email,

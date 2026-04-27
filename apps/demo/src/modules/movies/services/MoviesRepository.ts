@@ -2,7 +2,7 @@ import { MovieList, MovieInsert, MovieSearchParams, Movie } from "@/modules/movi
 import { genresTable, moviesGenresTable, moviesTable } from "@/lib/db/schema/schema";
 import { eq, gte, inArray, like, lte, sql } from "drizzle-orm";
 import { DrizzleClient } from "@/lib/db/dm";
-import { GridSearch } from "@/toolpad/node";
+import { GridQuery } from "@/toolpad/node";
 import { GridRows } from "@/toolpad/utils";
 
 export class MoviesRepository {
@@ -27,7 +27,7 @@ export class MoviesRepository {
   }
 
   async search(searchParams: MovieSearchParams): Promise<GridRows<MovieList>> {
-    const gs = new GridSearch<MovieSearchParams, MovieList>(searchParams);
+    const gs = new GridQuery<MovieSearchParams, MovieList>(searchParams);
     const genresSubquery = this.genresSubquery(searchParams);
 
     const whereBase = gs.whereAnd({

@@ -1,6 +1,6 @@
 import jwt, { JwtPayload } from 'jsonwebtoken';
 
-export class Jwts {
+export class JwtDecoder {
   private readonly decoded: JwtPayload | null;
 
   constructor(accessToken?: string) {

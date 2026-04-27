@@ -1,1 +1,1 @@
-export * from './Jwts'
+export * from './JwtDecoder'
