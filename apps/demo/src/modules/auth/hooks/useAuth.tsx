@@ -1,7 +1,7 @@
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
-import { SIGNIN_PATH, UserIdentity } from "../../../../node/auth";
-import { Jwts } from "../../../../node/auth/Jwts";
+import { SIGNIN_PATH, UserIdentity } from "@/lib/auth/types";
+import { Jwts } from "@/toolpad/node";
 
 export const useAuth = () => {
   const { data: session } = useSession();

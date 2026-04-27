@@ -12,7 +12,7 @@ import Popover from '@mui/material/Popover';
 import { bindPopover, bindTrigger, usePopupState } from 'material-ui-popup-state/hooks';
 import Stack from '@mui/material/Stack';
 import ListItemText from '@mui/material/ListItemText';
-import { useAuth } from "../hooks";
+import { useAuth } from "@/modules/auth/hooks/useAuth";
 
 export function AccountMenu() {
   const authProvider = useAuth();
