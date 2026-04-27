@@ -1,0 +1,95 @@
+{
+  "name": "@iowas/toolpad",
+  "version": "1.0.15",
+  "license": "MIT",
+  "repository": "https://github.com/iowa/toolpad",
+  "description": "Custom mui-toolpad",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "exports": {
+    "./core": {
+      "types": "./dist/core.d.ts",
+      "import": "./dist/core.mjs",
+      "require": "./dist/core.js"
+    },
+    "./node": {
+      "types": "./dist/node.d.ts",
+      "import": "./dist/node.mjs",
+      "require": "./dist/node.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup --config tsup.config.ts",
+    "prepack": "pnpm build"
+  },
+  "dependencies": {
+    "invariant": "2.2.4",
+    "lodash": "^4.18.1",
+    "path-to-regexp": "8.4.2",
+    "prop-types": "15.8.1",
+    "react-is": "^19.2.5"
+  },
+  "peerDependencies": {
+    "@emotion/cache": "^11.14.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^9.0.0",
+    "@mui/material": "^9.0.0",
+    "@mui/material-nextjs": "^9.0.0",
+    "@mui/utils": "^9.0.0",
+    "@mui/x-data-grid": "^8.28.2",
+    "@mui/x-date-pickers": "^9.0.0",
+    "@tailwindcss/postcss": "^4.2.2",
+    "@tanstack/react-query": "^5.97.0",
+    "@tanstack/react-query-devtools": "^5.99.0",
+    "dayjs": "^1.11.20",
+    "dotenv": "^17.4.0",
+    "drizzle-orm": "1.0.0-beta.20",
+    "drizzle-zod": "^0.8.3",
+    "jsonwebtoken": "^9.0.3",
+    "material-ui-popup-state": "^5.3.7",
+    "next": "^16.2.3",
+    "next-auth": "5.0.0-beta.31",
+    "pg": "^8.20.0",
+    "postcss": "^8.5.9",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "react-hook-form": "^7.72.1",
+    "tailwindcss": "^4.2.2",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/invariant": "^2.2.37",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/lodash": "^4.17.24",
+    "@types/node": "^25.6.0",
+    "@types/pg": "^8.20.0",
+    "@types/prop-types": "^15.7.15",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@types/react-is": "^19.2.0",
+    "tsup": "^8.5.1",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "react",
+    "mui",
+    "toolpad",
+    "internal tools",
+    "crud",
+    "admin",
+    "dashboard"
+  ],
+  "author": "Peter Kudela"
+}
+
