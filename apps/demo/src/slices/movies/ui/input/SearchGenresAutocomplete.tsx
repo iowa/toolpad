@@ -5,11 +5,11 @@ import { useFormContext } from 'react-hook-form';
 import { ChipTypeMap } from '@mui/material';
 import { AutocompleteElement } from '@/toolpad/core';
 import { MovieSearchParams } from "@/slices/movies/types";
-import { useGenres } from "@/shared/genres/useGenres";
+import { useGenres } from "@/slices/genres/hooks/useGenres";
 
 export default function SearchGenresAutocomplete({
-  push,
-}: {
+                                                   push,
+                                                 }: {
   push: (values: MovieSearchParams) => void;
 }) {
   const { control, getValues, setValue } = useFormContext<MovieSearchParams>();

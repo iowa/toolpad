@@ -8,10 +8,11 @@ import { MoviesRepository } from "@/slices/movies/services/MoviesRepository";
 import CreateMovieDialog from "@/slices/movies/ui/CreateMovieDialog";
 import MoviesForm from "@/slices/movies/ui/MoviesForm";
 import MoviesGrid from "@/slices/movies/ui/MoviesGrid";
+import { searchMovies } from "@/slices/movies/api/moviesActions";
 
 export default async function MoviesPage(props: { searchParams: Promise<MovieSearchParams> }) {
   const searchParams = await props.searchParams;
-  const gridRowsPromise = new MoviesRepository(getDC('toolpad')).search(searchParams);
+  const gridRowsPromise = searchMovies(searchParams);
 
   return (
 

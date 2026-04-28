@@ -1,5 +1,3 @@
-import 'server-only';
-
 import { drizzle as pgDrizzle } from "drizzle-orm/node-postgres";
 import { drizzle as pgLiteDrizzle } from 'drizzle-orm/pglite';
 import { PGlite } from "@electric-sql/pglite";
@@ -10,7 +8,6 @@ export const drizzleDatabaseKeys = ['toolpad'] as const;
 export type DrizzleDatabaseKey = (typeof drizzleDatabaseKeys)[number];
 
 const dm = new PoolManager();
-
 
 
 export function getDC(key: DrizzleDatabaseKey) {

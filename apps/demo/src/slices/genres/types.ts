@@ -1,6 +1,10 @@
 import { z } from 'zod';
 import { GridPagination } from "@/toolpad/utils";
-import { GenreInsertSchema, GenreSchema } from "@/lib/db/schema/schema";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
+import { genresTable } from "@/lib/db/schema/schema";
+
+export const GenreSchema = createSelectSchema(genresTable);
+export const GenreInsertSchema = createInsertSchema(genresTable);
 
 export type Genre = z.infer<typeof GenreSchema>
 export type GenreInsert = z.infer<typeof GenreInsertSchema>
@@ -10,3 +14,4 @@ export const GenreSearchParamsSchema = z.object({
 });
 
 export type GenreSearchParams = z.infer<typeof GenreSearchParamsSchema> & GridPagination;
+

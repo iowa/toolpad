@@ -8,7 +8,7 @@ import GenresObjAutocomplete from "./input/GenresObjAutocomplete";
 import { useFormQueryString, useQueryString, TextFieldElement } from "@/toolpad/core";
 import { Dates } from "@/toolpad/utils";
 import { MovieSearchParams } from "@/slices/movies/types";
-import { GenreSchema } from "@/lib/db/schema/schema";
+import { GenreSchema } from "@/slices/genres/types";
 
 export default function MoviesForm({ isLoading }: { isLoading: boolean }) {
   const qs = useQueryString<MovieSearchParams>();

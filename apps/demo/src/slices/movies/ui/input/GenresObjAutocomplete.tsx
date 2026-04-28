@@ -5,8 +5,8 @@ import { useFormContext } from 'react-hook-form';
 import { ChipTypeMap } from '@mui/material';
 import { AutocompleteElement } from '@/toolpad/core';
 import { MovieSearchParams } from "@/slices/movies/types";
-import { useGenres } from "@/shared/genres/useGenres";
 import { Genre } from "@/slices/genres/types";
+import { useGenres } from "@/slices/genres/hooks/useGenres";
 
 export default function GenresObjAutocomplete({
   push,
