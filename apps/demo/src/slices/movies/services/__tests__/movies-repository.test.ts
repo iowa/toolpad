@@ -1,29 +1,36 @@
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import path from 'node:path';
-import { MoviesRepository } from '@/slices/movies/services/MoviesRepository';
-import { TestMovies } from '@/slices/movies/testing/TestMovies';
-import { migrate } from 'drizzle-orm/pglite/migrator';
-import { eq } from 'drizzle-orm';
-import { MockDrizzleClient } from "@/lib/db/types";
+import path from "node:path";
+import { eq } from "drizzle-orm";
+import { migrate } from "drizzle-orm/pglite/migrator";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { getMockDC } from "@/lib/db/dm";
 import { genresTable } from "@/lib/db/schema/schema";
+import type { MockDrizzleClient } from "@/lib/db/types";
+import { MoviesRepository } from "@/slices/movies/services/movies-repository";
+import { TestMovies } from "@/slices/movies/testing/test-movies";
 
-describe('MoviesRepository', async () => {
+describe("MoviesRepository", () => {
   let dc: MockDrizzleClient;
   let cut: MoviesRepository;
   let testMovies: TestMovies;
 
-  beforeEach(async () => {
-    dc = getMockDC('toolpad');
+  beforeEach(() => {
+    dc = getMockDC("toolpad");
     cut = new MoviesRepository(dc);
 
     const genresRepository = {
       insert: async (value: { name: string }) => {
-        const inserted = await dc.db.insert(genresTable).values(value).onConflictDoNothing().returning();
+        const inserted = await dc.db
+          .insert(genresTable)
+          .values(value)
+          .onConflictDoNothing()
+          .returning();
         if (inserted[0]) {
           return { id: inserted[0].id };
         }
-        const existing = await dc.db.select().from(genresTable).where(eq(genresTable.name, value.name));
+        const existing = await dc.db
+          .select()
+          .from(genresTable)
+          .where(eq(genresTable.name, value.name));
         return { id: existing[0].id };
       },
     };
@@ -35,9 +42,9 @@ describe('MoviesRepository', async () => {
     await dc.client.close();
   });
 
-  it('search return all on empty', async () => {
-    const migrationsFolder = path.resolve(process.cwd(), 'drizzle');
-    await migrate(dc.db, { migrationsFolder: migrationsFolder });
+  it("search return all on empty", async () => {
+    const migrationsFolder = path.resolve(process.cwd(), "drizzle");
+    await migrate(dc.db, { migrationsFolder });
 
     await testMovies.create(TestMovies.Matrix);
 
@@ -62,20 +69,22 @@ describe('MoviesRepository', async () => {
     `);
   });
 
-  it('search params test', async () => {
-    const migrationsFolder = path.resolve(process.cwd(), 'drizzle');
-    await migrate(dc.db, { migrationsFolder: migrationsFolder });
+  it("search params test", async () => {
+    const migrationsFolder = path.resolve(process.cwd(), "drizzle");
+    await migrate(dc.db, { migrationsFolder });
 
     await testMovies.create(TestMovies.Matrix);
     await testMovies.create(TestMovies.FellowshipOfTheRing);
     await testMovies.create(TestMovies.Inception);
     await testMovies.create(TestMovies.HatefulEight);
 
-    const titleSearchResult = await cut.search({ title: 'The' });
+    const titleSearchResult = await cut.search({ title: "The" });
     expect(titleSearchResult.rowCount).toBe(3);
-    expect(titleSearchResult.rows.map(({ title }) => ({
-      title,
-    }))).toMatchInlineSnapshot(`
+    expect(
+      titleSearchResult.rows.map(({ title }) => ({
+        title,
+      }))
+    ).toMatchInlineSnapshot(`
       [
         {
           "title": "The Matrix",
@@ -89,11 +98,13 @@ describe('MoviesRepository', async () => {
       ]
     `);
 
-    const titleSearchResult2 = await cut.search({ title: 'Ring' });
+    const titleSearchResult2 = await cut.search({ title: "Ring" });
     expect(titleSearchResult2.rowCount).toBe(1);
-    expect(titleSearchResult2.rows.map(({ title }) => ({
-      title,
-    }))).toMatchInlineSnapshot(`
+    expect(
+      titleSearchResult2.rows.map(({ title }) => ({
+        title,
+      }))
+    ).toMatchInlineSnapshot(`
       [
         {
           "title": "The Lord of the Rings: The Fellowship of the Ring",
@@ -101,11 +112,15 @@ describe('MoviesRepository', async () => {
       ]
     `);
 
-    const premiereAfterSearchResult = await cut.search({ premiereDateAfter: '2009-01-01' });
-    expect(premiereAfterSearchResult.rows.map(({ title, premiereDate }) => ({
-      title,
-      premiereDate,
-    }))).toMatchInlineSnapshot(`
+    const premiereAfterSearchResult = await cut.search({
+      premiereDateAfter: "2009-01-01",
+    });
+    expect(
+      premiereAfterSearchResult.rows.map(({ title, premiereDate }) => ({
+        title,
+        premiereDate,
+      }))
+    ).toMatchInlineSnapshot(`
       [
         {
           "premiereDate": "2015-12-25",
@@ -118,11 +133,15 @@ describe('MoviesRepository', async () => {
       ]
     `);
 
-    const premiereBeforeSearchResult = await cut.search({ premiereDateBefore: '2009-01-01' });
-    expect(premiereBeforeSearchResult.rows.map(({ title, premiereDate }) => ({
-      title,
-      premiereDate,
-    }))).toMatchInlineSnapshot(`
+    const premiereBeforeSearchResult = await cut.search({
+      premiereDateBefore: "2009-01-01",
+    });
+    expect(
+      premiereBeforeSearchResult.rows.map(({ title, premiereDate }) => ({
+        title,
+        premiereDate,
+      }))
+    ).toMatchInlineSnapshot(`
       [
         {
           "premiereDate": "1999-03-31",
@@ -135,11 +154,15 @@ describe('MoviesRepository', async () => {
       ]
     `);
 
-    const genresSearchResult = await cut.search({ genres: [TestMovies.Fantasy.name] });
-    expect(genresSearchResult.rows.map(({ title, genres }) => ({
-      title,
-      genres,
-    }))).toMatchInlineSnapshot(`
+    const genresSearchResult = await cut.search({
+      genres: [TestMovies.Fantasy.name],
+    });
+    expect(
+      genresSearchResult.rows.map(({ title, genres }) => ({
+        title,
+        genres,
+      }))
+    ).toMatchInlineSnapshot(`
       [
         {
           "genres": [
@@ -153,5 +176,3 @@ describe('MoviesRepository', async () => {
     `);
   });
 });
-
-

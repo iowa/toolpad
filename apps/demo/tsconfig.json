@@ -14,7 +14,8 @@
       "@/toolpad/node/*": ["../../packages/toolpad/node/*"],
       "@/toolpad/utils": ["../../packages/toolpad/utils"],
       "@/toolpad/utils/*": ["../../packages/toolpad/utils/*"]
-    }
+    },
+    "strictNullChecks": true
   },
   "include": [
     "next-env.d.ts",
@@ -25,4 +26,3 @@
   ],
   "exclude": ["node_modules"]
 }
-

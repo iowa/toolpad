@@ -1,12 +1,9 @@
 import { NextResponse } from "next/server";
-import { getDC } from "@/lib/db/dm";
-import { TestMovies } from "@/slices/movies/testing/TestMovies";
-import { MoviesRepository } from "@/slices/movies/services/MoviesRepository";
-import { GenresRepository } from "@/slices/genres/services/GenresRepository";
+import { seedMovies } from "@/slices/movies/api/movies-actions";
 
 export async function POST(_req: Request) {
   try {
-
+    await seedMovies();
     return new NextResponse(null, { status: 204 });
   } catch (err) {
     console.error("/api/movies/seed error:", err);

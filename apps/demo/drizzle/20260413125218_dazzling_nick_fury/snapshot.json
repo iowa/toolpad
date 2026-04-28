@@ -2,9 +2,7 @@
   "version": "8",
   "dialect": "postgres",
   "id": "3e751178-ef2e-4b61-b199-ba9211f4a5e8",
-  "prevIds": [
-    "00000000-0000-0000-0000-000000000000"
-  ],
+  "prevIds": ["00000000-0000-0000-0000-000000000000"],
   "ddl": [
     {
       "name": "toolpad",
@@ -186,14 +184,10 @@
     },
     {
       "nameExplicit": false,
-      "columns": [
-        "movie_id"
-      ],
+      "columns": ["movie_id"],
       "schemaTo": "toolpad",
       "tableTo": "movies",
-      "columnsTo": [
-        "id"
-      ],
+      "columnsTo": ["id"],
       "onUpdate": "NO ACTION",
       "onDelete": "NO ACTION",
       "name": "movies_genres_movie_id_movies_id_fkey",
@@ -203,14 +197,10 @@
     },
     {
       "nameExplicit": false,
-      "columns": [
-        "genre_id"
-      ],
+      "columns": ["genre_id"],
       "schemaTo": "toolpad",
       "tableTo": "genres",
-      "columnsTo": [
-        "id"
-      ],
+      "columnsTo": ["id"],
       "onUpdate": "NO ACTION",
       "onDelete": "NO ACTION",
       "name": "movies_genres_genre_id_genres_id_fkey",
@@ -219,9 +209,7 @@
       "table": "movies_genres"
     },
     {
-      "columns": [
-        "id"
-      ],
+      "columns": ["id"],
       "nameExplicit": false,
       "name": "genres_pkey",
       "schema": "toolpad",
@@ -229,9 +217,7 @@
       "entityType": "pks"
     },
     {
-      "columns": [
-        "id"
-      ],
+      "columns": ["id"],
       "nameExplicit": false,
       "name": "movies_genres_pkey",
       "schema": "toolpad",
@@ -239,9 +225,7 @@
       "entityType": "pks"
     },
     {
-      "columns": [
-        "id"
-      ],
+      "columns": ["id"],
       "nameExplicit": false,
       "name": "movies_pkey",
       "schema": "toolpad",
@@ -250,9 +234,7 @@
     },
     {
       "nameExplicit": false,
-      "columns": [
-        "name"
-      ],
+      "columns": ["name"],
       "nullsNotDistinct": false,
       "name": "genres_name_key",
       "schema": "toolpad",

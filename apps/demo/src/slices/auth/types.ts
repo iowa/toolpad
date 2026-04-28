@@ -1,10 +1,10 @@
-export const AUTH_API= '/api/auth'
-export const SIGNIN_PATH= '/auth/signin'
+export const AUTH_API = "/api/auth";
+export const SIGNIN_PATH = "/auth/signin";
 
-export type UserIdentity = {
-  name: string;
+export interface UserIdentity {
   email: string;
-  preferred_username: string;
-  given_name: string;
   family_name: string;
-};
+  given_name: string;
+  name: string;
+  preferred_username: string;
+}

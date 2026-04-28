@@ -1,4 +1,5 @@
 import { defineRelations } from "drizzle-orm";
+// biome-ignore lint/performance/noNamespaceImport: Required by drizzle-orm
 import * as schema from "./schema";
 
 export const relations = defineRelations(schema, (r) => ({
@@ -9,6 +10,6 @@ export const relations = defineRelations(schema, (r) => ({
     titles: r.many.moviesTable({
       from: r.genresTable.id.through(r.moviesGenresTable.genreId),
       to: r.moviesTable.id.through(r.moviesGenresTable.movieId),
-    })
+    }),
   },
-}))
+}));

@@ -34,16 +34,16 @@ export const { handlers, auth } = NextAuth({
       if (account?.access_token) {
         return {
           ...token,
-          accessToken: account.access_token
-        }
+          accessToken: account.access_token,
+        };
       }
       return token;
     },
     session({ session, token }) {
       if (token?.accessToken) {
-        session.accessToken = token.accessToken
+        session.accessToken = token.accessToken;
       }
       return session;
     },
-  }
+  },
 });

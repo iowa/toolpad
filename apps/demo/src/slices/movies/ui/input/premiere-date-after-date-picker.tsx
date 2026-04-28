@@ -1,12 +1,11 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { useFormContext } from 'react-hook-form';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import dayjs from 'dayjs';
-import { DatePickerElement } from '@/toolpad/core';
-import { MovieSearchParams } from "@/slices/movies/types";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import type dayjs from "dayjs";
+import { useFormContext } from "react-hook-form";
+import type { MovieSearchParams } from "@/slices/movies/types";
+import { DatePickerElement } from "@/toolpad/core";
 
 export default function PremiereDateAfterDatePicker({
   push,
@@ -19,15 +18,15 @@ export default function PremiereDateAfterDatePicker({
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePickerElement
         control={control}
-        name={'premiereDateAfter'}
-        label="Premiere After"
         format="DD/MM/YYYY"
         inputProps={{
-          size: 'small',
+          size: "small",
           fullWidth: true,
         }}
+        label="Premiere After"
+        name={"premiereDateAfter"}
         onChange={(value) => {
-          setValue('premiereDateAfter', value as dayjs.Dayjs);
+          setValue("premiereDateAfter", value as dayjs.Dayjs);
           push({
             ...getValues(),
             premiereDateAfter: value,
@@ -37,5 +36,3 @@ export default function PremiereDateAfterDatePicker({
     </LocalizationProvider>
   );
 }
-
-

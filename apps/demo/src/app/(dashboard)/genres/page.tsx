@@ -1,40 +1,49 @@
-import Stack from '@mui/material/Stack';
-import { Suspense } from "react";
 import Box from "@mui/material/Box";
-import type { GridRows } from "@/toolpad/utils";
+import Stack from "@mui/material/Stack";
+import { Suspense } from "react";
 import { getDC } from "@/lib/db/dm";
-import { Genre, GenreSearchParams } from "@/slices/genres/types";
-import { GenresRepository } from "@/slices/genres/services/GenresRepository";
-import CreateGenreDialog from "@/slices/genres/ui/CreateGenreDialog";
-import GenresForm from "@/slices/genres/ui/GenresForm";
-import GenresGrid from "@/slices/genres/ui/GenresGrid";
+import { GenresRepository } from "@/slices/genres/services/genres-repository";
+import type { Genre, GenreSearchParams } from "@/slices/genres/types";
+import CreateGenreDialog from "@/slices/genres/ui/create-genre-dialog";
+import GenresForm from "@/slices/genres/ui/genres-form";
+import GenresGrid from "@/slices/genres/ui/genres-grid";
+import type { GridRows } from "@/toolpad/utils";
 
-export default async function GenresPage(props: { searchParams: Promise<GenreSearchParams> }) {
+export default async function GenresPage(props: {
+  searchParams: Promise<GenreSearchParams>;
+}) {
   const searchParams = await props.searchParams;
-  const gridRowsPromise = new GenresRepository(getDC('toolpad')).search(searchParams);
+  const gridRowsPromise = new GenresRepository(getDC("toolpad")).search(
+    searchParams
+  );
 
   return (
-    <Suspense key={JSON.stringify(searchParams)} fallback={<GenresPageContent isLoading={true}/>}>
-      <GenresPageContent gridRowsPromise={gridRowsPromise}/>
+    <Suspense
+      fallback={<GenresPageContent isLoading={true} />}
+      key={JSON.stringify(searchParams)}
+    >
+      <GenresPageContent gridRowsPromise={gridRowsPromise} />
     </Suspense>
   );
 }
 
 async function GenresPageContent({
-                                   gridRowsPromise,
-                                   isLoading = false,
-                                 }: {
+  gridRowsPromise,
+  isLoading = false,
+}: {
   gridRowsPromise?: Promise<GridRows<Genre>>;
   isLoading?: boolean;
 }) {
-  const gridRows = gridRowsPromise ? await gridRowsPromise : { rows: [], rowCount: 0 };
+  const gridRows = gridRowsPromise
+    ? await gridRowsPromise
+    : { rows: [], rowCount: 0 };
 
   return (
     <Stack spacing={2} sx={{ flex: 1, minHeight: 0 }}>
-      <CreateGenreDialog/>
-      <GenresForm isLoading={isLoading}/>
+      <CreateGenreDialog />
+      <GenresForm isLoading={isLoading} />
       <Box sx={{ flex: 1, minHeight: 0 }}>
-        <GenresGrid gridRows={gridRows} isLoading={isLoading}/>
+        <GenresGrid gridRows={gridRows} isLoading={isLoading} />
       </Box>
     </Stack>
   );

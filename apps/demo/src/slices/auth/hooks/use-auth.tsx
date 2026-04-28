@@ -1,25 +1,25 @@
-import { signIn, signOut, useSession } from 'next-auth/react';
-import { usePathname } from 'next/navigation';
+import { usePathname } from "next/navigation";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { SIGNIN_PATH, type UserIdentity } from "@/slices/auth/types";
 import { JwtDecoder } from "@/toolpad/utils";
-import { SIGNIN_PATH, UserIdentity } from "@/slices/auth/types";
 
 export const useAuth = () => {
   const { data: session } = useSession();
   const to = usePathname();
 
   const login = () => {
-    signIn('keycloak', {
-      callbackUrl: to ? to.toString() : '/',
+    signIn("keycloak", {
+      callbackUrl: to ? to.toString() : "/",
       redirect: true,
-    })
-  }
+    });
+  };
 
   const logout = () => {
     signOut({
       callbackUrl: SIGNIN_PATH,
       redirect: true,
     });
-  }
+  };
 
   const getIdentity = (): UserIdentity | null => {
     if (session?.user) {
@@ -28,24 +28,24 @@ export const useAuth = () => {
       return {
         name: user.name,
         email: user.email,
-        preferred_username: decodedAccessToken?.['preferred_username'],
-        given_name: decodedAccessToken?.['given_name'],
-        family_name: decodedAccessToken?.['family_name'],
+        preferred_username: decodedAccessToken?.preferred_username,
+        given_name: decodedAccessToken?.given_name,
+        family_name: decodedAccessToken?.family_name,
       } as UserIdentity;
     }
     return null;
-  }
+  };
 
   const getInitials = (): string => {
     const identity = getIdentity();
     return identity?.given_name && identity?.family_name
       ? `${identity.given_name[0]}${identity.family_name[0]}`
       : identity?.name
-    ?.split(' ')
-    .map((n) => n[0])
-    .join('')
-    .slice(0, 2) || '';
-  }
+          ?.split(" ")
+          .map((n) => n[0])
+          .join("")
+          .slice(0, 2) || "";
+  };
 
   return { login, logout, getIdentity, getInitials };
-}
+};

@@ -1,9 +1,13 @@
-'use client'
+"use client";
 
-import Grid from '@mui/material/Grid';
+import Grid from "@mui/material/Grid";
 import { FormProvider } from "react-hook-form";
-import { useFormQueryString, useQueryString, TextFieldElement } from "@/toolpad/core";
-import { GenreSearchParams } from "@/slices/genres/types";
+import type { GenreSearchParams } from "@/slices/genres/types";
+import {
+  TextFieldElement,
+  useFormQueryString,
+  useQueryString,
+} from "@/toolpad/core";
 
 export default function GenresForm({ isLoading }: { isLoading: boolean }) {
   const qs = useQueryString<GenreSearchParams>();
@@ -12,34 +16,28 @@ export default function GenresForm({ isLoading }: { isLoading: boolean }) {
       name: "",
     },
     defaultValues: {
-      name: qs.getParam('name'),
+      name: qs.getParam("name"),
     },
     onPush: (values) => values,
-    isLoading
+    isLoading,
   });
 
   return (
     <FormProvider {...formQs.form}>
-      <form
-        autoComplete="off"
-        onSubmit={formQs.onSubmit}
-      >
+      <form autoComplete="off" onSubmit={formQs.onSubmit}>
         <Grid container direction={"row"} spacing={2}>
           <Grid size={6}>
             <TextFieldElement
               control={formQs.form.control}
-              name={'name'}
-              label={'Name'}
               fullWidth
-              size={'small'}
+              label={"Name"}
+              name={"name"}
+              size={"small"}
             />
           </Grid>
-          <Grid size={6}>
-            {formQs.FormSearchActions}
-          </Grid>
+          <Grid size={6}>{formQs.FormSearchActions}</Grid>
         </Grid>
       </form>
     </FormProvider>
   );
-};
-
+}
