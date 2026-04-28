@@ -3,10 +3,9 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter';
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 import { LinearProgress } from '@mui/material';
 import './globals.css';
-import { auth } from "@/shared/lib/auth";
 import { SessionProvider } from "next-auth/react";
-import ToolpadProvider from "@/app/providers/ToolpadProvider";
-
+import { auth } from "@/slices/auth/auth";
+import ToolpadProvider from "@/shared/providers/ToolpadProvider";
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const session = await auth();

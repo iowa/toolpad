@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
-import { MoviesRepository, TestMovies } from "@/entities/movie/@x/server";
-import { getDC } from "@/shared/lib/db-connection";
-import { GenresRepository } from "@/entities/genre/@x/server";
+import { getDC } from "@/lib/db/dm";
+import { TestMovies } from "@/slices/movies/testing/TestMovies";
+import { MoviesRepository } from "@/slices/movies/services/MoviesRepository";
+import { GenresRepository } from "@/slices/genres/services/GenresRepository";
 
 export async function POST(_req: Request) {
   try {

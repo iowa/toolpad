@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Container } from '@mui/material';
 import Stack from "@mui/material/Stack";
 import { DashboardLayout, ThemeSwitcher } from "@/toolpad/core";
-import { AccountMenu } from "@/features/auth/session";
+import { AccountMenu } from "@/slices/auth/ui/AccountMenu";
 
 
 export default function Layout(props: { children: React.ReactNode }) {

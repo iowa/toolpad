@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import MuiCard from '@mui/material/Card';
 import { styled } from '@mui/material/styles';
-import { useAuth } from "@/features/auth/session";
+import { useAuth } from "@/slices/auth/hooks/useAuth";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',

@@ -1,6 +1,6 @@
-import { auth } from "@/shared/lib/auth";
 import { NextRequest, NextResponse } from 'next/server';
-import { ProxyGuard } from "@/shared/lib/auth";
+import { auth } from "@/slices/auth/auth";
+import { ProxyGuard } from "@/slices/auth/services/ProxyGuard";
 
 export default auth;
 

@@ -14,6 +14,7 @@ export default defineConfig({
   },
   resolve: {
     alias: [
+      { find: 'server-only', replacement: path.resolve(__dirname, 'src/shared/testing/server-only.ts') },
       // Match specific toolpad aliases first; otherwise the generic '@' alias captures them.
       { find: '@/toolpad/core', replacement: path.resolve(__dirname, '../../packages/toolpad/core') },
       { find: '@/toolpad/node', replacement: path.resolve(__dirname, '../../packages/toolpad/node') },
