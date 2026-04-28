@@ -1,17 +1,22 @@
 {
   "name": "@iowas/toolpad",
-  "version": "1.0.20",
-  "license": "MIT",
-  "repository": "https://github.com/iowa/toolpad",
+  "version": "1.0.21",
   "description": "Custom mui-toolpad",
+  "license": "MIT",
+  "author": "Peter Kudela",
+  "repository": "https://github.com/iowa/toolpad",
+  "keywords": [
+    "react",
+    "mui",
+    "toolpad",
+    "internal tools",
+    "crud",
+    "admin",
+    "dashboard"
+  ],
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "files": [
-    "dist",
-    "README.md"
-  ],
-  "sideEffects": false,
   "exports": {
     "./core": {
       "types": "./dist/core.d.ts",
@@ -29,6 +34,11 @@
       "require": "./dist/utils.js"
     }
   },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": false,
   "scripts": {
     "build": "tsup --config tsup.config.ts",
     "prepack": "pnpm build",
@@ -42,27 +52,6 @@
     "path-to-regexp": "8.4.2",
     "prop-types": "15.8.1",
     "react-is": "^19.2.5"
-  },
-  "peerDependencies": {
-    "@emotion/cache": "^11",
-    "@emotion/react": "^11",
-    "@emotion/styled": "^11",
-    "@mui/icons-material": "^9",
-    "@mui/material": "^9",
-    "@mui/material-nextjs": "^9",
-    "@mui/utils": "^9",
-    "@mui/x-data-grid": "^9",
-    "@mui/x-date-pickers": "^9",
-    "@tanstack/react-query": "^5.100.6",
-    "dayjs": "^1",
-    "drizzle-orm": "^1.0.0-beta",
-    "next": "^16",
-    "pg": "^8",
-    "react": "^19",
-    "react-dom": "^19",
-    "react-hook-form": "^7",
-    "jsonwebtoken": "^9",
-    "zod": "^4"
   },
   "devDependencies": {
     "@tanstack/react-query-devtools": "^5.100.6",
@@ -80,17 +69,28 @@
     "typescript": "^6.0.3",
     "vitest": "^4.1.5"
   },
+  "peerDependencies": {
+    "@emotion/cache": "^11",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "@mui/icons-material": "^9",
+    "@mui/material": "^9",
+    "@mui/material-nextjs": "^9",
+    "@mui/utils": "^9",
+    "@mui/x-data-grid": "^9",
+    "@mui/x-date-pickers": "^9",
+    "@tanstack/react-query": "^5.100.6",
+    "dayjs": "^1",
+    "drizzle-orm": "^1.0.0-beta",
+    "jsonwebtoken": "^9",
+    "next": "^16",
+    "pg": "^8",
+    "react": "^19",
+    "react-dom": "^19",
+    "react-hook-form": "^7",
+    "zod": "^4"
+  },
   "publishConfig": {
     "access": "public"
-  },
-  "keywords": [
-    "react",
-    "mui",
-    "toolpad",
-    "internal tools",
-    "crud",
-    "admin",
-    "dashboard"
-  ],
-  "author": "Peter Kudela"
+  }
 }
