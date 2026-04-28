@@ -7,15 +7,16 @@
     "build": "next build",
     "start": "next start",
     "test": "vitest",
+    "lint": "pnpm exec steiger ./src",
     "typecheck": "tsc --noEmit",
     "db:generate": "pnpm exec drizzle-kit generate",
     "db:migrate": "pnpm exec drizzle-kit migrate"
   },
   "dependencies": {
-    "@iowas/toolpad": "workspace:*",
     "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
+    "@iowas/toolpad": "workspace:*",
     "@mui/icons-material": "^9.0.0",
     "@mui/material": "^9.0.0",
     "@mui/material-nextjs": "^9.0.0",
@@ -53,8 +54,8 @@
     "@vitejs/plugin-react": "^6.0.1",
     "drizzle-kit": "1.0.0-beta.20",
     "jsdom": "^29.1.0",
+    "steiger": "^0.5.11",
     "typescript": "^6.0.3",
     "vitest": "^4.1.5"
   }
 }
-

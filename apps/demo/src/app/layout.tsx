@@ -3,9 +3,9 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter';
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 import { LinearProgress } from '@mui/material';
 import './globals.css';
-import { auth } from "@/lib/auth/auth";
+import { auth } from "@/shared/lib/auth";
 import { SessionProvider } from "next-auth/react";
-import ToolpadProvider from "@/lib/provider/ToolpadProvider";
+import ToolpadProvider from "@/app/providers/ToolpadProvider";
 
 
 export default async function RootLayout(props: { children: React.ReactNode }) {

@@ -1,12 +1,12 @@
 import Stack from '@mui/material/Stack';
-import { MovieList, MovieSearchParams } from '@/modules/movies/types';
-import { MoviesRepository } from '@/modules/movies/services/MoviesRepository';
-import MoviesGrid from '@/modules/movies/ui/grid/MoviesGrid';
+import type { MovieList, MovieSearchParams } from '@/entities/movie';
+import { MoviesRepository } from '@/entities/movie/@x/server';
+import { MoviesGrid, MoviesForm } from '@/features/movie/search';
+import { CreateMovieDialog } from '@/features/movie/create';
 import { Suspense } from "react";
-import { getDC } from "@/lib/db/dm";
-import MoviesForm from "@/modules/movies/ui/form/MoviesForm";
+import { getDC } from "@/shared/lib/db-connection";
 import Box from "@mui/material/Box";
-import { GridRows } from "@/toolpad/utils";
+import type { GridRows } from "@/toolpad/utils";
 
 export default async function MoviesPage(props: { searchParams: Promise<MovieSearchParams> }) {
   const searchParams = await props.searchParams;
@@ -32,6 +32,7 @@ async function MoviesPageContent({
 
   return (
     <Stack spacing={2} sx={{ flex: 1, minHeight: 0 }}>
+      <CreateMovieDialog/>
       <MoviesForm isLoading={isLoading}/>
       <Box sx={{ flex: 1, minHeight: 0 }}>
         <MoviesGrid gridRows={gridRows} isLoading={isLoading}/>

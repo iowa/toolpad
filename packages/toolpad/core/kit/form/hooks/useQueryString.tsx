@@ -4,7 +4,7 @@ import { useSearchParams } from 'next/navigation'
 import { useCallback } from 'react'
 import dayjs from "dayjs";
 import { z, ZodType } from "zod";
-import { Dates } from "../../../../utils/date";
+import { Dates } from "../../../../utils";
 
 export function useQueryString<T extends Record<string, any>>() {
   const searchParams = useSearchParams()
