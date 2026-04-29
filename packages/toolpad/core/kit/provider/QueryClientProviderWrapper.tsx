@@ -3,7 +3,6 @@
 import React from 'react';
 
 import { keepPreviousData, QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { useDeepMemo } from "./hooks";
 
 export default function QueryClientProviderWrapper({ children }: { children: React.ReactNode }) {
@@ -19,7 +18,6 @@ export default function QueryClientProviderWrapper({ children }: { children: Rea
   }, []);
 
   return <QueryClientProvider client={queryClient}>
-    <ReactQueryDevtools initialIsOpen={false} buttonPosition={"top-left"}/>
     {children}
   </QueryClientProvider>;
 }

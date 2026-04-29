@@ -1,6 +1,6 @@
 {
   "name": "@iowas/toolpad",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "description": "Custom mui-toolpad",
   "license": "MIT",
   "author": "Peter Kudela",
@@ -54,7 +54,6 @@
     "react-is": "^19.2.5"
   },
   "devDependencies": {
-    "@tanstack/react-query-devtools": "^5.100.6",
     "@types/invariant": "^2.2.37",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/lodash": "^4.17.24",
@@ -79,7 +78,7 @@
     "@mui/utils": "^9",
     "@mui/x-data-grid": "^9",
     "@mui/x-date-pickers": "^9",
-    "@tanstack/react-query": "^5.100.6",
+    "@tanstack/react-query": "^5",
     "dayjs": "^1",
     "drizzle-orm": "^1.0.0-beta",
     "jsonwebtoken": "^9",
